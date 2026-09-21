@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logoUrl from '../assets/logo.png';
 
 export function Footer() {
@@ -17,22 +18,22 @@ export function Footer() {
             <div>
               <h4 className="text-lg font-bold mb-4 text-white">Quick Links</h4>
               <ul className="space-y-3 text-red-200 font-medium">
-                <li><a href="/" className="hover:text-white transition-colors">Home</a></li>
-                <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
-                <li><a href="/courses" className="hover:text-white transition-colors">Courses</a></li>
-                <li><a href="/certification" className="hover:text-white transition-colors">Certification</a></li>
+                <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
+                <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
+                <li><Link to="/courses" className="hover:text-white transition-colors">Courses</Link></li>
+                <li><Link to="/certification" className="hover:text-white transition-colors">Certification</Link></li>
               </ul>
             </div>
 
             <div>
               <h4 className="text-lg font-bold mb-4 text-white">Our Courses</h4>
               <ul className="space-y-3 text-red-200 font-medium">
-                <li><a href="/courses#c1" className="hover:text-white transition-colors">DCA</a></li>
-                <li><a href="/courses#c4" className="hover:text-white transition-colors">Tally Prime</a></li>
-                <li><a href="/courses#c7" className="hover:text-white transition-colors">C Language</a></li>
-                <li><a href="/courses#c8" className="hover:text-white transition-colors">C++ Language</a></li>
-                <li><a href="/courses#c9" className="hover:text-white transition-colors">Core Java</a></li>
-                <li><a href="/courses#c10" className="hover:text-white transition-colors">Python</a></li>
+                <li><Link to="/courses#c1" className="hover:text-white transition-colors">DCA</Link></li>
+                <li><Link to="/courses#c4" className="hover:text-white transition-colors">Tally Prime</Link></li>
+                <li><Link to="/courses#c7" className="hover:text-white transition-colors">C Language</Link></li>
+                <li><Link to="/courses#c8" className="hover:text-white transition-colors">C++ Language</Link></li>
+                <li><Link to="/courses#c9" className="hover:text-white transition-colors">Core Java</Link></li>
+                <li><Link to="/courses#c10" className="hover:text-white transition-colors">Python</Link></li>
               </ul>
             </div>
           </div>
