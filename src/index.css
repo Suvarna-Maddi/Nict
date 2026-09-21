@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fbfaf9; /* Pale off-white */
+  color: #1e293b; /* Dark slate */
+  overflow-x: hidden;
+}
