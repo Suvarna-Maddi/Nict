@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { MessageSquare, X, Send, Bot, User, Minimize2 } from 'lucide-react';
+import { Send, Minimize2 } from 'lucide-react';
 import { getChatbotResponse } from '../data/chatbotKnowledge';
 import chatbotLogo from '../assets/chatbot-logo.png';
 

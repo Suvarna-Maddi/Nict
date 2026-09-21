@@ -1,7 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import logoUrl from '../assets/logo.png';
 import certificateImg from '../assets/certificate.png';
-import { Award, BookOpen, CheckCircle, GraduationCap, ArrowRight } from 'lucide-react';
+import { Award, BookOpen, CheckCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 // Custom Hook for simple fade-in

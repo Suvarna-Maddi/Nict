@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Home, BookOpen, Info, Award, Sparkles, ArrowRight } from 'lucide-react';
+import { X, Home, Info, Award, Sparkles, ArrowRight } from 'lucide-react';
 import logoUrl from '../assets/logo.png';
 
 export function Navbar() {

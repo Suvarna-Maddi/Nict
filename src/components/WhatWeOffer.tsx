@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Monitor, Code, Calculator, GraduationCap, Globe, ArrowRight } from 'lucide-react';
+
 
 const courses = [
   {

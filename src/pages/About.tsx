@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, type ReactNode } from 'react';
-import { Users, Trophy, Target, ArrowRight, ShieldCheck, Zap, Quote, Monitor, BookOpen, Clock, Phone } from 'lucide-react';
+import { Users, Trophy, Target, ArrowRight, ShieldCheck, Zap, Monitor, BookOpen, Clock, Phone } from 'lucide-react';
 
 import { Link } from 'react-router-dom';
 import infraImg from '../assets/infrastructure.jpg';
