@@ -239,8 +239,9 @@ export function About() {
             <div className="relative w-full aspect-square md:aspect-[4/5] rounded-[2.5rem] bg-slate-900 overflow-hidden shadow-2xl group">
               <img 
                 src={infraImg} 
-                alt="State-of-the-Art Infrastructure" 
-                className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-80 transition-all duration-700" 
+                alt="NICT Infrastructure" 
+                loading="lazy"
+                className="w-full h-full object-cover shadow-2xl transition-transform duration-700 hover:scale-105 group-hover:opacity-80 transition-all duration-700" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/40 to-transparent"></div>
               

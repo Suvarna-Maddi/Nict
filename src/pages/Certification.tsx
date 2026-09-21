@@ -73,7 +73,7 @@ export function Certification() {
           {/* Certificate Image (Mobile: middle, Desktop: spans right side) */}
           <div className={`order-2 lg:order-none lg:col-start-2 lg:row-start-1 lg:row-span-2 self-center w-full max-w-[600px] mx-auto transition-all duration-1000 delay-300 ease-out transform ${mounted ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'}`}>
             <div className="w-full bg-white rounded-xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] p-2 md:p-4 transform hover:scale-[1.02] transition-transform duration-500 cursor-pointer border border-black/5 -mt-4 md:-mt-16">
-              <img src={certificateImg} alt="NICT Certificate" className="w-full h-auto object-contain rounded border border-black/10" />
+              <img src={certificateImg} alt="NICT Certificate" loading="lazy" className="w-full h-auto object-contain rounded border border-black/10" />
             </div>
           </div>
 
