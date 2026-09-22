@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef, type ReactNode } from 'react';
+import { useMeasure } from 'react-use';
 import { toPng } from 'html-to-image';
 import { jsPDF } from 'jspdf';
 import certificateImg from '../assets/certificate.png';
@@ -49,6 +50,7 @@ export function Certification() {
   const [verifiedData, setVerifiedData] = useState<{ name: string; course: string; issued_date: string; certificate_id: string } | null>(null);
 
   const certificateRef = useRef<HTMLDivElement>(null);
+  const [wrapperRef, { width: wrapperWidth }] = useMeasure<HTMLDivElement>();
   const [isDownloading, setIsDownloading] = useState(false);
 
   const downloadPDF = async () => {
@@ -59,12 +61,14 @@ export function Certification() {
       const imgData = await toPng(certificateRef.current, {
         quality: 1.0,
         pixelRatio: 2,
+        style: {
+          transform: 'scale(1)',
+        }
       });
       
-      // Calculate aspect ratio based on a standard landscape A4 or original image dimensions
-      // We can use the div's offsetWidth and offsetHeight for the PDF dimensions
-      const width = certificateRef.current.offsetWidth;
-      const height = certificateRef.current.offsetHeight;
+      // Native resolution of the certificate container
+      const width = 1000;
+      const height = 707;
 
       const pdf = new jsPDF({
         orientation: 'landscape',
@@ -342,48 +346,57 @@ export function Certification() {
             )}
 
             {verificationStatus === 'success' && verifiedData && (
-              <div className="mt-12 flex flex-col items-center animate-in zoom-in-95 fade-in duration-500">
+              <div className="mt-12 flex flex-col items-center animate-in zoom-in-95 fade-in duration-500 w-full">
                 <div 
-                  ref={certificateRef}
-                  className="relative w-full max-w-4xl mx-auto shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] bg-white border border-black/10"
+                  ref={wrapperRef}
+                  className="relative w-full max-w-[1000px] overflow-hidden rounded-lg shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] bg-white border border-black/10"
+                  style={{ height: wrapperWidth ? `${wrapperWidth / 1.4144}px` : 'auto' }}
                 >
-                  <img src={certificateTemplateImg} alt="Verified Certificate" className="w-full h-auto block pointer-events-none" />
-                  
-                  {/* Dynamic Overlays */}
-                  
-                  {/* Name */}
-                  <div className="absolute top-[40.5%] left-0 w-full text-center px-4 flex justify-center items-center">
-                    <h3 className="text-xl md:text-3xl lg:text-4xl text-[#1e3a8a] font-serif font-bold tracking-wider">
-                      {verifiedData.name}
-                    </h3>
-                  </div>
+                  <div 
+                    ref={certificateRef}
+                    className="absolute top-0 left-0 origin-top-left"
+                    style={{ 
+                      width: '1000px', 
+                      height: '707px', 
+                      transform: wrapperWidth ? `scale(${wrapperWidth / 1000})` : 'none' 
+                    }}
+                  >
+                    <img src={certificateTemplateImg} alt="Verified Certificate" className="w-full h-full block pointer-events-none object-cover" />
+                    
+                    {/* Name */}
+                    <div className="absolute top-[40.5%] left-0 w-full text-center px-4 flex justify-center items-center">
+                      <h3 className="text-[36px] text-[#1e3a8a] font-serif font-bold tracking-wider">
+                        {verifiedData.name}
+                      </h3>
+                    </div>
 
-                  {/* Course Name */}
-                  <div className="absolute top-[52.5%] left-0 w-full text-center px-8">
-                    <p className="text-base md:text-xl lg:text-2xl font-serif font-bold text-[#1e3a8a] uppercase tracking-wider">
-                      {verifiedData.course}
-                    </p>
-                  </div>
+                    {/* Course Name */}
+                    <div className="absolute top-[52.5%] left-0 w-full text-center px-8">
+                      <p className="text-[22px] font-serif font-bold text-[#1e3a8a] uppercase tracking-wider">
+                        {verifiedData.course}
+                      </p>
+                    </div>
 
-                  {/* Description (Inside the light blue box) */}
-                  <div className="absolute top-[60%] left-1/2 -translate-x-1/2 w-full flex justify-center px-4 max-w-[45%]">
-                    <p className="text-[8px] md:text-[10px] lg:text-[12px] font-sans text-[#1e3a8a] font-medium tracking-wide leading-relaxed text-center">
-                      {getDefaultDescription(verifiedData.course)}
-                    </p>
-                  </div>
+                    {/* Description (Inside the light blue box) */}
+                    <div className="absolute top-[60%] left-1/2 -translate-x-1/2 w-full flex justify-center px-4 max-w-[45%]">
+                      <p className="text-[12px] font-sans text-[#1e3a8a] font-medium tracking-wide leading-relaxed text-center">
+                        {getDefaultDescription(verifiedData.course)}
+                      </p>
+                    </div>
 
-                  {/* Left Bottom Section - Issue Date */}
-                  <div className="absolute top-[80.5%] left-[14.5%] md:left-[14%] w-[20%] text-center">
-                    <p className="text-[9px] md:text-[11px] lg:text-[13px] font-sans text-[#1e3a8a] font-bold tracking-widest uppercase truncate">
-                      {verifiedData.issued_date || new Date().toLocaleDateString()}
-                    </p>
-                  </div>
-                  
-                  {/* Center Bottom Section - Certificate ID */}
-                  <div className="absolute top-[78.5%] left-1/2 -translate-x-1/2 w-[25%] text-center">
-                    <p className="text-[9px] md:text-[11px] lg:text-[13px] font-sans text-[#1e3a8a] font-bold tracking-widest uppercase truncate">
-                      {verifiedData.certificate_id}
-                    </p>
+                    {/* Left Bottom Section - Issue Date */}
+                    <div className="absolute top-[80.5%] left-[14.5%] md:left-[14%] w-[20%] text-center">
+                      <p className="text-[12px] font-sans text-[#1e3a8a] font-bold tracking-widest uppercase truncate">
+                        {verifiedData.issued_date || new Date().toLocaleDateString()}
+                      </p>
+                    </div>
+                    
+                    {/* Center Bottom Section - Certificate ID */}
+                    <div className="absolute top-[78.5%] left-1/2 -translate-x-1/2 w-[25%] text-center">
+                      <p className="text-[12px] font-sans text-[#1e3a8a] font-bold tracking-widest uppercase truncate">
+                        {verifiedData.certificate_id}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
