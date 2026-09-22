@@ -14,7 +14,7 @@ function App() {
       <main className="relative w-full min-h-screen font-sans selection:bg-[#dc2626] selection:text-white flex flex-col">
         {/* Global Background Mesh (Pale) */}
         <div className="fixed inset-0 z-0 pointer-events-none bg-[#fbfaf9]">
-          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-red-100 opacity-60 blur-[120px] rounded-full"></div>
+          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-primary-100 opacity-60 blur-[120px] rounded-full"></div>
           <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-100 opacity-60 blur-[120px] rounded-full"></div>
         </div>
 

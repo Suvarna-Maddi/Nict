@@ -3,40 +3,52 @@ import { useState } from 'react';
 
 const courses = [
   {
-    title: "Basic Computer Skills",
-    description: "Master essential computer operations from the ground up. Covers MS Office (Word, Excel, PowerPoint), internet navigation, and file management. Perfect for beginners.",
-    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg",
-    cardBg: "from-red-50/90 to-white/90"
-  },
-  {
-    title: "Programming Courses",
-    description: "Learn logical thinking and core coding concepts with comprehensive training in C, C++, Core Java, and Python to tackle real-world programming challenges.",
+    title: "Python",
+    description: "Master the most versatile language for scripting, automation, web backend, and data science foundations.",
     logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
-    cardBg: "from-white/90 to-red-50/90"
+    cardBg: "from-primary-50/90 to-primary-100/40"
   },
   {
-    title: "Tally & Accounting",
-    description: "Get industry-ready professional training. We cover end-to-end accounting principles, Tally Prime features, GST filing, and billing to ensure you excel in the financial sector.",
+    title: "Java",
+    description: "Learn enterprise-standard Object-Oriented Programming, collections, exception handling, and multithreading.",
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
+    cardBg: "from-primary-100/40 to-primary-50/90"
+  },
+  {
+    title: "Tally (with GST)",
+    description: "Professional training in computerized accounting, inventory management, payroll processing, and GST return filing.",
     logoUrl: "https://tallysolutions.com/wp-content/uploads/2020/10/tally-prime-logo.svg",
-    cardBg: "from-red-50/90 to-red-100/80"
+    cardBg: "from-primary-50/80 to-primary-100/50"
   },
   {
-    title: "Diploma Courses",
-    description: "Boost your resume with our certification programs (DCA, PGDCA, ADCA). These courses provide an in-depth understanding of multiple computer disciplines.",
+    title: "PGDCA",
+    description: "Post Graduate Diploma in Computer Applications covering comprehensive software, programming, and office management tools.",
     logoUrl: "https://img.icons8.com/color/96/microsoft-office-2019.png",
-    cardBg: "from-white/90 to-red-50/90"
-  },
-  {
-    title: "Web Design",
-    description: "Transform your creativity into stunning websites. Learn the fundamentals of modern web development using HTML5 and CSS3 to build interactive, mobile-friendly sites.",
-    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
-    cardBg: "from-red-100/70 to-white/90"
+    cardBg: "from-primary-100/50 to-primary-50/80"
   },
   {
     title: "Spoken English",
-    description: "Build confidence and fluency in English. Our interactive classes focus on pronunciation, grammar, vocabulary, and real-world conversation practice.",
+    description: "Build confidence and fluency in English. Our interactive classes focus on pronunciation, grammar, and real-world conversation.",
     logoUrl: "https://img.icons8.com/color/96/language.png",
-    cardBg: "from-white/90 to-red-50/90"
+    cardBg: "from-primary-50/90 to-primary-100/40"
+  },
+  {
+    title: "Photoshop",
+    description: "Master digital imaging and graphic design. Learn to create stunning visual content, photo editing, and creative layouts.",
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-original.svg",
+    cardBg: "from-primary-100/40 to-primary-50/90"
+  },
+  {
+    title: "SQL",
+    description: "Learn to query, manage, and manipulate relational databases using Structured Query Language.",
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg",
+    cardBg: "from-primary-50/80 to-primary-100/50"
+  },
+  {
+    title: "DTP",
+    description: "Desktop Publishing & Print Design. Dive into professional publishing to create stunning layouts, banners, and print materials.",
+    logoUrl: "https://img.icons8.com/color/96/adobe-indesign--v1.png",
+    cardBg: "from-primary-100/50 to-primary-50/80"
   }
 ];
 
@@ -47,7 +59,7 @@ export function WhatWeOffer() {
     <section className="relative w-full pt-20 pb-32 z-10">
       
       {/* Decorative background glow */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-red-200/40 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary-200/40 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
         

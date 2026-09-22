@@ -1,24 +1,26 @@
 export const nictKnowledgeBase = {
   about: "NICT Computer Training Institute was established in 2010. Located in the heart of Girmajipet, Warangal, we bridge the gap between academic theory and real-world industry demands. We have over 15 years of excellence and have trained over 3,000 alumni.",
-  courses: "We offer job-oriented practical courses including:\n1. DCA (Diploma in Computer Applications)\n2. Tally Prime & Accounting\n3. Programming (C, C++, Core Java, Python)\n4. Web Design (HTML, CSS)\n5. Basic Computer Skills\n6. Spoken English",
+  courses: "We offer job-oriented practical courses including:\n1. DCA (Diploma in Computer Applications)\n2. Tally Prime & Accounting\n3. Programming (C, C++, Core Java, Python, SQL)\n4. DTP (Desktop Publishing)\n5. Basic Computer Skills\n6. Spoken English",
   timings: "Our institute is open:\nMonday to Saturday: 8:30 AM - 8:00 PM\nSunday: 10:00 AM - 5:30 PM",
-  location: "We are located at Girmajipet, Warangal, Telangana, India.",
-  contact: "You can reach us by phone/WhatsApp at +91 9441635615 or email us at info@nict.local.",
+  location: "We are located at Girmajipet, Warangal, Telangana, India – 506002.",
+  contact: "You can reach us by phone or WhatsApp at +91 8247419292.",
   certification: "We provide Skill-Based Certification (ISO 9001:2015 Standards) that is highly valued by local and regional employers as proof of practical competence.",
-  enroll: "You can enroll by calling us or reaching out via WhatsApp at +91 9441635615.",
-  howItWorks: "1. Master the Course with practical labs.\n2. Write the Exam to test your knowledge.\n3. Get Certified with our industry-recognized certificate."
+  enroll: "You can enroll by calling us or reaching out via WhatsApp at +91 8247419292.",
+  howItWorks: "1. Master the Course with practical labs.\n2. Write the Exam to test your knowledge.\n3. Get Certified with our industry-recognized certificate.",
+  laptopOffer: "We are currently running a special Summer Offer! Join our training program and get a FREE laptop. Contact us to learn more about eligibility."
 };
 
 // Intent keyword mapping
 export const intents = [
-  { keywords: ['course', 'learn', 'teach', 'subject', 'program', 'diploma', 'tally', 'python', 'java', 'c++'], key: 'courses' },
+  { keywords: ['course', 'learn', 'teach', 'subject', 'program', 'diploma', 'tally', 'python', 'java', 'c++', 'sql', 'dtp'], key: 'courses' },
   { keywords: ['time', 'open', 'close', 'hour', 'schedule', 'timing'], key: 'timings' },
   { keywords: ['where', 'location', 'address', 'place', 'visit', 'city'], key: 'location' },
-  { keywords: ['phone', 'contact', 'call', 'number', 'email', 'whatsapp', 'reach'], key: 'contact' },
+  { keywords: ['phone', 'contact', 'call', 'number', 'whatsapp', 'reach'], key: 'contact' },
   { keywords: ['certificate', 'certify', 'iso', 'proof', 'value'], key: 'certification' },
   { keywords: ['enroll', 'join', 'start', 'register', 'admission', 'fee', 'cost'], key: 'enroll' },
   { keywords: ['about', 'history', 'who', 'alumni', 'founded', 'established'], key: 'about' },
-  { keywords: ['how', 'work', 'process', 'step', 'exam'], key: 'howItWorks' }
+  { keywords: ['how', 'work', 'process', 'step', 'exam'], key: 'howItWorks' },
+  { keywords: ['laptop', 'offer', 'free', 'summer', 'reward'], key: 'laptopOffer' }
 ];
 
 export function getChatbotResponse(userInput: string): string {

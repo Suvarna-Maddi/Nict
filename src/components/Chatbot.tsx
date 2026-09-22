@@ -63,7 +63,7 @@ export function Chatbot() {
       {/* Floating Action Button */}
       <button 
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-[5.5rem] right-4 md:bottom-[7.5rem] md:right-6 z-50 w-20 h-20 md:w-24 md:h-24 flex items-center justify-center hover:scale-110 hover:-translate-y-2 transition-all duration-300 drop-shadow-[0_10px_25px_rgba(220,38,38,0.6)] ${isOpen ? 'scale-0 opacity-0 pointer-events-none' : 'scale-100 opacity-100'}`}
+        className={`fixed bottom-[5.5rem] right-4 md:bottom-[7.5rem] md:right-6 z-50 w-20 h-20 md:w-24 md:h-24 flex items-center justify-center hover:scale-110 hover:-translate-y-2 transition-all duration-300 drop-shadow-[0_10px_25px_rgba(38,97,156,0.6)] ${isOpen ? 'scale-0 opacity-0 pointer-events-none' : 'scale-100 opacity-100'}`}
       >
         <img src={chatbotLogo} alt="Chat Assistant" className="w-full h-full object-contain" />
       </button>
@@ -74,14 +74,14 @@ export function Chatbot() {
         style={{ height: isOpen ? '600px' : '0px', maxHeight: 'calc(100vh - 4rem)' }}
       >
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-600 to-red-500 p-4 md:p-5 flex items-center justify-between shrink-0">
+        <div className="bg-gradient-to-r from-primary-600 to-primary-500 p-4 md:p-5 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3 text-white">
             <div className="w-12 h-12 flex items-center justify-center overflow-hidden">
               <img src={chatbotLogo} alt="Bot" className="w-full h-full object-contain drop-shadow-md" />
             </div>
             <div>
               <h3 className="font-bold text-lg leading-tight">NICT Assistant</h3>
-              <p className="text-xs text-red-100 flex items-center gap-1">
+              <p className="text-xs text-primary-100 flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-green-400"></span> Online
               </p>
             </div>
@@ -127,12 +127,12 @@ export function Chatbot() {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Type your question..."
-              className="flex-1 bg-slate-100 rounded-full pl-5 pr-12 py-3.5 text-sm md:text-base text-slate-800 outline-none focus:ring-2 focus:ring-red-500/50 transition-all"
+              className="flex-1 bg-slate-100 rounded-full pl-5 pr-12 py-3.5 text-sm md:text-base text-slate-800 outline-none focus:ring-2 focus:ring-primary-500/50 transition-all"
             />
             <button 
               onClick={handleSend}
               disabled={!input.trim()}
-              className="absolute right-1.5 w-10 h-10 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="absolute right-1.5 w-10 h-10 bg-primary-500 text-white rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Send size={18} className="ml-1" />
             </button>

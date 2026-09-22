@@ -3,34 +3,52 @@ import { Link } from 'react-router-dom';
 
 const courses = [
   {
-    title: "DCA (Diploma in Computer)",
-    description: "Foundation covering essential computer operations and software.",
-    duration: "6 Months",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg"
+    title: "Python",
+    description: "Master scripting, automation, web backend, and data science foundations.",
+    duration: "2 Months",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
   },
   {
-    title: "Tally & Accounting",
-    description: "Professional training for GST and industry-standard accounting.",
+    title: "Java",
+    description: "Learn enterprise OOP, collections, and multithreading.",
+    duration: "2 Months",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg"
+  },
+  {
+    title: "Tally (with GST)",
+    description: "Professional training in accounting, inventory, and GST returns.",
     duration: "3 Months",
     logo: "https://tallysolutions.com/wp-content/uploads/2020/10/tally-prime-logo.svg"
   },
   {
-    title: "Programming Courses",
-    description: "Master logical thinking and coding with C, C++, Java, Python.",
-    duration: "4 Months",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
-  },
-  {
-    title: "Web Design",
-    description: "Learn HTML, CSS, and essential frameworks for modern websites.",
-    duration: "3 Months",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
+    title: "PGDCA",
+    description: "Post Graduate Diploma in Computer Applications and tools.",
+    duration: "1 Year",
+    logo: "https://img.icons8.com/color/96/microsoft-office-2019.png"
   },
   {
     title: "Spoken English",
     description: "Interactive classes to build confidence and fluency in English.",
     duration: "2 Months",
     logo: "https://img.icons8.com/color/96/language.png"
+  },
+  {
+    title: "Photoshop",
+    description: "Master digital imaging, photo editing, and graphic design.",
+    duration: "2 Months",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-original.svg"
+  },
+  {
+    title: "SQL",
+    description: "Learn to query, manage, and manipulate relational databases using Structured Query Language.",
+    duration: "1 Month",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg"
+  },
+  {
+    title: "DTP",
+    description: "Desktop Publishing & Print Design using professional software.",
+    duration: "3 Months",
+    logo: "https://img.icons8.com/color/96/adobe-indesign--v1.png"
   }
 ];
 
@@ -85,9 +103,9 @@ export function OurCourses() {
               <div 
                 key={idx} 
                 // Claymorphism Box with Dark Red Smoke Inset
-                className="group w-[300px] sm:w-[350px] shrink-0 bg-[#fcfaf9] border border-red-900/10 rounded-[2rem] p-6 flex flex-col justify-between h-auto transition-all duration-700 hover:-translate-y-2 cursor-pointer overflow-hidden
-                           shadow-[8px_8px_16px_rgba(220,38,38,0.04),-8px_-8px_16px_rgba(255,255,255,0.9),inset_0_0_60px_rgba(153,27,27,0.12)]
-                           hover:shadow-[12px_12px_24px_rgba(220,38,38,0.08),-12px_-12px_24px_rgba(255,255,255,1),inset_0_0_120px_rgba(153,27,27,0.25)]"
+                className="group w-[300px] sm:w-[350px] shrink-0 bg-[#fcfaf9] border border-primary-900/10 rounded-[2rem] p-6 flex flex-col justify-between h-auto transition-all duration-700 hover:-translate-y-2 cursor-pointer overflow-hidden
+                           shadow-[8px_8px_16px_rgba(38,97,156,0.04),-8px_-8px_16px_rgba(255,255,255,0.9),inset_0_0_60px_rgba(16,52,166,0.12)]
+                           hover:shadow-[12px_12px_24px_rgba(38,97,156,0.08),-12px_-12px_24px_rgba(255,255,255,1),inset_0_0_120px_rgba(16,52,166,0.25)]"
               >
                 <div>
                   {/* Header Row: Logo & Duration */}
@@ -99,8 +117,8 @@ export function OurCourses() {
                     
                     {/* Claymorphism Tag */}
                     <div className="self-start inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#fcfaf9] rounded-full text-slate-600 text-[10px] font-bold uppercase tracking-wide
-                                    shadow-[2px_2px_4px_rgba(220,38,38,0.03),-2px_-2px_4px_rgba(255,255,255,0.9),inset_1px_1px_2px_rgba(255,255,255,1),inset_-1px_-1px_2px_rgba(220,38,38,0.02)]">
-                      <Clock size={12} className="text-red-500" />
+                                    shadow-[2px_2px_4px_rgba(38,97,156,0.03),-2px_-2px_4px_rgba(255,255,255,0.9),inset_1px_1px_2px_rgba(255,255,255,1),inset_-1px_-1px_2px_rgba(38,97,156,0.02)]">
+                      <Clock size={12} className="text-primary-500" />
                       {course.duration}
                     </div>
                   </div>
@@ -124,8 +142,8 @@ export function OurCourses() {
                              shadow-[6px_6px_12px_rgba(15,23,42,0.2),-6px_-6px_12px_rgba(255,255,255,0.9),inset_2px_2px_6px_rgba(255,255,255,0.1),inset_-2px_-2px_6px_rgba(0,0,0,0.5)]">
             Explore More Courses
           </Link>
-          <a href="tel:+919441635615" className="bg-red-600 text-white px-8 py-4 rounded-xl font-black text-base flex items-center gap-2 transition-transform hover:-translate-y-1 active:translate-y-0
-                             shadow-[6px_6px_12px_rgba(220,38,38,0.2),-6px_-6px_12px_rgba(255,255,255,0.9),inset_2px_2px_6px_rgba(255,255,255,0.3),inset_-2px_-2px_6px_rgba(153,27,27,0.5)]">
+          <a href="tel:+918247419292" className="bg-primary-600 text-white px-8 py-4 rounded-xl font-black text-base flex items-center gap-2 transition-transform hover:-translate-y-1 active:translate-y-0
+                             shadow-[6px_6px_12px_rgba(38,97,156,0.2),-6px_-6px_12px_rgba(255,255,255,0.9),inset_2px_2px_6px_rgba(255,255,255,0.3),inset_-2px_-2px_6px_rgba(16,52,166,0.5)]">
             Enroll Now <ArrowRight size={20} />
           </a>
         </div>

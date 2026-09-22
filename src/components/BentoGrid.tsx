@@ -6,7 +6,7 @@ export function BentoGrid() {
     <section className="relative w-full max-w-7xl mx-auto px-6 py-24 z-10">
       
       {/* Decorative Glows for the Bento Section */}
-      <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-red-200/50 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-primary-200/50 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-200/50 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="mb-16 text-center">
@@ -24,7 +24,7 @@ export function BentoGrid() {
             <BookOpen size={200} className="text-slate-900" />
           </div>
           <h4 className="text-2xl font-bold text-slate-900 mb-3 flex items-center gap-3">
-            <span className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
+            <span className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center">
               <BookOpen size={16} className="text-[#dc2626]" />
             </span>
             Your Local Institute
@@ -35,9 +35,9 @@ export function BentoGrid() {
         </div>
 
         {/* Course: Programming */}
-        <div className="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 bg-white/70 backdrop-blur-xl border border-white rounded-3xl p-8 flex flex-col justify-between hover:border-red-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 group relative overflow-hidden">
-          <div className="absolute inset-0 bg-red-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="w-12 h-12 bg-red-50 border border-red-100 rounded-2xl flex items-center justify-center mb-4">
+        <div className="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 bg-white/70 backdrop-blur-xl border border-white rounded-3xl p-8 flex flex-col justify-between hover:border-primary-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 group relative overflow-hidden">
+          <div className="absolute inset-0 bg-primary-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="w-12 h-12 bg-primary-50 border border-primary-100 rounded-2xl flex items-center justify-center mb-4">
             <Code className="text-[#dc2626]" size={24} />
           </div>
           <div className="relative z-10">
@@ -58,7 +58,7 @@ export function BentoGrid() {
         </div>
 
         {/* Certification Box - Wide */}
-        <div className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 bg-gradient-to-r from-red-50 to-red-100 backdrop-blur-xl border border-red-200 rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden group shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+        <div className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 bg-gradient-to-r from-primary-50 to-primary-100 backdrop-blur-xl border border-primary-200 rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden group shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
           <div className="absolute right-0 top-0 w-64 h-full bg-white/40 -skew-x-12 translate-x-32 group-hover:translate-x-[-400px] transition-transform duration-1000 ease-in-out" />
           <h4 className="text-2xl font-bold text-slate-900 mb-3 flex items-center gap-3">
             <span className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm">

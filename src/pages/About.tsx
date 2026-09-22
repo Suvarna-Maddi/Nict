@@ -3,6 +3,7 @@ import { Users, Trophy, Target, ArrowRight, ShieldCheck, Zap, Monitor, BookOpen,
 
 import { Link } from 'react-router-dom';
 import infraImg from '../assets/infrastructure.jpg';
+import aboutHeroBg from '../assets/abouthero.png';
 
 
 // Custom Hook for simple fade-in
@@ -88,51 +89,22 @@ export function About() {
         }
       `}</style>
       
-      {/* 1. Hero Section (Ultra Premium EdTech Light UI) */}
-      <section className="relative w-full min-h-[70vh] flex flex-col items-center justify-center px-6 pt-32 pb-32 overflow-hidden bg-white mb-20 rounded-b-[4rem] border-b border-black/5 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.02)]">
-        
-        {/* Soft Mesh Gradient Background */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-red-100/50 blur-[100px] animate-[pulse_10s_ease-in-out_infinite]"></div>
-          <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-orange-50/50 blur-[120px] animate-[pulse_12s_ease-in-out_infinite_reverse]"></div>
-          {/* Subtle Grid overlay */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_20%,transparent_100%)]"></div>
-        </div>
-
-        <div className={`relative z-10 transition-all duration-[1200ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] transform text-center ${mounted ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-16 opacity-0 scale-90'}`}>
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-5 py-2 bg-red-50 border border-red-100 rounded-full text-red-600 text-xs font-black tracking-widest uppercase mb-10 shadow-sm">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
-            </span>
-            Our Story
-          </div>
-
-          {/* Main Title */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 tracking-tight mb-8 leading-[1.1]">
-            Empowering Careers <br className="hidden md:block"/>
-            <span className="relative inline-block mt-2">
-              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500">
-                Since 2010.
-              </span>
-            </span>
-          </h1>
-          
-          {/* Subtitle */}
-          <p className="text-lg md:text-xl text-slate-500 font-medium max-w-2xl mx-auto mb-10 leading-relaxed">
-            Located in the heart of Girmajipet, Warangal, NICT Computer Training Institute was founded to bridge the gap between academic theory and real-world industry demands.
-          </p>
-        </div>
+      {/* 1. Hero Section (Image Banner) */}
+      <section className="relative w-full overflow-hidden bg-[#fbfaf9] mb-20">
+        <img 
+          src={aboutHeroBg} 
+          alt="People Behind Better Opportunities - NICT" 
+          className="w-full h-auto object-contain shadow-sm"
+        />
       </section>
 
       {/* 2. Stats Section (Card-less, Minimalist) */}
-      <section className="w-full max-w-6xl px-6 relative mb-32 -mt-16 z-20">
+      <section id="stats" className="w-full max-w-6xl px-6 relative mb-32 -mt-16 z-20">
         <FadeInView>
           <div className="flex flex-col md:flex-row items-center justify-between py-12 px-8 bg-transparent border-t border-b border-black/10 divide-y md:divide-y-0 md:divide-x divide-black/10">
             
             <div className="flex-1 w-full flex flex-col items-center justify-center text-center py-8 md:py-0">
-              <div className="w-12 h-12 text-red-500 mb-4 flex items-center justify-center"><Users size={32} strokeWidth={2} /></div>
+              <div className="w-12 h-12 text-primary-500 mb-4 flex items-center justify-center"><Users size={32} strokeWidth={2} /></div>
               <h3 className="text-5xl md:text-6xl font-black text-slate-900 mb-2">
                 <AnimatedNumber end={3000} suffix="+" duration={2500} />
               </h3>
@@ -265,7 +237,7 @@ export function About() {
             
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center shrink-0 mt-1">
+                <div className="w-12 h-12 bg-primary-100 text-primary-600 rounded-xl flex items-center justify-center shrink-0 mt-1">
                   <BookOpen size={24} />
                 </div>
                 <div>
@@ -298,10 +270,10 @@ export function About() {
               Join thousands of successful alumni. Get practical skills, earn certifications, and accelerate your career today.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Link to="/courses" className="px-10 py-5 bg-red-600 text-white rounded-full font-bold text-lg hover:bg-red-700 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center gap-3">
+              <Link to="/courses" className="px-10 py-5 bg-primary-600 text-white rounded-full font-bold text-lg hover:bg-primary-700 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center gap-3">
                 View Curriculum <ArrowRight size={20} />
               </Link>
-              <a href="tel:+919441635615" className="group relative px-10 py-5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full font-bold text-lg hover:shadow-[0_15px_40px_-10px_rgba(16,185,129,0.5)] transition-all flex items-center gap-4 hover:-translate-y-1 overflow-hidden">
+              <a href="tel:+918247419292" className="group relative px-10 py-5 bg-gradient-to-r from-primary-300 to-primary-500 text-white rounded-full font-bold text-lg hover:shadow-[0_15px_40px_-10px_rgba(16,185,129,0.5)] transition-all flex items-center gap-4 hover:-translate-y-1 overflow-hidden">
                 <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
                 <div className="relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm">
                   <Phone size={18} className="text-white animate-pulse" />

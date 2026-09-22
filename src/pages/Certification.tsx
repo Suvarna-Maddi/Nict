@@ -50,20 +50,20 @@ export function Certification() {
       
       {/* 1. Hero Section */}
       <section className="relative w-full min-h-[80vh] flex flex-col justify-center px-6 pt-24 pb-20 overflow-hidden bg-white rounded-b-[4rem] border-b border-black/5 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.02)]">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-red-50/50 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary-50/50 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           {/* Header text (Mobile: top, Desktop: top left) */}
           <div className={`order-1 lg:order-none lg:col-start-1 lg:row-start-1 text-center lg:text-left transition-all duration-1000 ease-out transform ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 border border-red-100 rounded-full text-red-600 text-sm font-bold mb-8 shadow-sm mx-auto lg:mx-0">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-50 border border-primary-100 rounded-full text-primary-600 text-sm font-bold mb-8 shadow-sm mx-auto lg:mx-0">
               <Award size={16} />
               ISO 9001:2015 Certified Institution
             </div>
             <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.1] mb-6">
               A Certificate That <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-400">Opens Doors.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-300">Opens Doors.</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-500 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-4 lg:mb-0">
               Your journey doesn't end with learning. Validate your knowledge, pass the final assessment, and earn an industry-recognized certificate that employers trust.
@@ -82,7 +82,7 @@ export function Certification() {
             <div className="flex flex-col gap-4 max-w-xl mx-auto lg:mx-0 w-full">
               {/* Feature 1 */}
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-black/5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all group">
-                <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform">
                   <Award size={24} strokeWidth={2} />
                 </div>
                 <div>
@@ -136,7 +136,7 @@ export function Certification() {
           <div className="absolute top-[4rem] md:top-[5rem] left-[10%] right-[10%] h-[6px] bg-slate-100 rounded-full z-0 hidden md:block overflow-visible shadow-inner">
             {/* Animated Fill Bar with glowing tail */}
             <div 
-              className="absolute top-0 left-0 h-full bg-gradient-to-r from-red-400 to-red-600 rounded-full transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] shadow-[0_0_20px_rgba(239,68,68,0.6)]"
+              className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary-400 to-primary-600 rounded-full transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] shadow-[0_0_20px_rgba(38,97,156,0.6)]"
               style={{ width: activeStep === 1 ? '0%' : activeStep === 2 ? '50%' : '100%' }}
             >
               {/* Shimmer effect inside the bar */}
@@ -154,9 +154,9 @@ export function Certification() {
               <div className="relative mb-8">
                 {/* Active Ripple */}
                 {activeStep === 1 && (
-                  <div className="absolute inset-0 bg-red-400 rounded-full animate-ping opacity-20 scale-150"></div>
+                  <div className="absolute inset-0 bg-primary-400 rounded-full animate-ping opacity-20 scale-150"></div>
                 )}
-                <div className={`relative z-10 w-32 h-32 md:w-40 md:h-40 rounded-full bg-white flex items-center justify-center transition-all duration-700 shadow-xl border-4 ${activeStep >= 1 ? 'border-red-500 scale-110 shadow-[0_10px_40px_rgba(239,68,68,0.25)]' : 'border-transparent scale-100'}`}>
+                <div className={`relative z-10 w-32 h-32 md:w-40 md:h-40 rounded-full bg-white flex items-center justify-center transition-all duration-700 shadow-xl border-4 ${activeStep >= 1 ? 'border-primary-500 scale-110 shadow-[0_10px_40px_rgba(38,97,156,0.25)]' : 'border-transparent scale-100'}`}>
                   <img 
                     src="https://img.icons8.com/color/256/e-learning.png" 
                     alt="Master the Course" 
@@ -177,9 +177,9 @@ export function Certification() {
             >
               <div className="relative mb-8">
                 {activeStep === 2 && (
-                  <div className="absolute inset-0 bg-red-400 rounded-full animate-ping opacity-20 scale-150"></div>
+                  <div className="absolute inset-0 bg-primary-400 rounded-full animate-ping opacity-20 scale-150"></div>
                 )}
-                <div className={`relative z-10 w-32 h-32 md:w-40 md:h-40 rounded-full bg-white flex items-center justify-center transition-all duration-700 shadow-xl border-4 ${activeStep >= 2 ? 'border-red-500 scale-110 shadow-[0_10px_40px_rgba(239,68,68,0.25)]' : 'border-transparent scale-100'}`}>
+                <div className={`relative z-10 w-32 h-32 md:w-40 md:h-40 rounded-full bg-white flex items-center justify-center transition-all duration-700 shadow-xl border-4 ${activeStep >= 2 ? 'border-primary-500 scale-110 shadow-[0_10px_40px_rgba(38,97,156,0.25)]' : 'border-transparent scale-100'}`}>
                   <img 
                     src="https://img.icons8.com/color/256/test-passed.png" 
                     alt="Write the Exam" 
@@ -200,9 +200,9 @@ export function Certification() {
             >
               <div className="relative mb-8">
                 {activeStep === 3 && (
-                  <div className="absolute inset-0 bg-red-400 rounded-full animate-ping opacity-20 scale-150"></div>
+                  <div className="absolute inset-0 bg-primary-400 rounded-full animate-ping opacity-20 scale-150"></div>
                 )}
-                <div className={`relative z-10 w-32 h-32 md:w-40 md:h-40 rounded-full bg-white flex items-center justify-center transition-all duration-700 shadow-xl border-4 ${activeStep >= 3 ? 'border-red-500 scale-110 shadow-[0_10px_40px_rgba(239,68,68,0.25)]' : 'border-transparent scale-100'}`}>
+                <div className={`relative z-10 w-32 h-32 md:w-40 md:h-40 rounded-full bg-white flex items-center justify-center transition-all duration-700 shadow-xl border-4 ${activeStep >= 3 ? 'border-primary-500 scale-110 shadow-[0_10px_40px_rgba(38,97,156,0.25)]' : 'border-transparent scale-100'}`}>
                   <img 
                     src="https://img.icons8.com/color/256/diploma.png" 
                     alt="Get Certified" 
@@ -228,7 +228,7 @@ export function Certification() {
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-8 tracking-tight">Ready to Earn Yours?</h2>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Link to="/courses" className="px-10 py-5 bg-red-600 text-white rounded-full font-bold text-lg hover:bg-red-700 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center gap-3">
+              <Link to="/courses" className="px-10 py-5 bg-primary-600 text-white rounded-full font-bold text-lg hover:bg-primary-700 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center gap-3">
                 Browse Courses <ArrowRight size={20} />
               </Link>
             </div>

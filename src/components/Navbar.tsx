@@ -40,13 +40,13 @@ export function Navbar() {
       */}
       <button 
         onClick={() => setIsOpen(true)}
-        className={`group fixed top-6 right-6 md:top-8 md:right-10 z-40 h-12 md:h-14 px-6 md:px-8 bg-red-50/90 backdrop-blur-xl border border-red-200 text-red-600 rounded-full shadow-[0_8px_32px_rgba(220,38,38,0.15)] flex items-center gap-3 md:gap-4 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(220,38,38,0.2)] hover:bg-red-100 ${isOpen ? 'opacity-0 pointer-events-none translate-y-4' : 'opacity-100 translate-y-0'}`}
+        className={`group fixed top-6 right-6 md:top-8 md:right-10 z-40 h-12 md:h-14 px-6 md:px-8 bg-[#4169e1] backdrop-blur-xl border border-[#3151b5] text-white rounded-full shadow-[0_8px_32px_rgba(65,105,225,0.3)] flex items-center gap-3 md:gap-4 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(65,105,225,0.5)] hover:bg-[#3151b5] ${isOpen ? 'opacity-0 pointer-events-none translate-y-4' : 'opacity-100 translate-y-0'}`}
       >
         <div className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-200 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
         </div>
-        <span className="text-red-700 font-bold tracking-[0.2em] text-[10px] md:text-xs uppercase transition-colors">Menu</span>
+        <span className="text-white font-bold tracking-[0.2em] text-[10px] md:text-xs uppercase transition-colors">Menu</span>
       </button>
 
       {/* 
@@ -64,7 +64,7 @@ export function Navbar() {
         {/* Minimalist Close Button */}
         <button 
           onClick={() => setIsOpen(false)}
-          className={`absolute top-6 right-6 md:top-8 md:right-10 w-14 h-14 bg-white/50 backdrop-blur-xl border border-white/60 rounded-full flex items-center justify-center text-slate-600 shadow-xl transition-all duration-700 hover:rotate-90 hover:bg-white hover:text-red-500 hover:scale-110 ${isOpen ? 'opacity-100 scale-100 delay-300' : 'opacity-0 scale-50'}`}
+          className={`absolute top-6 right-6 md:top-8 md:right-10 w-14 h-14 bg-white/50 backdrop-blur-xl border border-white/60 rounded-full flex items-center justify-center text-slate-600 shadow-xl transition-all duration-700 hover:rotate-90 hover:bg-white hover:text-primary-500 hover:scale-110 ${isOpen ? 'opacity-100 scale-100 delay-300' : 'opacity-0 scale-50'}`}
         >
           <X size={24} strokeWidth={2} />
         </button>
@@ -77,7 +77,7 @@ export function Navbar() {
             {/* 1. Home Tile (Large Square) */}
             <Link 
               to="/" 
-              className="group col-span-2 md:col-span-2 row-span-2 bg-white/70 backdrop-blur-2xl border border-white/80 rounded-[2.5rem] p-8 flex flex-col justify-between overflow-hidden relative shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transform transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:bg-white/90"
+              className="group col-span-2 md:col-span-2 row-span-2 bg-primary-50/90 backdrop-blur-2xl border border-primary-100 rounded-[2.5rem] p-8 flex flex-col justify-between overflow-hidden relative shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transform transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:bg-white/90"
             >
               {/* Massive subtle background icon */}
               <Home size={280} strokeWidth={0.5} className="absolute -right-16 -bottom-16 text-slate-100/50 group-hover:scale-110 group-hover:-rotate-12 transition-transform duration-700" />
@@ -94,7 +94,7 @@ export function Navbar() {
             {/* 2. Courses Tile (Wide Rectangle) */}
             <Link 
               to="/courses" 
-              className="group col-span-2 md:col-span-2 row-span-1 bg-white/70 backdrop-blur-2xl border border-white/80 rounded-[2rem] p-6 md:p-8 flex items-center justify-between shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transform transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:bg-white/90"
+              className="group col-span-2 md:col-span-2 row-span-1 bg-primary-50/90 backdrop-blur-2xl border border-primary-100 rounded-[2rem] p-6 md:p-8 flex items-center justify-between shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transform transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:bg-white/90"
             >
               <div>
                 <p className="text-slate-400 font-bold mb-1 tracking-[0.2em] uppercase text-[10px]">Explore</p>
@@ -108,7 +108,7 @@ export function Navbar() {
             {/* 3. About Us Tile (Small Square) */}
             <Link 
               to="/about" 
-              className="group col-span-1 md:col-span-1 row-span-1 bg-white/70 backdrop-blur-2xl border border-white/80 rounded-[2rem] p-6 flex flex-col justify-between shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transform transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:bg-white/90"
+              className="group col-span-1 md:col-span-1 row-span-1 bg-primary-50/90 backdrop-blur-2xl border border-primary-100 rounded-[2rem] p-6 flex flex-col justify-between shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transform transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:bg-white/90"
             >
               <Info size={24} strokeWidth={2} className="text-slate-400 group-hover:text-slate-800 transition-colors" />
               <h2 className="text-lg font-bold text-slate-800">About Us</h2>
@@ -117,7 +117,7 @@ export function Navbar() {
             {/* 4. Certification Tile (Small Square) */}
             <Link 
               to="/certification" 
-              className="group col-span-1 md:col-span-1 row-span-1 bg-white/70 backdrop-blur-2xl border border-white/80 rounded-[2rem] p-6 flex flex-col justify-between shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transform transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:bg-white/90"
+              className="group col-span-1 md:col-span-1 row-span-1 bg-primary-50/90 backdrop-blur-2xl border border-primary-100 rounded-[2rem] p-6 flex flex-col justify-between shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transform transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:bg-white/90"
             >
               <Award size={24} strokeWidth={2} className="text-slate-400 group-hover:text-slate-800 transition-colors" />
               <h2 className="text-lg font-bold text-slate-800">Certify</h2>
@@ -125,8 +125,8 @@ export function Navbar() {
 
             {/* 5. Enroll Tile (Full Width Bottom Rectangle) */}
             <a 
-              href="tel:+919441635615" 
-              className="group col-span-2 md:col-span-4 row-span-1 bg-gradient-to-br from-red-500 to-red-600 rounded-[2rem] p-6 md:p-8 flex items-center justify-between shadow-[0_20px_40px_rgba(239,68,68,0.2)] transform transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_rgba(239,68,68,0.3)] overflow-hidden relative"
+              href="tel:+918247419292" 
+              className="group col-span-2 md:col-span-4 row-span-1 bg-gradient-to-br from-primary-500 to-primary-600 rounded-[2rem] p-6 md:p-8 flex items-center justify-between shadow-[0_20px_40px_rgba(38,97,156,0.2)] transform transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_rgba(38,97,156,0.3)] overflow-hidden relative"
             >
               {/* Glass shine effect on hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
@@ -136,11 +136,11 @@ export function Navbar() {
                   <Sparkles size={24} strokeWidth={2} />
                 </div>
                 <div>
-                  <p className="text-red-100 font-bold mb-1 tracking-[0.2em] uppercase text-[10px]">Start Today</p>
+                  <p className="text-primary-100 font-bold mb-1 tracking-[0.2em] uppercase text-[10px]">Start Today</p>
                   <h2 className="text-2xl md:text-3xl font-black text-white">Enroll Now</h2>
                 </div>
               </div>
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-red-500 shadow-lg group-hover:scale-110 transition-transform duration-300 relative z-10">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary-500 shadow-lg group-hover:scale-110 transition-transform duration-300 relative z-10">
                 <ArrowRight size={20} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />
               </div>
             </a>

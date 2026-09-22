@@ -37,16 +37,16 @@ function AnimatedCounter({ value, suffix }: { value: number | string, suffix: st
   }, [value, isVisible]);
 
   return (
-    <div ref={ref} className="text-5xl md:text-6xl font-black text-slate-900 mb-2 tracking-tighter group-hover:text-red-600 transition-colors duration-500 drop-shadow-sm">
+    <div ref={ref} className="text-5xl md:text-6xl font-black text-slate-900 mb-2 tracking-tighter group-hover:text-primary-600 transition-colors duration-500 drop-shadow-sm">
       {typeof value === 'number' ? count : value}
-      <span className="text-red-500">{suffix}</span>
+      <span className="text-primary-500">{suffix}</span>
     </div>
   );
 }
 
 const stats = [
   {
-    value: 3856,
+    value: 48939,
     suffix: "+",
     label: "Students Trained",
     description: "Successfully trained and guided local students towards their careers."
@@ -65,7 +65,7 @@ export function Stats() {
       
       {/* Decorative Background Mesh */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-full pointer-events-none opacity-40">
-        <div className="absolute top-[10%] left-[5%] w-[300px] h-[300px] bg-red-200 blur-[100px] rounded-full"></div>
+        <div className="absolute top-[10%] left-[5%] w-[300px] h-[300px] bg-primary-200 blur-[100px] rounded-full"></div>
         <div className="absolute bottom-[10%] right-[5%] w-[400px] h-[400px] bg-blue-100 blur-[100px] rounded-full"></div>
       </div>
 
@@ -74,7 +74,7 @@ export function Stats() {
         {/* Header */}
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4 drop-shadow-sm">
-            Trusted by Students in <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">Warangal</span>
+            Trusted by Students in <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">Warangal</span>
           </h2>
           <p className="text-slate-500 max-w-2xl mx-auto text-lg md:text-xl font-medium tracking-tight">
             Building skills through practical training
@@ -86,11 +86,11 @@ export function Stats() {
           {stats.map((stat, idx) => (
             <div 
               key={idx} 
-              className="group relative flex flex-col items-center text-center p-8 bg-white/60 backdrop-blur-xl border border-black/5 rounded-[2.5rem] shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(220,38,38,0.08)] hover:-translate-y-2 transition-all duration-500"
+              className="group relative flex flex-col items-center text-center p-8 bg-white/60 backdrop-blur-xl border border-black/5 rounded-[2.5rem] shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(38,97,156,0.08)] hover:-translate-y-2 transition-all duration-500"
             >
               
               {/* Subtle hover border glow */}
-              <div className="absolute inset-0 rounded-[2.5rem] border-2 border-red-500/0 group-hover:border-red-500/10 transition-colors duration-500 pointer-events-none"></div>
+              <div className="absolute inset-0 rounded-[2.5rem] border-2 border-primary-500/0 group-hover:border-primary-500/10 transition-colors duration-500 pointer-events-none"></div>
 
               {/* Animated Counter */}
               <AnimatedCounter value={stat.value} suffix={stat.suffix} />

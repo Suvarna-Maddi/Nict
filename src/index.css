@@ -2,6 +2,16 @@
 
 @theme {
   --font-sans: "Inter", system-ui, sans-serif;
+  --color-primary-50: #e8f4f8;
+  --color-primary-100: #87ceeb;
+  --color-primary-200: #7dbde0;
+  --color-primary-300: #74b3ce;
+  --color-primary-400: #4d8bb8;
+  --color-primary-500: #26619c;
+  --color-primary-600: #1d4e7a;
+  --color-primary-700: #1034A6;
+  --color-primary-800: #0f2b87;
+  --color-primary-900: #0a226e;
 }
 
 body {

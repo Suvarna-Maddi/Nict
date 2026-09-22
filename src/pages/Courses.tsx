@@ -52,6 +52,17 @@ const CATEGORIES = [
         bg: "bg-blue-50"
       },
       {
+        id: "pgdca",
+        title: "PGDCA",
+        subtitle: "Post Graduate Diploma",
+        description: "Comprehensive PG diploma covering advanced software, programming logic, and professional office management tools.",
+        duration: "1 Year",
+        icon: MonitorPlay,
+        logoUrl: "https://img.icons8.com/color/96/diploma.png",
+        color: "text-indigo-600",
+        bg: "bg-indigo-50"
+      },
+      {
         id: "c2",
         title: "MS Office",
         subtitle: "Word, Excel, PowerPoint Mastery",
@@ -61,17 +72,6 @@ const CATEGORIES = [
         logoUrl: "https://img.icons8.com/color/96/microsoft-office-2019.png",
         color: "text-sky-600",
         bg: "bg-sky-50"
-      },
-      {
-        id: "c3",
-        title: "DTP",
-        subtitle: "Desktop Publishing & Design",
-        description: "Dive into professional graphic design. Learn to create stunning layouts, banners, and print materials.",
-        duration: "3 Months",
-        icon: PenTool,
-        logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-original.svg",
-        color: "text-indigo-600",
-        bg: "bg-indigo-50"
       }
     ]
   },
@@ -81,25 +81,14 @@ const CATEGORIES = [
     courses: [
       {
         id: "c4",
-        title: "Tally Prime",
-        subtitle: "with ERP & Accounting Basics",
-        description: "Complete training in computerized accounting, inventory management, and payroll processing.",
+        title: "Tally Prime with GST",
+        subtitle: "ERP & Accounting Basics",
+        description: "Complete training in computerized accounting, inventory management, GST returns, and payroll processing.",
         duration: "3 Months",
         icon: Calculator,
         logoUrl: "https://tallysolutions.com/wp-content/uploads/2020/10/tally-prime-logo.svg",
         color: "text-emerald-600",
         bg: "bg-emerald-50"
-      },
-      {
-        id: "c5",
-        title: "GST & Taxation",
-        subtitle: "Practical return filing and logic",
-        description: "Understand the Indian GST structure, tax calculations, and get hands-on experience with return filing.",
-        duration: "1 Month",
-        icon: FileText,
-        logoUrl: "https://img.icons8.com/color/96/tax.png",
-        color: "text-teal-600",
-        bg: "bg-teal-50"
       },
       {
         id: "c6",
@@ -111,6 +100,45 @@ const CATEGORIES = [
         logoUrl: "https://img.icons8.com/color/96/microsoft-excel-2019--v1.png",
         color: "text-green-600",
         bg: "bg-green-50"
+      }
+    ]
+  },
+  {
+    title: "Design & Tools",
+    description: "Creative design, publishing, and engineering drafting tools.",
+    courses: [
+      {
+        id: "c3",
+        title: "DTP",
+        subtitle: "Desktop Publishing",
+        description: "Dive into professional publishing. Learn to create stunning layouts, banners, and print materials for media.",
+        duration: "3 Months",
+        icon: PenTool,
+        logoUrl: "https://img.icons8.com/color/96/adobe-indesign--v1.png",
+        color: "text-indigo-600",
+        bg: "bg-indigo-50"
+      },
+      {
+        id: "photoshop",
+        title: "Photoshop",
+        subtitle: "Digital Imaging & Design",
+        description: "Master digital imaging, photo editing, and creative graphic design techniques used by industry professionals.",
+        duration: "2 Months",
+        icon: PenTool,
+        logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-original.svg",
+        color: "text-blue-600",
+        bg: "bg-blue-50"
+      },
+      {
+        id: "autocad",
+        title: "Auto CAD",
+        subtitle: "Engineering Drafting",
+        description: "Learn 2D drafting and 3D modeling for architecture, engineering, and construction planning.",
+        duration: "2 Months",
+        icon: PenTool,
+        logoUrl: "https://img.icons8.com/color/96/autocad.png",
+        color: "text-red-600",
+        bg: "bg-red-50"
       }
     ]
   },
@@ -131,7 +159,7 @@ const CATEGORIES = [
       },
       {
         id: "c8",
-        title: "C++ Language",
+        title: "C++",
         subtitle: "Object-Oriented Programming",
         description: "Transition into Object-Oriented Programming. Master classes, inheritance, polymorphism, and memory management.",
         duration: "2 Months",
@@ -142,7 +170,7 @@ const CATEGORIES = [
       },
       {
         id: "c9",
-        title: "Core Java",
+        title: "Java",
         subtitle: "Enterprise App Foundations",
         description: "Learn the industry-standard language. Cover OOP concepts, exception handling, collections, and multithreading.",
         duration: "2 Months",
@@ -154,52 +182,24 @@ const CATEGORIES = [
       {
         id: "c10",
         title: "Python",
-        subtitle: "Scripting & Development",
-        description: "Master the most versatile language. Learn syntax, data structures, file handling, and basic scripting for automation.",
+        subtitle: "General Purpose & Data Science",
+        description: "Master the most versatile language. From automation scripts to backend web dev and data analysis.",
         duration: "2 Months",
-        icon: Terminal,
+        icon: Code2,
         logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
-        color: "text-violet-600",
-        bg: "bg-violet-50"
-      }
-    ]
-  },
-  {
-    title: "Web Technologies",
-    description: "Build modern, responsive, and interactive websites from scratch.",
-    courses: [
-      {
-        id: "c11",
-        title: "HTML5",
-        subtitle: "Web Structure Foundation",
-        description: "Learn the core markup language of the web. Build semantic, accessible page structures, semantic tags, and modern web forms.",
-        duration: "1 Month",
-        icon: Globe,
-        logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
-        color: "text-orange-600",
-        bg: "bg-orange-50"
-      },
-      {
-        id: "c11b",
-        title: "CSS3",
-        subtitle: "Styling & Layouts",
-        description: "Design beautiful, responsive websites. Master modern CSS layouts like Flexbox and Grid, animations, and media queries.",
-        duration: "1 Month",
-        icon: PenTool,
-        logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
         color: "text-blue-600",
         bg: "bg-blue-50"
       },
       {
-        id: "c12",
-        title: "JavaScript",
-        subtitle: "Interactivity & DOM Manipulation",
-        description: "Bring web pages to life. Master DOM manipulation, event handling, async programming, and modern ES6+ features.",
-        duration: "2 Months",
-        icon: Braces,
-        logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
-        color: "text-yellow-600",
-        bg: "bg-yellow-50"
+        id: "c13",
+        title: "SQL",
+        subtitle: "Database Management & Querying",
+        description: "Learn to query, manage, and manipulate relational databases using Structured Query Language.",
+        duration: "1 Month",
+        icon: Database,
+        logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg",
+        color: "text-sky-600",
+        bg: "bg-sky-50"
       }
     ]
   },
@@ -270,7 +270,7 @@ export function Courses() {
         
         {/* Dynamic Animated Mesh Gradient Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none bg-gradient-to-b from-slate-50 to-white">
-          <div className="absolute top-[-10%] left-[-10%] w-[50rem] h-[50rem] rounded-full bg-red-200/40 blur-[100px] mix-blend-multiply" style={{ animation: 'blob1 15s infinite alternate ease-in-out' }}></div>
+          <div className="absolute top-[-10%] left-[-10%] w-[50rem] h-[50rem] rounded-full bg-primary-200/40 blur-[100px] mix-blend-multiply" style={{ animation: 'blob1 15s infinite alternate ease-in-out' }}></div>
           <div className="absolute bottom-[-10%] right-[-10%] w-[60rem] h-[60rem] rounded-full bg-orange-100/60 blur-[120px] mix-blend-multiply" style={{ animation: 'blob2 18s infinite alternate-reverse ease-in-out' }}></div>
           <div className="absolute top-[30%] left-[30%] w-[40rem] h-[40rem] rounded-full bg-rose-100/50 blur-[100px] mix-blend-multiply" style={{ animation: 'blob1 20s infinite alternate ease-in-out' }}></div>
           
@@ -284,10 +284,10 @@ export function Courses() {
 
         <div className={`relative z-10 transition-all duration-[1200ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] transform text-center ${mounted ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-16 opacity-0 scale-90'}`}>
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-5 py-2 bg-red-50 border border-red-100 rounded-full text-red-600 text-xs font-black tracking-widest uppercase mb-10 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-5 py-2 bg-primary-50 border border-primary-100 rounded-full text-primary-600 text-xs font-black tracking-widest uppercase mb-10 shadow-sm">
             <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary-500"></span>
             </span>
             Accelerate Your Career
           </div>
@@ -296,7 +296,7 @@ export function Courses() {
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 tracking-tight mb-8 leading-[1.1]">
             Master the Skills <br className="hidden md:block"/>
             <span className="relative inline-block mt-2">
-              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500">
+              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-500">
                 Industry Demands.
               </span>
             </span>
@@ -311,7 +311,7 @@ export function Courses() {
             <a href="#courses-grid" className="px-8 py-4 bg-slate-900 hover:bg-slate-800 text-white rounded-full font-bold transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center gap-2">
               Browse Curriculum <ArrowRight size={18} />
             </a>
-            <a href="tel:+919441635615" className="px-8 py-4 bg-white border-2 border-slate-200 hover:border-red-500 text-slate-900 hover:text-red-600 rounded-full font-bold transition-all shadow-sm flex items-center gap-2">
+            <a href="tel:+918247419292" className="px-8 py-4 bg-white border-2 border-slate-200 hover:border-primary-500 text-slate-900 hover:text-primary-600 rounded-full font-bold transition-all shadow-sm flex items-center gap-2">
               Talk to an Advisor
             </a>
           </div>
@@ -377,9 +377,9 @@ export function Courses() {
                     {/* Action Buttons */}
                     <div className="mt-8 flex items-center justify-between gap-4 pt-4 border-t border-black/5">
                       <a 
-                        href="tel:+919441635615" 
+                        href="tel:+918247419292" 
                         onClick={(e) => e.stopPropagation()} 
-                        className="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white text-sm font-bold rounded-full shadow-sm hover:shadow-md transition-all active:scale-95"
+                        className="px-5 py-2.5 bg-primary-600 hover:bg-primary-700 text-white text-sm font-bold rounded-full shadow-sm hover:shadow-md transition-all active:scale-95"
                       >
                         Enroll Now
                       </a>
@@ -388,7 +388,7 @@ export function Courses() {
                           e.stopPropagation();
                           setSelectedCourse(course);
                         }}
-                        className="flex items-center gap-1 text-slate-500 group-hover:text-red-500 font-bold text-sm transition-colors"
+                        className="flex items-center gap-1 text-slate-500 group-hover:text-primary-500 font-bold text-sm transition-colors"
                       >
                         View Details <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                       </button>
@@ -418,7 +418,7 @@ export function Courses() {
             {/* Close Button */}
             <button 
               onClick={() => setSelectedCourse(null)}
-              className="absolute top-6 right-6 w-12 h-12 bg-slate-50 hover:bg-red-50 text-slate-400 hover:text-red-500 rounded-full flex items-center justify-center transition-colors"
+              className="absolute top-6 right-6 w-12 h-12 bg-slate-50 hover:bg-primary-50 text-slate-400 hover:text-primary-500 rounded-full flex items-center justify-center transition-colors"
             >
               <X size={24} strokeWidth={2.5} />
             </button>
@@ -434,7 +434,7 @@ export function Courses() {
               </div>
               <div className="pt-2">
                 <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-2">{selectedCourse.title}</h2>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-red-50 rounded-full text-red-600 text-xs font-bold uppercase tracking-wider">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-50 rounded-full text-primary-600 text-xs font-bold uppercase tracking-wider">
                   Duration: {selectedCourse.duration}
                 </div>
               </div>
@@ -467,8 +467,8 @@ export function Courses() {
             {/* Action Bar */}
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <a 
-                href="tel:+919441635615" 
-                className="w-full sm:w-auto px-8 py-4 bg-red-600 hover:bg-red-700 text-white text-lg font-bold rounded-full shadow-lg hover:shadow-xl transition-all active:scale-95 text-center flex-1"
+                href="tel:+918247419292" 
+                className="w-full sm:w-auto px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white text-lg font-bold rounded-full shadow-lg hover:shadow-xl transition-all active:scale-95 text-center flex-1"
               >
                 Enroll in {selectedCourse.title}
               </a>
