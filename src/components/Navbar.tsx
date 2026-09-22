@@ -40,7 +40,7 @@ export function Navbar() {
       */}
       <button 
         onClick={() => setIsOpen(true)}
-        className={`group fixed top-6 right-6 md:top-8 md:right-10 z-40 h-12 md:h-14 px-6 md:px-8 bg-[#4169e1] backdrop-blur-xl border border-[#3151b5] text-white rounded-full shadow-[0_8px_32px_rgba(65,105,225,0.3)] flex items-center gap-3 md:gap-4 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(65,105,225,0.5)] hover:bg-[#3151b5] ${isOpen ? 'opacity-0 pointer-events-none translate-y-4' : 'opacity-100 translate-y-0'}`}
+        className={`group fixed top-6 right-6 md:top-8 md:right-10 z-40 h-12 md:h-14 px-6 md:px-8 bg-gradient-to-r from-blue-950 to-indigo-900 backdrop-blur-xl border border-blue-800/50 text-white rounded-full shadow-[0_8px_32px_rgba(30,58,138,0.4)] flex items-center gap-3 md:gap-4 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(30,58,138,0.6)] hover:from-indigo-900 hover:to-blue-950 ${isOpen ? 'opacity-0 pointer-events-none translate-y-4' : 'opacity-100 translate-y-0'}`}
       >
         <div className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-200 opacity-75"></span>

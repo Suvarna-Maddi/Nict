@@ -3,7 +3,10 @@ import { Users, Trophy, Target, ArrowRight, ShieldCheck, Zap, Monitor, BookOpen,
 
 import { Link } from 'react-router-dom';
 import infraImg from '../assets/infrastructure.jpg';
-import aboutHeroBg from '../assets/abouthero.png';
+import aboutLab from '../assets/about_lab.jpg';
+import aboutMentor from '../assets/about_mentor.jpg';
+import directorImg from '../assets/director.png';
+import directorNoBg from '../assets/director_nobg.jpg';
 
 
 // Custom Hook for simple fade-in
@@ -86,13 +89,95 @@ export function About() {
         }
       `}</style>
       
-      {/* 1. Hero Section (Image Banner) */}
-      <section className="relative w-full overflow-hidden bg-[#fbfaf9] mb-20">
-        <img 
-          src={aboutHeroBg} 
-          alt="People Behind Better Opportunities - NICT" 
-          className="w-full h-auto object-contain shadow-sm"
-        />
+      {/* 1. Hero Section (Dynamic Split Layout) */}
+      <section className="relative w-full min-h-[90vh] flex items-center justify-center pt-32 pb-16 overflow-hidden bg-gradient-to-b from-white to-[#fbfaf9]">
+        {/* Background Decorative Shapes */}
+        <div className="absolute top-0 right-0 w-full md:w-1/2 h-full bg-[#fca5a5]/10 rounded-l-[120px] -z-10 transform translate-x-1/4 skew-x-12 opacity-50 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-100/40 rounded-full blur-3xl -z-10 transform -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
+        
+        <div className="w-full max-w-7xl px-6 flex flex-col lg:flex-row items-center gap-16 lg:gap-8 relative z-10">
+          
+          {/* Left Text Column */}
+          <div className="flex-1 w-full text-center lg:text-left z-20 pt-10 lg:pt-0">
+            <FadeInView delay={100}>
+              <div className="inline-block px-4 py-1.5 rounded-full bg-primary-50 text-primary-600 font-bold tracking-widest uppercase text-xs mb-6 shadow-sm border border-primary-100">
+                Welcome to NICT
+              </div>
+            </FadeInView>
+            
+            <FadeInView delay={200}>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-slate-900 leading-[1.1] tracking-tight mb-8">
+                People <br className="hidden lg:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">
+                  Behind Better
+                </span> <br className="hidden lg:block" />
+                Opportunities
+              </h1>
+            </FadeInView>
+            
+            <FadeInView delay={300}>
+              <p className="text-xl md:text-2xl text-slate-500 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
+                A team of dedicated educators and industry professionals working together to create meaningful career outcomes for every learner.
+              </p>
+            </FadeInView>
+
+            <FadeInView delay={400}>
+              <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+                <a href="#stats" className="px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold text-lg hover:bg-slate-800 transition-all shadow-xl shadow-slate-900/20 hover:-translate-y-1 w-full sm:w-auto text-center flex items-center justify-center gap-3">
+                  Our Impact <ArrowRight size={20} />
+                </a>
+              </div>
+            </FadeInView>
+          </div>
+
+          {/* Right Visual Grid Column */}
+          <div className="flex-1 w-full relative h-[500px] sm:h-[600px] hidden md:block">
+            <FadeInView delay={400} className="w-full h-full relative">
+              {/* Main Image */}
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[80%] h-[400px] sm:h-[450px] rounded-[40px] overflow-hidden shadow-2xl border-4 border-white z-10 hover:scale-[1.02] transition-transform duration-500">
+                <img src={aboutLab} alt="Students in modern lab" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+              </div>
+              
+              {/* Secondary Overlapping Image */}
+              <div className="absolute left-0 bottom-[5%] w-[55%] h-[250px] sm:h-[300px] rounded-[30px] overflow-hidden shadow-2xl border-4 border-white z-20 hover:-translate-y-3 transition-transform duration-500">
+                <img src={aboutMentor} alt="Mentor helping student" className="w-full h-full object-cover" />
+              </div>
+              
+              {/* Decorative Elements (Glassmorphism Badges) */}
+              <div className="absolute top-[10%] right-[-5%] lg:right-[-2%] z-30 bg-white/90 backdrop-blur-md border border-white p-4 rounded-2xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] animate-[bounce_6s_ease-in-out_infinite] flex items-center gap-3">
+                <div className="w-12 h-12 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center">
+                  <Trophy size={24} />
+                </div>
+                <div>
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Experience</p>
+                  <p className="text-sm font-black text-slate-900">15+ Years</p>
+                </div>
+              </div>
+
+              <div className="absolute bottom-[20%] left-[-5%] lg:left-[-10%] z-30 bg-white/90 backdrop-blur-md border border-white p-4 rounded-2xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] animate-[bounce_7s_ease-in-out_infinite_reverse] flex items-center gap-3">
+                <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                  <ShieldCheck size={24} />
+                </div>
+                <div>
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Trusted by</p>
+                  <p className="text-sm font-black text-slate-900">3000+ Students</p>
+                </div>
+              </div>
+            </FadeInView>
+          </div>
+          
+          {/* Mobile Visual (Fallback) */}
+          <div className="w-full md:hidden flex flex-col gap-4 mt-8 relative z-20">
+            <FadeInView delay={200} className="w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white h-[300px]">
+               <img src={aboutLab} alt="Students in modern lab" className="w-full h-full object-cover" />
+            </FadeInView>
+            <FadeInView delay={300} className="w-[80%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white h-[200px] -mt-16 ml-auto relative z-10">
+               <img src={aboutMentor} alt="Mentor helping student" className="w-full h-full object-cover" />
+            </FadeInView>
+          </div>
+
+        </div>
       </section>
 
       {/* 2. Stats Section (Card-less, Minimalist) */}
@@ -128,7 +213,43 @@ export function About() {
         </FadeInView>
       </section>
 
-      {/* 3. The Core Methodology (Light Theme) */}
+      {/* 3. Director's Desk Section */}
+      <section className="w-full bg-[#fbfaf9] py-16 mb-20">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            {/* Text Side */}
+            <FadeInView className="order-2 md:order-1">
+              <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">Meet the Director.</h2>
+              <h3 className="text-3xl font-bold text-slate-800 mb-2">Mr. Kumara Swamy</h3>
+              <p className="text-primary-600 font-bold uppercase tracking-widest text-sm mb-10">15+ Years of Industry Experience</p>
+              
+              <div className="relative pl-8 border-l-4 border-primary-500 mb-8">
+                <p className="text-xl md:text-2xl text-slate-600 leading-relaxed italic font-medium">
+                  "Our vision has always been to bridge the gap between academic learning and industry requirements. Over the past 15 years, we have continuously evolved our curriculum to ensure every student who walks through our doors leaves as a confident, capable professional."
+                </p>
+              </div>
+              <p className="text-lg text-slate-500 leading-relaxed font-medium">
+                Under his leadership, NICT has transformed thousands of careers, focusing on hands-on practical training and real-world skills that companies actually demand.
+              </p>
+            </FadeInView>
+
+            {/* Image Side */}
+            <FadeInView delay={150} className="order-1 md:order-2">
+              <div className="relative w-full aspect-square max-w-md mx-auto">
+                <div className="absolute inset-0 bg-primary-100 rounded-[3rem] transform rotate-6 scale-105 z-0"></div>
+                <div className="w-full h-full rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white relative z-10 bg-white">
+                  <img 
+                    src={directorNoBg} 
+                    alt="Mr. Kumara Swamy - Director of NICT" 
+                    loading="lazy"
+                    className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700" 
+                  />
+                </div>
+              </div>
+            </FadeInView>
+        </div>
+      </section>
+
+      {/* 4. The Core Methodology (Light Theme) */}
       <section className="w-full relative bg-white overflow-hidden py-32 mt-12 border-t border-b border-black/5 shadow-sm">
 
         <div className="relative z-10 w-full max-w-5xl mx-auto px-6">
@@ -200,7 +321,7 @@ export function About() {
         </div>
       </section>
 
-      {/* 4. Establishment Details */}
+      {/* 5. Establishment Details */}
       <section className="w-full bg-[#fbfaf9] py-32">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           
