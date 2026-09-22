@@ -182,30 +182,30 @@ export function About() {
       {/* 2. Stats Section (Card-less, Minimalist) */}
       <section id="stats" className="w-full max-w-6xl px-6 relative mb-32 -mt-16 z-20">
         <FadeInView>
-          <div className="flex flex-col md:flex-row items-center justify-between py-12 px-8 bg-transparent border-t border-b border-black/10 divide-y md:divide-y-0 md:divide-x divide-black/10">
+          <div className="flex flex-col md:flex-row items-center justify-between py-6 md:py-12 px-4 md:px-8 bg-transparent border-t border-b border-black/10 divide-y md:divide-y-0 md:divide-x divide-black/10">
             
-            <div className="flex-1 w-full flex flex-col items-center justify-center text-center py-8 md:py-0">
-              <div className="w-12 h-12 text-primary-500 mb-4 flex items-center justify-center"><Users size={32} strokeWidth={2} /></div>
-              <h3 className="text-5xl md:text-6xl font-black text-slate-900 mb-2">
+            <div className="flex-1 w-full flex flex-col items-center justify-center text-center py-6 md:py-0">
+              <div className="w-10 h-10 md:w-12 md:h-12 text-primary-500 mb-2 md:mb-4 flex items-center justify-center"><Users size={28} strokeWidth={2} /></div>
+              <h3 className="text-4xl md:text-6xl font-black text-slate-900 mb-1 md:mb-2">
                 <AnimatedNumber end={3000} suffix="+" duration={2500} />
               </h3>
-              <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mt-2">Alumni Trained</p>
+              <p className="text-xs md:text-sm font-bold text-slate-400 uppercase tracking-widest mt-1 md:mt-2">Alumni Trained</p>
             </div>
             
-            <div className="flex-1 w-full flex flex-col items-center justify-center text-center py-8 md:py-0">
-              <div className="w-12 h-12 text-orange-500 mb-4 flex items-center justify-center"><Trophy size={32} strokeWidth={2} /></div>
-              <h3 className="text-5xl md:text-6xl font-black text-slate-900 mb-2">
+            <div className="flex-1 w-full flex flex-col items-center justify-center text-center py-6 md:py-0">
+              <div className="w-10 h-10 md:w-12 md:h-12 text-orange-500 mb-2 md:mb-4 flex items-center justify-center"><Trophy size={28} strokeWidth={2} /></div>
+              <h3 className="text-4xl md:text-6xl font-black text-slate-900 mb-1 md:mb-2">
                 <AnimatedNumber end={15} suffix="+" duration={2000} />
               </h3>
-              <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mt-2">Years of Excellence</p>
+              <p className="text-xs md:text-sm font-bold text-slate-400 uppercase tracking-widest mt-1 md:mt-2">Years of Excellence</p>
             </div>
             
-            <div className="flex-1 w-full flex flex-col items-center justify-center text-center py-8 md:py-0">
-              <div className="w-12 h-12 text-emerald-500 mb-4 flex items-center justify-center"><ShieldCheck size={32} strokeWidth={2} /></div>
-              <h3 className="text-5xl md:text-6xl font-black text-slate-900 mb-2">
+            <div className="flex-1 w-full flex flex-col items-center justify-center text-center py-6 md:py-0">
+              <div className="w-10 h-10 md:w-12 md:h-12 text-emerald-500 mb-2 md:mb-4 flex items-center justify-center"><ShieldCheck size={28} strokeWidth={2} /></div>
+              <h3 className="text-4xl md:text-6xl font-black text-slate-900 mb-1 md:mb-2">
                 <AnimatedNumber end={100} suffix="%" duration={2000} />
               </h3>
-              <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mt-2">Practical Focus</p>
+              <p className="text-xs md:text-sm font-bold text-slate-400 uppercase tracking-widest mt-1 md:mt-2">Practical Focus</p>
             </div>
             
           </div>
