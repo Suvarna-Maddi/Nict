@@ -1,6 +1,5 @@
-import { useEffect, useState, useRef, ReactNode } from 'react';
-import { Briefcase, Layers, Gift, CheckCircle2, MessageCircle, Phone, ArrowRight, ShieldCheck } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState, useRef, type ReactNode } from 'react';
+import { Briefcase, Layers, CheckCircle2, ArrowRight, ShieldCheck } from 'lucide-react';
 
 // Custom Hook for simple fade-in
 function useInView(options = { threshold: 0.15 }) {

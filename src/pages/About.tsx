@@ -69,10 +69,7 @@ function AnimatedNumber({ end, suffix = "", duration = 2000 }: { end: number, su
 }
 
 export function About() {
-  const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
-    setMounted(true);
     window.scrollTo(0, 0);
   }, []);
 

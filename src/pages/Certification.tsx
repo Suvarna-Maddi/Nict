@@ -1,7 +1,12 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useState, useRef, type ReactNode } from 'react';
+import { toPng } from 'html-to-image';
+import { jsPDF } from 'jspdf';
 import certificateImg from '../assets/certificate.png';
-import { Award, BookOpen, CheckCircle, ArrowRight } from 'lucide-react';
+import certificateTemplateImg from '../assets/certificate_template.jpg';
+import { Award, BookOpen, CheckCircle, ArrowRight, Search, Loader2, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
+import { getDefaultDescription } from '../data/courseDescriptions';
 
 // Custom Hook for simple fade-in
 function useInView(options = { threshold: 0.1 }) {
@@ -39,6 +44,79 @@ function FadeInView({ children, delay = 0, className = "" }: { children: ReactNo
 export function Certification() {
   const [mounted, setMounted] = useState(false);
   const [activeStep, setActiveStep] = useState(1);
+  const [certificateId, setCertificateId] = useState('');
+  const [verificationStatus, setVerificationStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [verifiedData, setVerifiedData] = useState<{ name: string; course: string; issued_date: string; certificate_id: string } | null>(null);
+
+  const certificateRef = useRef<HTMLDivElement>(null);
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const downloadPDF = async () => {
+    if (!certificateRef.current) return;
+    try {
+      setIsDownloading(true);
+      
+      const imgData = await toPng(certificateRef.current, {
+        quality: 1.0,
+        pixelRatio: 2,
+      });
+      
+      // Calculate aspect ratio based on a standard landscape A4 or original image dimensions
+      // We can use the div's offsetWidth and offsetHeight for the PDF dimensions
+      const width = certificateRef.current.offsetWidth;
+      const height = certificateRef.current.offsetHeight;
+
+      const pdf = new jsPDF({
+        orientation: 'landscape',
+        unit: 'px',
+        format: [width, height]
+      });
+      
+      pdf.addImage(imgData, 'PNG', 0, 0, width, height);
+      
+      // Clean up the name for the filename (remove special characters if any)
+      const sanitizedName = verifiedData?.name ? verifiedData.name.replace(/[^a-zA-Z0-9 ]/g, "").trim() : 'Candidate';
+      pdf.save(`${sanitizedName} Certificate.pdf`);
+    } catch (err: any) {
+      console.error("Error generating PDF", err);
+      alert(`Failed to download PDF: ${err.message || err}`);
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
+  const verifyCertificate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!certificateId.trim()) return;
+
+    setVerificationStatus('loading');
+    setVerifiedData(null);
+
+    try {
+      const { data, error } = await supabase
+        .from('certificate_details')
+        .select('*')
+        .eq('certificate_id', certificateId.trim())
+        .single();
+
+      if (error || !data) {
+        console.error('Supabase error:', error);
+        setVerificationStatus('error');
+        // Let's store the error message in verifiedData temporarily just to see it on screen if it's an error.
+        setVerifiedData({ name: 'Error', course: error?.message || 'Unknown error', issued_date: '', certificate_id: '' });
+      } else {
+        setVerifiedData({
+          name: data.name,
+          course: data.course,
+          issued_date: data.issued_date,
+          certificate_id: data.certificate_id
+        });
+        setVerificationStatus('success');
+      }
+    } catch (err) {
+      setVerificationStatus('error');
+    }
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -220,7 +298,108 @@ export function Certification() {
         </div>
       </section>
 
+      {/* 3. Certificate Verification */}
+      <section className="w-full px-6 py-24 bg-slate-50 border-y border-black/5">
+        <FadeInView>
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">Verify Your Certificate</h2>
+            <p className="text-lg text-slate-500 mb-10 font-medium">
+              Enter your unique certificate ID below to verify its authenticity in our database.
+            </p>
+            
+            <form onSubmit={verifyCertificate} className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto mb-12">
+              <div className="relative flex-1">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                  <Search size={20} />
+                </div>
+                <input 
+                  type="text" 
+                  value={certificateId}
+                  onChange={(e) => setCertificateId(e.target.value.toUpperCase())}
+                  placeholder="e.g. NICT-PY-2026-5001"
+                  className="w-full pl-12 pr-4 py-4 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-lg shadow-sm uppercase placeholder:normal-case"
+                  required
+                />
+              </div>
+              <button 
+                type="submit" 
+                disabled={verificationStatus === 'loading'}
+                className="px-8 py-4 bg-slate-900 text-white rounded-xl font-bold text-lg hover:bg-slate-800 transition-all shadow-lg hover:-translate-y-1 disabled:opacity-70 flex items-center justify-center min-w-[140px]"
+              >
+                {verificationStatus === 'loading' ? <Loader2 size={24} className="animate-spin" /> : 'Verify'}
+              </button>
+            </form>
 
+            {/* Status Views */}
+            {verificationStatus === 'error' && (
+              <div className="bg-red-50 text-red-600 p-6 rounded-2xl border border-red-100 animate-in fade-in slide-in-from-bottom-4">
+                <p className="font-bold text-lg mb-1">Certificate Not Found</p>
+                <p className="text-red-500/80 mb-2">Please check the ID and try again, or contact support if you believe this is an error.</p>
+                {verifiedData?.course && (
+                  <p className="text-sm font-mono bg-red-100 p-2 rounded text-red-800">Error: {verifiedData.course}</p>
+                )}
+              </div>
+            )}
+
+            {verificationStatus === 'success' && verifiedData && (
+              <div className="mt-12 flex flex-col items-center animate-in zoom-in-95 fade-in duration-500">
+                <div 
+                  ref={certificateRef}
+                  className="relative w-full max-w-4xl mx-auto shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] bg-white border border-black/10"
+                >
+                  <img src={certificateTemplateImg} alt="Verified Certificate" className="w-full h-auto block pointer-events-none" />
+                  
+                  {/* Dynamic Overlays */}
+                  
+                  {/* Name */}
+                  <div className="absolute top-[40.5%] left-0 w-full text-center px-4 flex justify-center items-center">
+                    <h3 className="text-xl md:text-3xl lg:text-4xl text-[#1e3a8a] font-serif font-bold tracking-wider">
+                      {verifiedData.name}
+                    </h3>
+                  </div>
+
+                  {/* Course Name */}
+                  <div className="absolute top-[52.5%] left-0 w-full text-center px-8">
+                    <p className="text-base md:text-xl lg:text-2xl font-serif font-bold text-[#1e3a8a] uppercase tracking-wider">
+                      {verifiedData.course}
+                    </p>
+                  </div>
+
+                  {/* Description (Inside the light blue box) */}
+                  <div className="absolute top-[60%] left-1/2 -translate-x-1/2 w-full flex justify-center px-4 max-w-[45%]">
+                    <p className="text-[8px] md:text-[10px] lg:text-[12px] font-sans text-[#1e3a8a] font-medium tracking-wide leading-relaxed text-center">
+                      {getDefaultDescription(verifiedData.course)}
+                    </p>
+                  </div>
+
+                  {/* Left Bottom Section - Issue Date */}
+                  <div className="absolute top-[80.5%] left-[14.5%] md:left-[14%] w-[20%] text-center">
+                    <p className="text-[9px] md:text-[11px] lg:text-[13px] font-sans text-[#1e3a8a] font-bold tracking-widest uppercase truncate">
+                      {verifiedData.issued_date || new Date().toLocaleDateString()}
+                    </p>
+                  </div>
+                  
+                  {/* Center Bottom Section - Certificate ID */}
+                  <div className="absolute top-[78.5%] left-1/2 -translate-x-1/2 w-[25%] text-center">
+                    <p className="text-[9px] md:text-[11px] lg:text-[13px] font-sans text-[#1e3a8a] font-bold tracking-widest uppercase truncate">
+                      {verifiedData.certificate_id}
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={downloadPDF}
+                  disabled={isDownloading}
+                  className="mt-8 px-8 py-4 bg-primary-600 text-white rounded-xl font-bold text-lg hover:bg-primary-700 transition-all shadow-lg hover:-translate-y-1 disabled:opacity-70 flex items-center justify-center gap-3 min-w-[240px]"
+                >
+                  {isDownloading ? <Loader2 size={24} className="animate-spin" /> : <Download size={24} />}
+                  {isDownloading ? 'Generating PDF...' : 'Download as PDF'}
+                </button>
+              </div>
+            )}
+          </div>
+        </FadeInView>
+      </section>
 
       {/* 4. Mini CTA */}
       <section className="w-full px-6 py-32 bg-white">

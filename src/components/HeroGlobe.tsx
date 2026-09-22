@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import homeHeroBg from '../assets/homehero.png';
+import mobileHeroBg from '../assets/h_bg.png';
 
 export function HeroGlobe() {
   return (
@@ -8,11 +9,28 @@ export function HeroGlobe() {
       
       {/* Banner Image Display */}
       <div className="w-full relative z-10">
-        <img 
-          src={homeHeroBg} 
-          alt="From Warangal to the World - NICT" 
-          className="w-full min-h-[50vh] md:min-h-[85vh] object-cover object-center shadow-sm" 
-        />
+        <picture>
+          <source media="(min-width: 768px)" srcSet={homeHeroBg} />
+          <img 
+            src={mobileHeroBg} 
+            alt="From Warangal to the World - NICT" 
+            className="w-full min-h-[50vh] md:min-h-[85vh] object-cover object-center shadow-sm" 
+          />
+        </picture>
+        {/* SVG Curve at the bottom of the image */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            viewBox="0 0 1440 120" 
+            className="w-full h-[40px] md:h-[80px] text-[#fbfaf9]" 
+            preserveAspectRatio="none"
+          >
+            <path 
+              fill="currentColor" 
+              d="M0,60 C240,120 480,120 720,60 C960,0 1200,0 1440,60 L1440,120 L0,120 Z" 
+            ></path>
+          </svg>
+        </div>
       </div>
 
       {/* CTA Buttons */}

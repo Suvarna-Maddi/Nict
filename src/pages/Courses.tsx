@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, type ReactNode } from 'react';
-import { MonitorPlay, Calculator, Code2, Globe, Terminal, ArrowRight, FileText, Database, PenTool, Braces, X, CheckCircle, MessageCircle } from 'lucide-react';
+import { MonitorPlay, Calculator, Code2, Terminal, ArrowRight, FileText, Database, PenTool, Braces, X, CheckCircle, MessageCircle } from 'lucide-react';
 
 // Custom Hook for simple fade-in
 function useInView(options = { threshold: 0.15 }) {

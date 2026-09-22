@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 
 
-function AnimatedCounter({ value, suffix }: { value: number | string, suffix: string }) {
+function AnimatedCounter({ value, suffix, prefixZero }: { value: number | string, suffix: string, prefixZero?: boolean }) {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -38,7 +38,7 @@ function AnimatedCounter({ value, suffix }: { value: number | string, suffix: st
 
   return (
     <div ref={ref} className="text-5xl md:text-6xl font-black text-slate-900 mb-2 tracking-tighter group-hover:text-primary-600 transition-colors duration-500 drop-shadow-sm">
-      {typeof value === 'number' ? count : value}
+      {typeof value === 'number' ? (prefixZero ? `0${count}` : count) : value}
       <span className="text-primary-500">{suffix}</span>
     </div>
   );
@@ -46,8 +46,9 @@ function AnimatedCounter({ value, suffix }: { value: number | string, suffix: st
 
 const stats = [
   {
-    value: 48939,
+    value: 3856,
     suffix: "+",
+    prefixZero: true,
     label: "Students Trained",
     description: "Successfully trained and guided local students towards their careers."
   },
@@ -93,7 +94,7 @@ export function Stats() {
               <div className="absolute inset-0 rounded-[2.5rem] border-2 border-primary-500/0 group-hover:border-primary-500/10 transition-colors duration-500 pointer-events-none"></div>
 
               {/* Animated Counter */}
-              <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+              <AnimatedCounter value={stat.value} suffix={stat.suffix} prefixZero={(stat as any).prefixZero} />
 
               {/* Label */}
               <h3 className="text-xl font-bold text-slate-800 mb-3 tracking-tight">

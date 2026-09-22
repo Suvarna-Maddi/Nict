@@ -1,5 +1,5 @@
-import { MapPin, Phone, MessageCircle, Navigation2 } from 'lucide-react';
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { MapPin, Navigation2 } from 'lucide-react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 
 function FadeInView({ children, delay = 0, className = "" }: { children: ReactNode, delay?: number, className?: string }) {
   const [isVisible, setIsVisible] = useState(false);
