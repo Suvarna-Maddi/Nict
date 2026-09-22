@@ -68,7 +68,7 @@ export function Certification() {
       
       // Native resolution of the certificate container
       const width = 1000;
-      const height = 707;
+      const height = 665.16; // 1000 * (2352 / 3536)
 
       const pdf = new jsPDF({
         orientation: 'landscape',
@@ -350,18 +350,18 @@ export function Certification() {
                 <div 
                   ref={wrapperRef}
                   className="relative w-full max-w-[1000px] overflow-hidden rounded-lg shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] bg-white border border-black/10"
-                  style={{ height: wrapperWidth ? `${wrapperWidth / 1.4144}px` : 'auto' }}
+                  style={{ height: wrapperWidth ? `${wrapperWidth * (2352 / 3536)}px` : 'auto' }}
                 >
                   <div 
                     ref={certificateRef}
                     className="absolute top-0 left-0 origin-top-left"
                     style={{ 
                       width: '1000px', 
-                      height: '707px', 
+                      height: '665.16px', 
                       transform: wrapperWidth ? `scale(${wrapperWidth / 1000})` : 'none' 
                     }}
                   >
-                    <img src={certificateTemplateImg} alt="Verified Certificate" className="w-full h-full block pointer-events-none object-cover" />
+                    <img src={certificateTemplateImg} alt="Verified Certificate" className="w-full h-full block pointer-events-none object-contain" />
                     
                     {/* Name */}
                     <div className="absolute top-[40.5%] left-0 w-full text-center px-4 flex justify-center items-center">
