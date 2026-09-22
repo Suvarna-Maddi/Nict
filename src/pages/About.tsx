@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import infraImg from '../assets/infrastructure.jpg';
 import aboutLab from '../assets/about_lab.jpg';
 import aboutMentor from '../assets/about_mentor.jpg';
-import directorImg from '../assets/director.png';
 import directorNoBg from '../assets/director_nobg.jpg';
 
 
