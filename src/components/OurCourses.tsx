@@ -57,7 +57,7 @@ const scrollingCourses = [...courses, ...courses];
 
 export function OurCourses() {
   return (
-    <section className="relative w-full py-20 z-10 overflow-hidden bg-[#fbfaf9]">
+    <section className="relative w-full pt-20 pb-10 z-10 overflow-hidden bg-[#fbfaf9]">
       
       {/* Inline styles for infinite scrolling and hiding scrollbars */}
       <style>{`

@@ -64,7 +64,7 @@ const opportunities = [
 
 export function Opportunities() {
   return (
-    <section className="relative w-full py-32 bg-[#fbfaf9] overflow-hidden z-10 border-y border-black/5">
+    <section className="relative w-full pt-10 pb-32 bg-[#fbfaf9] overflow-hidden z-10 border-y border-black/5">
       
       {/* Background glow effects */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
