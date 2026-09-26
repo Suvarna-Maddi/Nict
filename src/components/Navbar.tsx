@@ -114,14 +114,7 @@ export function Navbar() {
               <h2 className="text-lg font-bold text-slate-800">About Us</h2>
             </Link>
 
-            {/* 4. Certification Tile (Small Square) */}
-            <Link 
-              to="/certification" 
-              className="group col-span-1 md:col-span-1 row-span-1 bg-primary-50/90 backdrop-blur-2xl border border-primary-100 rounded-[2rem] p-6 flex flex-col justify-between shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transform transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:bg-white/90"
-            >
-              <Award size={24} strokeWidth={2} className="text-slate-400 group-hover:text-slate-800 transition-colors" />
-              <h2 className="text-lg font-bold text-slate-800">Certify</h2>
-            </Link>
+            {/* 4. Removed Certification Tile */}
 
             {/* 5. Enroll Tile (Full Width Bottom Rectangle) */}
             <a 

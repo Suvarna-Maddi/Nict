@@ -4,7 +4,8 @@ import { Footer } from './components/Footer'
 import { Home } from './pages/Home'
 import { About } from './pages/About'
 import { Courses } from './pages/Courses'
-import { Certification } from './pages/Certification'
+import { AdminLogin } from './pages/AdminLogin'
+import { AdminDashboard } from './pages/AdminDashboard'
 import { Chatbot } from './components/Chatbot'
 import { WhatsAppButton } from './components/WhatsAppButton'
 
@@ -25,7 +26,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/courses" element={<Courses />} />
-            <Route path="/certification" element={<Certification />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
           </Routes>
         </div>
 
