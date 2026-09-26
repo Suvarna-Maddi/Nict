@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
-import homeHeroBg from '../assets/homehero.png';
-import mobileHeroBg from '../assets/h_bg.png';
+import homeHeroBg from '../assets/homehero.webp';
+import mobileHeroBg from '../assets/h_bg.webp';
 
 export function HeroGlobe() {
   return (
@@ -14,7 +14,9 @@ export function HeroGlobe() {
           <img 
             src={mobileHeroBg} 
             alt="From Warangal to the World - NICT" 
-            className="w-full min-h-[50vh] md:min-h-[85vh] object-cover object-center shadow-sm" 
+            className="w-full min-h-[50vh] md:min-h-[85vh] object-cover object-center shadow-sm"
+            fetchPriority="high"
+            decoding="async"
           />
         </picture>
         {/* SVG Curve at the bottom of the image */}

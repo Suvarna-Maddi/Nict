@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Send, Minimize2 } from 'lucide-react';
 import { getChatbotResponse } from '../data/chatbotKnowledge';
-import chatbotLogo from '../assets/chatbot-logo.png';
+import chatbotLogo from '../assets/chatbot-logo.webp';
 
 type Message = {
   id: string;

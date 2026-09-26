@@ -1,4 +1,4 @@
-import whatsappLogo from '../assets/whatsapplogo.png';
+import whatsappLogo from '../assets/whatsapplogo.webp';
 
 export function WhatsAppButton() {
   return (

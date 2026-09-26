@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { X, Home, Info, Sparkles, ArrowRight } from 'lucide-react';
-import logoUrl from '../assets/logo.png';
+import logoUrl from '../assets/logo.webp';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

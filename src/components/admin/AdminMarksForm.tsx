@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import marksTemplate from '../../assets/marks.png';
+import marksTemplate from '../../assets/marks.webp';
 
 interface Subject {
   name: string;

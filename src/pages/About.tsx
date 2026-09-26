@@ -134,13 +134,13 @@ export function About() {
             <FadeInView delay={400} className="w-full h-full relative">
               {/* Main Image */}
               <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[80%] h-[400px] sm:h-[450px] rounded-[40px] overflow-hidden shadow-2xl border-4 border-white z-10 hover:scale-[1.02] transition-transform duration-500">
-                <img src={aboutLab} alt="Students in modern lab" className="w-full h-full object-cover" />
+                <img src={aboutLab} alt="Students in modern lab" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
               </div>
               
               {/* Secondary Overlapping Image */}
               <div className="absolute left-0 bottom-[5%] w-[55%] h-[250px] sm:h-[300px] rounded-[30px] overflow-hidden shadow-2xl border-4 border-white z-20 hover:-translate-y-3 transition-transform duration-500">
-                <img src={aboutMentor} alt="Mentor helping student" className="w-full h-full object-cover" />
+                <img src={aboutMentor} alt="Mentor helping student" loading="lazy" decoding="async" className="w-full h-full object-cover" />
               </div>
               
               {/* Decorative Elements (Glassmorphism Badges) */}
@@ -169,10 +169,10 @@ export function About() {
           {/* Mobile Visual (Fallback) */}
           <div className="w-full md:hidden flex flex-col gap-4 mt-8 relative z-20">
             <FadeInView delay={200} className="w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white h-[300px]">
-               <img src={aboutLab} alt="Students in modern lab" className="w-full h-full object-cover" />
+               <img src={aboutLab} alt="Students in modern lab" loading="lazy" decoding="async" className="w-full h-full object-cover" />
             </FadeInView>
             <FadeInView delay={300} className="w-[80%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white h-[200px] -mt-16 ml-auto relative z-10">
-               <img src={aboutMentor} alt="Mentor helping student" className="w-full h-full object-cover" />
+               <img src={aboutMentor} alt="Mentor helping student" loading="lazy" decoding="async" className="w-full h-full object-cover" />
             </FadeInView>
           </div>
 

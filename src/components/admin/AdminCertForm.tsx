@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import certTemplate from '../../assets/certifi.png';
+import certTemplate from '../../assets/certifi.webp';
 
 export function AdminCertForm() {
   const [studentName, setStudentName] = useState('');
