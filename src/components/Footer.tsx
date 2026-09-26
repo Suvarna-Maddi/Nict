@@ -1,5 +1,20 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logoUrl from '../assets/logo.webp';
+
+// Helper: navigates and scrolls to top
+function ScrollLink({ to, className, children }: { to: string; className?: string; children: React.ReactNode }) {
+  const navigate = useNavigate();
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate(to);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+  return (
+    <a href={to} onClick={handleClick} className={className}>
+      {children}
+    </a>
+  );
+}
 
 export function Footer() {
   return (
@@ -20,10 +35,10 @@ export function Footer() {
             <div>
               <h4 className="text-lg font-bold mb-4 text-white">Quick Links</h4>
               <ul className="space-y-3 text-white font-medium">
-                <li><Link to="/" className="hover:text-gray-200 transition-colors">Home</Link></li>
-                <li><Link to="/about" className="hover:text-gray-200 transition-colors">About Us</Link></li>
-                <li><Link to="/courses" className="hover:text-gray-200 transition-colors">Courses</Link></li>
-                <li><Link to="/admin/login" className="hover:text-gray-200 transition-colors opacity-50">Admin Login</Link></li>
+                <li><ScrollLink to="/" className="hover:text-gray-200 transition-colors">Home</ScrollLink></li>
+                <li><ScrollLink to="/about" className="hover:text-gray-200 transition-colors">About Us</ScrollLink></li>
+                <li><ScrollLink to="/courses" className="hover:text-gray-200 transition-colors">Courses</ScrollLink></li>
+                <li><ScrollLink to="/admin/login" className="hover:text-gray-200 transition-colors opacity-50">Admin Login</ScrollLink></li>
               </ul>
             </div>
 
@@ -41,7 +56,7 @@ export function Footer() {
             </div>
           </div>
           <div className="lg:col-span-1">
-            <h4 className="text-lg font-bold mb-4 text-white">Contact & Timings</h4>
+            <h4 className="text-lg font-bold mb-4 text-white">Contact &amp; Timings</h4>
             <ul className="space-y-3 text-white font-medium text-sm">
               <li className="flex items-start gap-2">
                 <span className="shrink-0">📍</span>
