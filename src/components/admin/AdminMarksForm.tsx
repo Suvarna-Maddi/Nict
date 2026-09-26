@@ -77,7 +77,7 @@ export function AdminMarksForm() {
         }
       }
     `,
-    onBeforeGetContent: () => {
+    onBeforePrint: () => {
       setGenerating(true);
       return Promise.resolve();
     },

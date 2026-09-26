@@ -40,7 +40,7 @@ export function AdminCertForm() {
         }
       }
     `,
-    onBeforeGetContent: () => {
+    onBeforePrint: () => {
       setGenerating(true);
       return Promise.resolve();
     },
