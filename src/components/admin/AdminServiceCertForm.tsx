@@ -130,7 +130,7 @@ export function AdminServiceCertForm() {
       pdf.setTextColor(220, 38, 38); // Red
       pdf.setFontSize(16);
       pdf.text(refNo, 137, 252);    // Ref No after the dots (moved up 10px, right 10px)
-      pdf.text(date, 590, 252);     // Date after the dots (moved up 10px, right 10px)
+      pdf.text(date, 600, 252);     // Date after the dots (moved right +10px -> 600)
 
       // Content fields (blue italic)
       pdf.setFont('times', 'italic');
@@ -234,7 +234,7 @@ export function AdminServiceCertForm() {
               
               {/* Ref No and Date row */}
               <div className="absolute z-10 top-[239px] left-[137px] text-[16px] font-bold text-red-600 uppercase">{refNo}</div>
-              <div className="absolute z-10 top-[239px] left-[590px] text-[16px] font-bold text-red-600 uppercase">{date}</div>
+              <div className="absolute z-10 top-[239px] left-[600px] text-[16px] font-bold text-red-600 uppercase">{date}</div>
 
               {/* Name - after "This is to Certify that Mr./Mrs./Miss." */}
               <div className="absolute z-10 top-[410px] left-[330px] text-[22px] font-bold italic text-blue-600 uppercase w-[430px]">{studentName}</div>
