@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { jsPDF } from 'jspdf';
 import { supabase } from '../lib/supabase';
-import marksTemplate from '../assets/marks.webp';
-import certTemplate from '../assets/certifi.webp';
+import marksTemplate from '../assets/marks.png';
+import certTemplate from '../assets/certifi.png';
 import serviceTemplate from '../assets/service_certificate.png';
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -75,7 +75,7 @@ async function generateMarksPDF(data: MarksRecord) {
   const canvas = document.createElement('canvas');
   canvas.width = img.width; canvas.height = img.height;
   const ctx = canvas.getContext('2d')!; ctx.drawImage(img, 0, 0);
-  pdf.addImage(canvas.toDataURL('image/webp'), 'WEBP', 0, 0, 794, 1123);
+  pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 794, 1123);
   pdf.setFont('times', 'bold'); pdf.setTextColor(0, 0, 0); pdf.setFontSize(15);
   const bOff = 12;
   pdf.text(data.course, 150, 215 + bOff); pdf.text(data.duration, 150, 238 + bOff);
@@ -102,7 +102,7 @@ async function generateCertPDF(data: CertRecord) {
   const canvas = document.createElement('canvas');
   canvas.width = img.width; canvas.height = img.height;
   const ctx = canvas.getContext('2d')!; ctx.drawImage(img, 0, 0);
-  pdf.addImage(canvas.toDataURL('image/webp'), 'WEBP', 0, 0, 794, 1123);
+  pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 794, 1123);
   if (data.photo_url && data.photo_url.length > 10) {
     try {
       const photoImg = new Image(); photoImg.src = data.photo_url;
@@ -138,21 +138,21 @@ async function generateServicePDF(data: ServiceRecord) {
   pdf.setTextColor(220, 38, 38);
   pdf.setFontSize(16);
   pdf.text(data.ref_no, 137, 252);
-  pdf.text(data.date || '', 620, 252);
+  pdf.text(data.date || '', 630, 252);
 
   // Content fields (blue italic)
   pdf.setFont('times', 'italic');
   pdf.setTextColor(37, 99, 235);
   pdf.setFontSize(22);
-  pdf.text(data.name, 330, 425, { maxWidth: 430 });
-  pdf.text(data.father_name, 120, 480, { maxWidth: 300 });
-  pdf.text(data.role, 490, 480, { maxWidth: 260 });
-  pdf.text(data.work_type, 60, 538, { maxWidth: 300 });
+  pdf.text(data.name, 374, 441, { maxWidth: 430 });
+  pdf.text(data.father_name, 150, 496, { maxWidth: 300 });
+  pdf.text(data.role, 520, 496, { maxWidth: 260 });
+  pdf.text(data.work_type, 90, 554, { maxWidth: 300 });
 
   pdf.setFontSize(18);
-  pdf.text(data.from_date, 382, 543, { maxWidth: 160 });
-  pdf.text(data.to_date, 570, 543, { maxWidth: 160 });
-  pdf.text(data.total_years || '', 215, 605, { maxWidth: 280 });
+  pdf.text(data.from_date, 412, 559, { maxWidth: 160 });
+  pdf.text(data.to_date, 600, 559, { maxWidth: 160 });
+  pdf.text(data.total_years || '', 245, 621, { maxWidth: 280 });
 
   pdf.save(`${data.name || 'Candidate'}_Service_Certificate.pdf`);
 }
@@ -213,22 +213,22 @@ function ServicePreview({ data }: { data: ServiceRecord }) {
       <img src={serviceTemplate} alt="Service Certificate Template" className="absolute inset-0 w-full h-full object-cover z-0" />
       {/* Ref No and Date row */}
       <div className="absolute z-10 top-[239px] left-[137px] text-[16px] font-bold text-red-600 uppercase">{data.ref_no}</div>
-      <div className="absolute z-10 top-[239px] left-[620px] text-[16px] font-bold text-red-600 uppercase">{data.date}</div>
+      <div className="absolute z-10 top-[239px] left-[630px] text-[16px] font-bold text-red-600 uppercase">{data.date}</div>
 
       {/* Name - after "This is to Certify that Mr./Mrs./Miss." */}
-      <div className="absolute z-10 top-[410px] left-[330px] text-[22px] font-bold italic text-blue-600 uppercase w-[430px]">{data.name}</div>
+      <div className="absolute z-10 top-[426px] left-[374px] text-[22px] font-bold italic text-blue-600 uppercase w-[430px]">{data.name}</div>
 
       {/* Father / Role row */}
-      <div className="absolute z-10 top-[466px] left-[120px] text-[22px] font-bold italic text-blue-600 uppercase w-[300px]">{data.father_name}</div>
-      <div className="absolute z-10 top-[466px] left-[490px] text-[22px] font-bold italic text-blue-600 uppercase w-[260px]">{data.role}</div>
+      <div className="absolute z-10 top-[482px] left-[150px] text-[22px] font-bold italic text-blue-600 uppercase w-[300px]">{data.father_name}</div>
+      <div className="absolute z-10 top-[482px] left-[520px] text-[22px] font-bold italic text-blue-600 uppercase w-[260px]">{data.role}</div>
 
       {/* Work type + from/to dates row */}
-      <div className="absolute z-10 top-[524px] left-[60px] text-[22px] font-bold italic text-blue-600 uppercase w-[300px]">{data.work_type}</div>
-      <div className="absolute z-10 top-[530px] left-[382px] text-[18px] font-bold italic text-blue-600 uppercase w-[160px]">{data.from_date}</div>
-      <div className="absolute z-10 top-[530px] left-[570px] text-[18px] font-bold italic text-blue-600 uppercase w-[160px]">{data.to_date}</div>
+      <div className="absolute z-10 top-[540px] left-[90px] text-[22px] font-bold italic text-blue-600 uppercase w-[300px]">{data.work_type}</div>
+      <div className="absolute z-10 top-[546px] left-[412px] text-[18px] font-bold italic text-blue-600 uppercase w-[160px]">{data.from_date}</div>
+      <div className="absolute z-10 top-[546px] left-[600px] text-[18px] font-bold italic text-blue-600 uppercase w-[160px]">{data.to_date}</div>
 
       {/* Total Service Years */}
-      <div className="absolute z-10 top-[590px] left-[215px] text-[18px] font-bold italic text-blue-600 uppercase w-[280px]">{data.total_years}</div>
+      <div className="absolute z-10 top-[606px] left-[245px] text-[18px] font-bold italic text-blue-600 uppercase w-[280px]">{data.total_years}</div>
     </div>
   );
 }

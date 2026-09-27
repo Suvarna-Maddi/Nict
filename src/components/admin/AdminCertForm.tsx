@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { jsPDF } from 'jspdf';
 import { supabase } from '../../lib/supabase';
-import certTemplate from '../../assets/certifi.webp';
+import certTemplate from '../../assets/certifi.png';
 
 export function AdminCertForm() {
   const [refNo, setRefNo] = useState('');
@@ -130,8 +130,8 @@ export function AdminCertForm() {
       const ctx = canvas.getContext('2d');
       if (ctx) {
         ctx.drawImage(img, 0, 0);
-        const imgData = canvas.toDataURL('image/webp');
-        pdf.addImage(imgData, 'WEBP', 0, 0, 794, 1123);
+        const imgData = canvas.toDataURL('image/png');
+        pdf.addImage(imgData, 'PNG', 0, 0, 794, 1123);
       }
 
       if (photo) {
@@ -173,9 +173,6 @@ export function AdminCertForm() {
       pdf.text(course, 290, 735 + bOffXl);
       pdf.text(grade, 130 + 75, 784 + bOffXl, { align: 'center' });
 
-      // Add Ref No to PDF if needed, or maybe template doesn't have it explicitly shown but required for DB.
-      // Assuming it needs to be placed or just recorded. We won't draw it if there's no spot for it.
-      
       pdf.save(`${studentName || 'Student'}_Certificate.pdf`);
     } catch (error) {
       console.error('Error generating PDF:', error);

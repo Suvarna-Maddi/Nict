@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { jsPDF } from 'jspdf';
 import { supabase } from '../../lib/supabase';
-import marksTemplate from '../../assets/marks.webp';
+import marksTemplate from '../../assets/marks.png';
 
 interface Subject {
   name: string;
@@ -167,8 +167,8 @@ export function AdminMarksForm() {
       const ctx = canvas.getContext('2d');
       if (ctx) {
         ctx.drawImage(img, 0, 0);
-        const imgData = canvas.toDataURL('image/webp');
-        pdf.addImage(imgData, 'WEBP', 0, 0, 794, 1123);
+        const imgData = canvas.toDataURL('image/png');
+        pdf.addImage(imgData, 'PNG', 0, 0, 794, 1123);
       }
 
       pdf.setFont('times', 'bold');
@@ -176,18 +176,18 @@ export function AdminMarksForm() {
       
       pdf.setFontSize(15);
       const bOff = 12; // baseline offset
-      pdf.text(course, 150, 215 + bOff);
-      pdf.text(duration, 150, 238 + bOff);
-      pdf.text(adminNo, 260, 295 + bOff);
-      pdf.text(date, 640, 295 + bOff);
-      pdf.text(htNo, 260, 321 + bOff);
-      pdf.text(studentName, 260, 355 + bOff);
-      pdf.text(fatherName, 260, 382 + bOff);
-      pdf.text(monthYear, 260, 422 + bOff);
-      pdf.text(branchPlace, 260, 449 + bOff);
+      pdf.text(course, 150, 230 + bOff);
+      pdf.text(duration, 150, 258 + bOff);
+      pdf.text(adminNo, 260, 315 + bOff);
+      pdf.text(date, 640, 315 + bOff);
+      pdf.text(htNo, 260, 341 + bOff);
+      pdf.text(studentName, 260, 375 + bOff);
+      pdf.text(fatherName, 260, 402 + bOff);
+      pdf.text(monthYear, 260, 442 + bOff);
+      pdf.text(branchPlace, 260, 469 + bOff);
 
       subjects.forEach((sub, i) => {
-        const y = 530 + i * 40 + bOff;
+        const y = 550 + i * 40 + bOff;
         // Shifted S.No right by 15px for PDF only to match the column center
         pdf.text((i + 1).toString(), 30 + 30, y, { align: 'center' });
         pdf.text(sub.name, 150, y);
@@ -196,11 +196,11 @@ export function AdminMarksForm() {
       });
 
       pdf.setFontSize(16);
-      pdf.text(maxTotal.toString(), 460 + 30, 848 + bOff, { align: 'center' });
-      pdf.text(total.toString(), 660 + 30, 848 + bOff, { align: 'center' });
+      pdf.text(maxTotal.toString(), 460 + 30, 828 + bOff, { align: 'center' });
+      pdf.text(total.toString(), 660 + 30, 828 + bOff, { align: 'center' });
 
       pdf.setFontSize(14);
-      pdf.text(totalInWords, 290, 897 + bOff);
+      pdf.text(totalInWords, 290, 877 + bOff);
 
       pdf.save(`${studentName || 'Student'}_Marks_Card.pdf`);
     } catch (error) {
@@ -214,19 +214,19 @@ export function AdminMarksForm() {
     <div ref={printRef} className="relative w-full h-full bg-white text-black font-serif" style={{ width: '794px', height: '1123px' }}>
       <img src={marksTemplate} alt="Marks Template" className="absolute inset-0 w-full h-full object-cover z-0" />
       
-      <div className="absolute z-10 top-[215px] left-[150px] text-[15px] font-bold tracking-wide w-[400px]">{course}</div>
-      <div className="absolute z-10 top-[238px] left-[150px] text-[15px] font-bold tracking-wide">{duration}</div>
-      <div className="absolute z-10 top-[295px] left-[260px] text-[15px] font-bold tracking-wide">{adminNo}</div>
-      <div className="absolute z-10 top-[295px] left-[640px] text-[15px] font-bold tracking-wide">{date}</div>
-      <div className="absolute z-10 top-[321px] left-[260px] text-[15px] font-bold tracking-wide">{htNo}</div>
-      <div className="absolute z-10 top-[355px] left-[260px] text-[15px] font-bold tracking-wide w-[400px]">{studentName}</div>
-      <div className="absolute z-10 top-[382px] left-[260px] text-[15px] font-bold tracking-wide w-[400px]">{fatherName}</div>
-      <div className="absolute z-10 top-[422px] left-[260px] text-[15px] font-bold tracking-wide w-[250px]">{monthYear}</div>
-      <div className="absolute z-10 top-[449px] left-[260px] text-[15px] font-bold tracking-wide w-[150px]">{branchPlace}</div>
+      <div className="absolute z-10 top-[230px] left-[150px] text-[15px] font-bold tracking-wide w-[400px]">{course}</div>
+      <div className="absolute z-10 top-[258px] left-[150px] text-[15px] font-bold tracking-wide">{duration}</div>
+      <div className="absolute z-10 top-[315px] left-[260px] text-[15px] font-bold tracking-wide">{adminNo}</div>
+      <div className="absolute z-10 top-[315px] left-[640px] text-[15px] font-bold tracking-wide">{date}</div>
+      <div className="absolute z-10 top-[341px] left-[260px] text-[15px] font-bold tracking-wide">{htNo}</div>
+      <div className="absolute z-10 top-[375px] left-[260px] text-[15px] font-bold tracking-wide w-[400px]">{studentName}</div>
+      <div className="absolute z-10 top-[402px] left-[260px] text-[15px] font-bold tracking-wide w-[400px]">{fatherName}</div>
+      <div className="absolute z-10 top-[442px] left-[260px] text-[15px] font-bold tracking-wide w-[250px]">{monthYear}</div>
+      <div className="absolute z-10 top-[469px] left-[260px] text-[15px] font-bold tracking-wide w-[150px]">{branchPlace}</div>
 
       {/* Subjects Table Area */}
       {subjects.map((sub, i) => (
-        <div key={i} className="absolute z-10 w-full text-[15px] font-bold" style={{ top: `${530 + i * 40}px` }}>
+        <div key={i} className="absolute z-10 w-full text-[15px] font-bold" style={{ top: `${550 + i * 40}px` }}>
           <div className="absolute left-[30px] w-[30px] text-center">{i + 1}</div>
           <div className="absolute left-[150px] uppercase w-[300px]">{sub.name}</div>
           <div className="absolute w-[60px] text-center" style={{ left: '460px', top: i === 0 ? '4px' : '0' }}>{sub.maxMarks}</div>
@@ -235,9 +235,9 @@ export function AdminMarksForm() {
       ))}
 
       {/* Total Area */}
-      <div className="absolute z-10 top-[848px] left-[460px] text-[16px] font-bold w-[60px] text-center">{maxTotal}</div>
-      <div className="absolute z-10 top-[848px] left-[660px] text-[16px] font-bold w-[60px] text-center">{total}</div>
-      <div className="absolute z-10 top-[897px] left-[290px] text-[14px] font-bold uppercase">{totalInWords}</div>
+      <div className="absolute z-10 top-[828px] left-[460px] text-[16px] font-bold w-[60px] text-center">{maxTotal}</div>
+      <div className="absolute z-10 top-[828px] left-[660px] text-[16px] font-bold w-[60px] text-center">{total}</div>
+      <div className="absolute z-10 top-[877px] left-[290px] text-[14px] font-bold uppercase">{totalInWords}</div>
     </div>
   );
 

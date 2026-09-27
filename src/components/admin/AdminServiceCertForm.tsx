@@ -130,21 +130,21 @@ export function AdminServiceCertForm() {
       pdf.setTextColor(220, 38, 38); // Red
       pdf.setFontSize(16);
       pdf.text(refNo, 137, 252);    // Ref No after the dots (moved up 10px, right 10px)
-      pdf.text(date, 620, 252);     // Date after the dots (moved right +20px -> 620)
+      pdf.text(date, 630, 252);     // Date after the dots (moved right -> 630)
 
       // Content fields (blue italic)
       pdf.setFont('times', 'italic');
       pdf.setTextColor(37, 99, 235); // Blue
       pdf.setFontSize(22);
-      pdf.text(studentName, 330, 425, { maxWidth: 430 }); // Name after "Mr./Mrs./Miss."
-      pdf.text(fatherName, 120, 480, { maxWidth: 300 });  // After S/o D/o
-      pdf.text(role, 490, 480, { maxWidth: 260 });         // After "worked as"
-      pdf.text(workType, 60, 538, { maxWidth: 300 });      // Work type (line 3 start)
+      pdf.text(studentName, 374, 441, { maxWidth: 430 }); // Name after "Mr./Mrs./Miss."
+      pdf.text(fatherName, 150, 496, { maxWidth: 300 });  // After S/o D/o
+      pdf.text(role, 520, 496, { maxWidth: 260 });         // After "worked as"
+      pdf.text(workType, 90, 554, { maxWidth: 300 });      // Work type (line 3 start)
 
       pdf.setFontSize(18);
-      pdf.text(fromDate, 382, 543, { maxWidth: 160 });     // After "from :"
-      pdf.text(toDate, 570, 543, { maxWidth: 160 });        // After "to"
-      pdf.text(serviceYears, 215, 605, { maxWidth: 280 }); // After "Total Service Years :"
+      pdf.text(fromDate, 412, 559, { maxWidth: 160 });     // After "from :"
+      pdf.text(toDate, 600, 559, { maxWidth: 160 });        // After "to"
+      pdf.text(serviceYears, 245, 621, { maxWidth: 280 }); // After "Total Service Years :"
 
       pdf.save(`${studentName || 'Student'}_Service_Certificate.pdf`);
     } catch (error) {
@@ -234,22 +234,22 @@ export function AdminServiceCertForm() {
               
               {/* Ref No and Date row */}
               <div className="absolute z-10 top-[239px] left-[137px] text-[16px] font-bold text-red-600 uppercase">{refNo}</div>
-              <div className="absolute z-10 top-[239px] left-[620px] text-[16px] font-bold text-red-600 uppercase">{date}</div>
+              <div className="absolute z-10 top-[239px] left-[630px] text-[16px] font-bold text-red-600 uppercase">{date}</div>
 
               {/* Name - after "This is to Certify that Mr./Mrs./Miss." */}
-              <div className="absolute z-10 top-[410px] left-[330px] text-[22px] font-bold italic text-blue-600 uppercase w-[430px]">{studentName}</div>
+              <div className="absolute z-10 top-[426px] left-[374px] text-[22px] font-bold italic text-blue-600 uppercase w-[430px]">{studentName}</div>
 
               {/* Father / Role row */}
-              <div className="absolute z-10 top-[466px] left-[120px] text-[22px] font-bold italic text-blue-600 uppercase w-[300px]">{fatherName}</div>
-              <div className="absolute z-10 top-[466px] left-[490px] text-[22px] font-bold italic text-blue-600 uppercase w-[260px]">{role}</div>
+              <div className="absolute z-10 top-[482px] left-[150px] text-[22px] font-bold italic text-blue-600 uppercase w-[300px]">{fatherName}</div>
+              <div className="absolute z-10 top-[482px] left-[520px] text-[22px] font-bold italic text-blue-600 uppercase w-[260px]">{role}</div>
 
               {/* Work type + from/to dates row */}
-              <div className="absolute z-10 top-[524px] left-[60px] text-[22px] font-bold italic text-blue-600 uppercase w-[300px]">{workType}</div>
-              <div className="absolute z-10 top-[530px] left-[382px] text-[18px] font-bold italic text-blue-600 uppercase w-[160px]">{fromDate}</div>
-              <div className="absolute z-10 top-[530px] left-[570px] text-[18px] font-bold italic text-blue-600 uppercase w-[160px]">{toDate}</div>
+              <div className="absolute z-10 top-[540px] left-[90px] text-[22px] font-bold italic text-blue-600 uppercase w-[300px]">{workType}</div>
+              <div className="absolute z-10 top-[546px] left-[412px] text-[18px] font-bold italic text-blue-600 uppercase w-[160px]">{fromDate}</div>
+              <div className="absolute z-10 top-[546px] left-[600px] text-[18px] font-bold italic text-blue-600 uppercase w-[160px]">{toDate}</div>
 
               {/* Total Service Years */}
-              <div className="absolute z-10 top-[590px] left-[215px] text-[18px] font-bold italic text-blue-600 uppercase w-[280px]">{serviceYears}</div>
+              <div className="absolute z-10 top-[606px] left-[245px] text-[18px] font-bold italic text-blue-600 uppercase w-[280px]">{serviceYears}</div>
             </div>
           </div>
         </div>
