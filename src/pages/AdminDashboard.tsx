@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AdminServiceCertForm } from '../components/admin/AdminServiceCertForm';
 import { AdminMarksForm } from '../components/admin/AdminMarksForm';
 import { AdminCertForm } from '../components/admin/AdminCertForm';
 
 export function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<'marks' | 'cert'>('marks');
+  const [activeTab, setActiveTab] = useState<'service' | 'marks' | 'cert'>('service');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,23 +34,31 @@ export function AdminDashboard() {
         </div>
 
         <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
-          <div className="flex border-b border-gray-200">
+          <div className="flex flex-col sm:flex-row border-b border-gray-200">
             <button
-              className={`flex-1 py-4 text-center font-medium text-lg ${activeTab === 'marks' ? 'bg-blue-50 text-blue-700 border-b-2 border-blue-700' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'}`}
-              onClick={() => setActiveTab('marks')}
+              className={`flex-1 py-4 px-2 text-center font-medium text-sm md:text-base ${activeTab === 'service' ? 'bg-blue-50 text-blue-700 border-b-2 border-blue-700' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'}`}
+              onClick={() => setActiveTab('service')}
             >
-              Generate Marks Card
+              Service Certificate
             </button>
             <button
-              className={`flex-1 py-4 text-center font-medium text-lg ${activeTab === 'cert' ? 'bg-blue-50 text-blue-700 border-b-2 border-blue-700' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'}`}
+              className={`flex-1 py-4 px-2 text-center font-medium text-sm md:text-base ${activeTab === 'marks' ? 'bg-blue-50 text-blue-700 border-b-2 border-blue-700' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'}`}
+              onClick={() => setActiveTab('marks')}
+            >
+              Marks Card
+            </button>
+            <button
+              className={`flex-1 py-4 px-2 text-center font-medium text-sm md:text-base ${activeTab === 'cert' ? 'bg-blue-50 text-blue-700 border-b-2 border-blue-700' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'}`}
               onClick={() => setActiveTab('cert')}
             >
-              Generate Certificate
+              Certificate
             </button>
           </div>
 
           <div className="p-6">
-            {activeTab === 'marks' ? <AdminMarksForm /> : <AdminCertForm />}
+            {activeTab === 'service' && <AdminServiceCertForm />}
+            {activeTab === 'marks' && <AdminMarksForm />}
+            {activeTab === 'cert' && <AdminCertForm />}
           </div>
         </div>
       </div>
