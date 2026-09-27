@@ -1,9 +1,11 @@
 import { useState, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { jsPDF } from 'jspdf';
+import { supabase } from '../../lib/supabase';
 import certTemplate from '../../assets/certifi.webp';
 
 export function AdminCertForm() {
+  const [refNo, setRefNo] = useState('');
   const [studentName, setStudentName] = useState('');
   const [fatherName, setFatherName] = useState('');
   const [place, setPlace] = useState('');
@@ -26,7 +28,50 @@ export function AdminCertForm() {
     }
   };
 
-  const handlePrint = useReactToPrint({
+  const saveToDatabase = async (): Promise<boolean> => {
+    if (!refNo) {
+      alert("Ref No is required to save.");
+      return false;
+    }
+    
+    // Check for existing
+    const { data: existing } = await supabase
+      .from('certificates')
+      .select('ref_no')
+      .eq('ref_no', refNo)
+      .single();
+      
+    if (existing) {
+      alert(`Error: A certificate with Ref No ${refNo} already exists.`);
+      return false;
+    }
+
+    const { error } = await supabase
+      .from('certificates')
+      .insert([
+        {
+          ref_no: refNo,
+          name: studentName,
+          father_name: fatherName,
+          place: place,
+          month: month,
+          year: year,
+          course: course,
+          grade: grade,
+          photo_url: photo || '' // storing base64 temporarily
+        }
+      ]);
+
+    if (error) {
+      console.error('Error inserting certificate:', error);
+      alert('Failed to save record to database: ' + error.message);
+      return false;
+    }
+    
+    return true;
+  };
+
+  const executePrint = useReactToPrint({
     contentRef: printRef,
     documentTitle: `${studentName || 'Student'}_Certificate`,
     pageStyle: `
@@ -42,14 +87,29 @@ export function AdminCertForm() {
       }
     `,
     onBeforePrint: () => {
-      setGenerating(true);
       return Promise.resolve();
     },
     onAfterPrint: () => setGenerating(false),
   });
 
+  const handlePrint = async () => {
+    setGenerating(true);
+    const saved = await saveToDatabase();
+    if (saved) {
+      executePrint();
+    } else {
+      setGenerating(false);
+    }
+  };
+
   const handleDownloadPDF = async () => {
     setGenerating(true);
+    const saved = await saveToDatabase();
+    if (!saved) {
+      setGenerating(false);
+      return;
+    }
+
     try {
       const pdf = new jsPDF({
         orientation: 'portrait',
@@ -91,7 +151,8 @@ export function AdminCertForm() {
           const y = (147 / 2) - (photoImg.height / 2) * scale;
           photoCtx.drawImage(photoImg, x, y, photoImg.width * scale, photoImg.height * scale);
           const photoData = photoCanvas.toDataURL('image/jpeg');
-          pdf.addImage(photoData, 'JPEG', 666, 146, 116, 147);
+          // Adjusted X coordinate for PDF only to fix the right-shift issue
+          pdf.addImage(photoData, 'JPEG', 650, 146, 116, 147);
         }
       }
 
@@ -112,6 +173,9 @@ export function AdminCertForm() {
       pdf.text(course, 290, 735 + bOffXl);
       pdf.text(grade, 130 + 75, 784 + bOffXl, { align: 'center' });
 
+      // Add Ref No to PDF if needed, or maybe template doesn't have it explicitly shown but required for DB.
+      // Assuming it needs to be placed or just recorded. We won't draw it if there's no spot for it.
+      
       pdf.save(`${studentName || 'Student'}_Certificate.pdf`);
     } catch (error) {
       console.error('Error generating PDF:', error);
@@ -129,6 +193,10 @@ export function AdminCertForm() {
           <p className="text-gray-500 text-sm mt-2">Fill in the details below to instantly generate a printable certificate.</p>
         </div>
         <div className="flex flex-col sm:grid sm:grid-cols-2 gap-5">
+          <div className="sm:col-span-2 space-y-1.5">
+            <label className="block text-sm font-semibold text-gray-700">Ref No (Required for DB)</label>
+            <input type="text" className="w-full border border-gray-200 bg-gray-50/50 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition-all shadow-sm" value={refNo} onChange={e => setRefNo(e.target.value.toUpperCase())} placeholder="Enter reference number" />
+          </div>
           <div className="sm:col-span-2 space-y-1.5">
             <label className="block text-sm font-semibold text-gray-700">Student Name</label>
             <input type="text" className="w-full border border-gray-200 bg-gray-50/50 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition-all shadow-sm" value={studentName} onChange={e => setStudentName(e.target.value.toUpperCase())} placeholder="Enter student name" />

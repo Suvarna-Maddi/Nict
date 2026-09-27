@@ -11,6 +11,7 @@ const About = lazy(() => import('./pages/About').then(m => ({ default: m.About }
 const Courses = lazy(() => import('./pages/Courses').then(m => ({ default: m.Courses })))
 const AdminLogin = lazy(() => import('./pages/AdminLogin').then(m => ({ default: m.AdminLogin })))
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard').then(m => ({ default: m.AdminDashboard })))
+const Verify = lazy(() => import('./pages/Verify').then(m => ({ default: m.Verify })))
 
 function PageLoader() {
   return (
@@ -40,6 +41,7 @@ function App() {
               <Route path="/courses" element={<Courses />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route path="/verify" element={<Verify />} />
             </Routes>
           </Suspense>
         </div>

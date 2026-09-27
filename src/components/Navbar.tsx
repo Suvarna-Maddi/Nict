@@ -114,7 +114,16 @@ export function Navbar() {
               <h2 className="text-lg font-bold text-slate-800">About Us</h2>
             </Link>
 
-            {/* 4. Removed Certification Tile */}
+            {/* 4. Verify Certificate Tile */}
+            <Link 
+              to="/verify" 
+              className="group col-span-1 md:col-span-1 row-span-1 bg-green-50/90 backdrop-blur-2xl border border-green-100 rounded-[2rem] p-6 flex flex-col justify-between shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transform transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:bg-white/90"
+            >
+              <svg className="w-6 h-6 text-green-500 group-hover:text-green-700 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <h2 className="text-lg font-bold text-slate-800">Verify</h2>
+            </Link>
 
             {/* 5. Enroll Tile (Full Width Bottom Rectangle) */}
             <a 

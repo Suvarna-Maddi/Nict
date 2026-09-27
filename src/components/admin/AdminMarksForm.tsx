@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { jsPDF } from 'jspdf';
+import { supabase } from '../../lib/supabase';
 import marksTemplate from '../../assets/marks.webp';
 
 interface Subject {
@@ -63,7 +64,51 @@ export function AdminMarksForm() {
   
   const totalInWords = total.toString().split('').map(digit => DIGIT_TO_WORD[digit]).join(' ');
 
-  const handlePrint = useReactToPrint({
+  const saveToDatabase = async (): Promise<boolean> => {
+    if (!htNo) {
+      alert("H.T.No is required to save.");
+      return false;
+    }
+    
+    // Check for existing
+    const { data: existing } = await supabase
+      .from('marks_records')
+      .select('ht_no')
+      .eq('ht_no', htNo)
+      .single();
+      
+    if (existing) {
+      alert(`Error: A record with H.T.No ${htNo} already exists.`);
+      return false;
+    }
+
+    const { error } = await supabase
+      .from('marks_records')
+      .insert([
+        {
+          ht_no: htNo,
+          admin_no: adminNo,
+          name: studentName,
+          father_name: fatherName,
+          course: course,
+          duration: duration,
+          month_year: monthYear,
+          branch: branchPlace,
+          subjects: subjects,
+          total: total
+        }
+      ]);
+
+    if (error) {
+      console.error('Error inserting marks:', error);
+      alert('Failed to save record to database: ' + error.message);
+      return false;
+    }
+    
+    return true;
+  };
+
+  const executePrint = useReactToPrint({
     contentRef: printRef,
     documentTitle: `${studentName || 'Student'}_Marks_Card`,
     pageStyle: `
@@ -79,14 +124,29 @@ export function AdminMarksForm() {
       }
     `,
     onBeforePrint: () => {
-      setGenerating(true);
       return Promise.resolve();
     },
     onAfterPrint: () => setGenerating(false),
   });
 
+  const handlePrint = async () => {
+    setGenerating(true);
+    const saved = await saveToDatabase();
+    if (saved) {
+      executePrint();
+    } else {
+      setGenerating(false);
+    }
+  };
+
   const handleDownloadPDF = async () => {
     setGenerating(true);
+    const saved = await saveToDatabase();
+    if (!saved) {
+      setGenerating(false);
+      return;
+    }
+
     try {
       const pdf = new jsPDF({
         orientation: 'portrait',
@@ -128,7 +188,8 @@ export function AdminMarksForm() {
 
       subjects.forEach((sub, i) => {
         const y = 530 + i * 40 + bOff;
-        pdf.text((i + 1).toString(), 30 + 15, y, { align: 'center' });
+        // Shifted S.No right by 15px for PDF only to match the column center
+        pdf.text((i + 1).toString(), 30 + 30, y, { align: 'center' });
         pdf.text(sub.name, 150, y);
         pdf.text(sub.maxMarks, 460 + 30, y, { align: 'center' });
         pdf.text(sub.marks, 660 + 30, y, { align: 'center' });

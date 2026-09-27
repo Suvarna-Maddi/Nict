@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { jsPDF } from 'jspdf';
+import { supabase } from '../../lib/supabase';
 import serviceTemplate from '../../assets/service_certificate.png';
 
 export function AdminServiceCertForm() {
@@ -17,7 +18,48 @@ export function AdminServiceCertForm() {
   const [generating, setGenerating] = useState(false);
   const printRef = useRef<HTMLDivElement>(null);
 
-  const handlePrint = useReactToPrint({
+  const saveToDatabase = async (): Promise<boolean> => {
+    if (!refNo) {
+      alert("Ref No is required to save.");
+      return false;
+    }
+    
+    // Check for existing
+    const { data: existing } = await supabase
+      .from('service_certificates')
+      .select('ref_no')
+      .eq('ref_no', refNo)
+      .single();
+      
+    if (existing) {
+      alert(`Error: A service certificate with Ref No ${refNo} already exists.`);
+      return false;
+    }
+
+    const { error } = await supabase
+      .from('service_certificates')
+      .insert([
+        {
+          ref_no: refNo,
+          name: studentName,
+          father_name: fatherName,
+          role: role,
+          work_type: workType,
+          from_date: fromDate,
+          to_date: toDate
+        }
+      ]);
+
+    if (error) {
+      console.error('Error inserting service certificate:', error);
+      alert('Failed to save record to database: ' + error.message);
+      return false;
+    }
+    
+    return true;
+  };
+
+  const executePrint = useReactToPrint({
     contentRef: printRef,
     documentTitle: `${studentName || 'Student'}_Service_Certificate`,
     pageStyle: `
@@ -33,14 +75,29 @@ export function AdminServiceCertForm() {
       }
     `,
     onBeforePrint: () => {
-      setGenerating(true);
       return Promise.resolve();
     },
     onAfterPrint: () => setGenerating(false),
   });
 
+  const handlePrint = async () => {
+    setGenerating(true);
+    const saved = await saveToDatabase();
+    if (saved) {
+      executePrint();
+    } else {
+      setGenerating(false);
+    }
+  };
+
   const handleDownloadPDF = async () => {
     setGenerating(true);
+    const saved = await saveToDatabase();
+    if (!saved) {
+      setGenerating(false);
+      return;
+    }
+
     try {
       const pdf = new jsPDF({
         orientation: 'portrait',
@@ -69,25 +126,28 @@ export function AdminServiceCertForm() {
       // Heading fields (bold red)
       pdf.setFont('times', 'bold');
       pdf.setTextColor(220, 38, 38); // Red
-      pdf.setFontSize(20);
+      pdf.setFontSize(16);
       
-      const bOffHead = 15;
-      pdf.text(refNo, 160, 255 + bOffHead);            // left 210-50=160, top 205+50=255
-      pdf.text(date, 794 - 260, 255 + bOffHead, { align: 'right' }); // right 210+50=260
+      const bOff16 = 26; // Increased from 14 to push text down to dotted line
+      pdf.text(refNo, 127, 224 + bOff16 - 3); // shifted up 3px
+      pdf.text(date, 610, 224 + bOff16 - 3); // shifted up 3px
 
       // Content fields (blue italic)
       pdf.setFont('times', 'italic');
-      pdf.setTextColor(37, 99, 235);
-      pdf.setFontSize(15);
+      pdf.setTextColor(37, 99, 235); // Blue
+      pdf.setFontSize(22);
       
-      const bOff = 12;
-      pdf.text(studentName, 250 + 150, 405 + bOff, { align: 'center', maxWidth: 300 }); // left 300-50=250, top 355+50=405
-      pdf.text(fatherName, 250 + 150, 445 + bOff, { align: 'center', maxWidth: 300 });  // top 395+50=445
-      pdf.text(role, 560 + 90, 445 + bOff, { align: 'center', maxWidth: 180 });         // left 610-50=560, top 395+50=445
-      pdf.text(workType, 250 + 100, 485 + bOff, { align: 'center', maxWidth: 200 });    // left 300-50=250, top 435+50=485
-      pdf.text(fromDate, 420 + 70, 485 + bOff, { align: 'center', maxWidth: 140 });     // left 470-50=420, top 435+50=485
-      pdf.text(toDate, 580 + 70, 485 + bOff, { align: 'center', maxWidth: 140 });       // left 630-50=580, top 435+50=485
-      pdf.text(serviceYears, 280 + 75, 525 + bOff, { align: 'center', maxWidth: 150 }); // left 330-50=280, top 475+50=525
+      const bOff22 = 33; // Increased from 18 to push text down
+      pdf.text(studentName, 265, 380 + bOff22, { maxWidth: 450 }); // shifted left 15px
+      pdf.text(fatherName, 170, 435 + bOff22 - 5, { maxWidth: 500 }); // shifted left 40px, up 5px
+      pdf.text(role, 465, 435 + bOff22 - 5, { maxWidth: 450 }); // shifted left 5px, up 5px
+      pdf.text(workType, 90, 485 + bOff22 - 5, { maxWidth: 500 }); // shifted left 20px, up 5px
+      
+      pdf.setFontSize(18);
+      const bOff18 = 27; // Increased from 15 to push text down
+      pdf.text(fromDate, 385, 490 + bOff18 - 5, { maxWidth: 150 }); // shifted up 5px
+      pdf.text(toDate, 562, 490 + bOff18 - 5, { maxWidth: 150 }); // shifted up 5px
+      pdf.text(serviceYears, 300, 530 + bOff18 - 4, { maxWidth: 300 }); // shifted up 4px
 
       pdf.save(`${studentName || 'Student'}_Service_Certificate.pdf`);
     } catch (error) {
@@ -172,20 +232,22 @@ export function AdminServiceCertForm() {
             className="bg-white shadow-2xl ring-1 ring-gray-900/5 absolute top-0 left-0 scale-[0.43] sm:scale-[0.55] md:scale-[0.65]"
           >
             {/* Actual Print Area */}
-            <div ref={printRef} className="relative w-full h-full bg-white text-black" style={{ width: '794px', height: '1123px', fontFamily: '"Times New Roman", serif' }}>
+            <div ref={printRef} className="relative w-full h-full bg-white text-black font-serif" style={{ width: '794px', height: '1123px' }}>
               <img src={serviceTemplate} alt="Service Certificate Template" className="absolute inset-0 w-full h-full object-cover z-0" />
               
-              <div className="absolute z-10 text-[20px] font-bold text-red-600 uppercase whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '255px', left: '160px' }}>{refNo}</div>
-              <div className="absolute z-10 text-[20px] font-bold text-red-600 uppercase text-right whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '255px', right: '260px' }}>{date}</div>
+              {/* Absolute positioning based on portrait certificate layout */}
+              <div className="absolute z-10 top-[224px] left-[127px] text-[16px] font-bold text-red-600 uppercase">{refNo}</div>
+              <div className="absolute z-10 top-[224px] left-[610px] text-[16px] font-bold text-red-600 uppercase">{date}</div>
               
-              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '405px', left: '250px', width: '300px' }}>{studentName}</div>
-              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '445px', left: '250px', width: '300px' }}>{fatherName}</div>
-              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '445px', left: '560px', width: '180px' }}>{role}</div>
+              <div className="absolute z-10 top-[380px] left-[280px] text-[22px] font-bold italic text-blue-600 uppercase w-[450px]">{studentName}</div>
+              <div className="absolute z-10 top-[435px] left-[210px] text-[22px] font-bold italic text-blue-600 uppercase w-[500px]">{fatherName}</div>
+              <div className="absolute z-10 top-[435px] left-[470px] text-[22px] font-bold italic text-blue-600 uppercase w-[450px]">{role}</div>
+              <div className="absolute z-10 top-[485px] left-[110px] text-[22px] font-bold italic text-blue-600 uppercase w-[500px]">{workType}</div>
               
-              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '485px', left: '250px', width: '200px' }}>{workType}</div>
-              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '485px', left: '420px', width: '140px' }}>{fromDate}</div>
-              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '485px', left: '580px', width: '140px' }}>{toDate}</div>
-              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '525px', left: '280px', width: '150px' }}>{serviceYears}</div>
+              <div className="absolute z-10 top-[490px] left-[385px] text-[18px] font-bold italic text-blue-600 uppercase w-[150px]">{fromDate}</div>
+              <div className="absolute z-10 top-[490px] left-[562px] text-[18px] font-bold italic text-blue-600 uppercase w-[150px]">{toDate}</div>
+              
+              <div className="absolute z-10 top-[530px] left-[300px] text-[18px] font-bold italic text-blue-600 uppercase w-[300px]">{serviceYears}</div>
             </div>
           </div>
         </div>
