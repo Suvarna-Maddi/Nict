@@ -64,8 +64,8 @@ export function LocationContact() {
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-2">NICT Computer Training Institute</h3>
               <p className="text-slate-600 font-medium leading-relaxed">
-                Girmajipet, Warangal,<br />
-                Telangana – 506002
+                near post office,<br />
+                under bridge road warangal
               </p>
             </div>
 

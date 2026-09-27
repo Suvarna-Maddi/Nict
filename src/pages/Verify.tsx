@@ -254,24 +254,28 @@ function CategoryCard({ id, icon, label, description, accentClass, borderClass, 
     <button
       id={id}
       onClick={onClick}
-      className={`relative w-full text-left rounded-2xl p-5 border-2 transition-all duration-300 group ${
+      className={`relative w-full text-left rounded-[2rem] p-6 border-2 transition-all duration-400 group overflow-hidden ${
         selected
-          ? `${borderClass} ${bgClass} shadow-lg -translate-y-1`
-          : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-md hover:-translate-y-0.5'
+          ? `${borderClass} ${bgClass} shadow-xl shadow-${accentClass.split('-')[1]}-500/20 -translate-y-1`
+          : 'border-white/80 bg-white/70 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1'
       }`}
     >
+      {!selected && <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />}
+      
       {selected && (
-        <span className={`absolute top-3 right-3 w-5 h-5 rounded-full ${iconBgClass} flex items-center justify-center`}>
-          <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <span className={`absolute top-5 right-5 w-7 h-7 rounded-full ${iconBgClass} flex items-center justify-center shadow-md animate-in fade-in zoom-in duration-300`}>
+          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
           </svg>
         </span>
       )}
-      <div className={`w-11 h-11 rounded-xl ${selected ? iconBgClass : 'bg-gray-100 group-hover:bg-gray-200'} flex items-center justify-center mb-3 transition-colors duration-300`}>
-        <span className={selected ? 'text-white' : `${accentClass}`}>{icon}</span>
+      <div className="relative z-10">
+        <div className={`w-14 h-14 rounded-2xl ${selected ? iconBgClass : 'bg-slate-100 group-hover:bg-blue-50'} flex items-center justify-center mb-5 transition-colors duration-400 shadow-sm`}>
+          <span className={`${selected ? 'text-white' : accentClass} transition-colors duration-400`}>{icon}</span>
+        </div>
+        <p className={`font-extrabold text-lg tracking-tight mb-1.5 ${selected ? accentClass : 'text-slate-800'}`}>{label}</p>
+        <p className={`text-sm leading-relaxed font-medium ${selected ? 'text-slate-700' : 'text-slate-500'}`}>{description}</p>
       </div>
-      <p className={`font-bold text-base ${selected ? accentClass : 'text-gray-800'}`}>{label}</p>
-      <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{description}</p>
     </button>
   );
 }
@@ -410,30 +414,37 @@ export function Verify() {
   }, [record]);
 
   return (
-    <div className="min-h-screen py-16 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen relative overflow-hidden bg-[#f4f7fb] py-16 px-4 selection:bg-blue-200">
+      {/* Decorative Background */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
+        <div className="absolute -top-[10%] -right-[10%] w-[600px] h-[600px] rounded-full bg-blue-300/30 blur-[120px]"></div>
+        <div className="absolute top-[20%] -left-[10%] w-[500px] h-[500px] rounded-full bg-purple-300/30 blur-[120px]"></div>
+        <div className="absolute bottom-[-10%] left-[20%] w-[700px] h-[700px] rounded-full bg-emerald-300/20 blur-[120px]"></div>
+      </div>
+
+      <div className="max-w-4xl mx-auto relative z-10">
 
         {/* ── Header ──────────────────────────────────────── */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-5">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <div className="text-center mb-16 relative">
+          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md border border-white/40 text-blue-700 text-sm font-bold px-5 py-2.5 rounded-full mb-6 shadow-sm ring-1 ring-black/5">
+            <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             Official Verification Portal
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
-            Verify Certificate / Marks
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 drop-shadow-sm leading-tight">
+            Verify Certificate & Marks
           </h1>
-          <p className="text-gray-500 text-lg max-w-xl mx-auto">
-            Select a document type below, enter your ID and instantly verify and download your document.
+          <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
+            Select a document type below, enter your unique ID, and instantly verify the authenticity of your document.
           </p>
         </div>
 
         {/* ── Step 1: Category Selector ────────────────────── */}
-        <div className="bg-white rounded-3xl shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-8 mb-6">
-          <div className="flex items-center gap-2 mb-5">
-            <span className="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">1</span>
-            <p className="font-bold text-gray-800 text-base">Select Document Type</p>
+        <div className="bg-white/60 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white p-6 md:p-10 mb-8 relative">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-black flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-500/20">1</span>
+            <p className="font-extrabold text-slate-800 text-xl tracking-tight">Select Document Type</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -449,20 +460,24 @@ export function Verify() {
         </div>
 
         {/* ── Step 2: Search Box (visible only after category selected) ── */}
-        <div className={`transition-all duration-500 ${selectedCategory ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
-          <div className={`rounded-3xl shadow-xl border p-6 sm:p-8 mb-6 transition-colors duration-300 ${activeCat ? activeCat.bgClass + ' ' + activeCat.borderClass.replace('border-', 'border-2 border-') : 'bg-white border-gray-100'}`}>
-            <div className="flex items-center gap-2 mb-5">
-              <span className={`w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center flex-shrink-0 ${activeCat?.iconBgClass ?? 'bg-gray-400'}`}>2</span>
-              <p className="font-bold text-gray-800 text-base">
+        <div className={`transition-all duration-700 ease-out ${selectedCategory ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none hidden'}`}>
+          <div className={`relative overflow-hidden rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.06)] border p-6 md:p-10 mb-8 transition-colors duration-500 ${activeCat ? activeCat.bgClass + ' ' + activeCat.borderClass.replace('border-', 'border-2 border-') : 'bg-white/80 border-white/60'}`}>
+            
+            {/* Soft background glow based on category */}
+            <div className={`absolute top-0 right-0 w-64 h-64 -mr-16 -mt-16 rounded-full blur-[80px] opacity-30 pointer-events-none ${activeCat?.iconBgClass}`} />
+
+            <div className="relative z-10 flex items-center gap-3 mb-6">
+              <span className={`w-8 h-8 rounded-full text-white text-sm font-black flex items-center justify-center flex-shrink-0 shadow-md ${activeCat?.iconBgClass ?? 'bg-slate-400'}`}>2</span>
+              <p className="font-extrabold text-slate-800 text-xl tracking-tight">
                 Enter your {activeCat?.label} ID
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3">
-              <div className="relative flex-1">
-                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <div className="relative z-10 flex flex-col sm:flex-row gap-4">
+              <div className="relative flex-1 group">
+                <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none transition-colors">
+                  <svg className="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </div>
                 <input
@@ -472,17 +487,18 @@ export function Verify() {
                   onChange={e => { setQuery(e.target.value); setNotFound(false); setRecord(null); }}
                   onKeyDown={e => e.key === 'Enter' && handleVerify()}
                   placeholder={activeCat?.placeholder ?? 'Enter ID...'}
-                  className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-2xl text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition-all shadow-sm text-base placeholder:text-gray-400"
+                  className="w-full pl-14 pr-6 py-5 border-2 border-white/80 rounded-2xl text-slate-800 bg-white/90 backdrop-blur-md focus:outline-none focus:ring-0 focus:border-blue-500 transition-all shadow-sm text-lg font-medium placeholder:text-slate-400"
                 />
               </div>
               <button
                 id="verify-button"
                 onClick={handleVerify}
                 disabled={loading || !query.trim()}
-                className={`sm:w-36 text-white font-bold py-4 px-6 rounded-2xl shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 ${
-                  activeCat?.iconBgClass
-                    ? `bg-gradient-to-r ${activeCat.iconBgClass.replace('bg-', 'from-')} hover:opacity-90 shadow-${activeCat.accentClass.split('-')[1]}-500/30`
-                    : 'bg-gradient-to-r from-blue-600 to-indigo-600'
+                className={`sm:w-44 text-white font-extrabold text-lg py-5 px-8 rounded-2xl shadow-xl transform hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 ${
+                  activeCat?.type === 'marks' ? 'bg-gradient-to-br from-blue-600 to-blue-800 shadow-blue-500/40' :
+                  activeCat?.type === 'certificate' ? 'bg-gradient-to-br from-purple-600 to-purple-800 shadow-purple-500/40' :
+                  activeCat?.type === 'service' ? 'bg-gradient-to-br from-emerald-600 to-emerald-800 shadow-emerald-500/40' :
+                  'bg-gradient-to-r from-blue-600 to-indigo-600'
                 }`}
               >
                 {loading ? (
@@ -512,15 +528,15 @@ export function Verify() {
 
         {/* ── Not Found ──────────────────────────────────────── */}
         {notFound && !record && (
-          <div className="text-center py-16 bg-white rounded-3xl border border-gray-100 shadow-xl">
-            <div className="w-20 h-20 mx-auto mb-5 bg-red-50 rounded-full flex items-center justify-center">
-              <svg className="w-10 h-10 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="text-center py-16 px-6 bg-white/80 backdrop-blur-md rounded-[2.5rem] border border-white shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="w-24 h-24 mx-auto mb-6 bg-red-50/80 rounded-full flex items-center justify-center shadow-inner border border-red-100">
+              <svg className="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">No Record Found</h2>
-            <p className="text-gray-500">
-              No <strong>{activeCat?.label}</strong> found for <strong>"{query.trim()}"</strong>. Please check the ID and try again.
+            <h2 className="text-3xl font-black text-slate-800 mb-3 tracking-tight">No Record Found</h2>
+            <p className="text-slate-500 text-lg max-w-md mx-auto leading-relaxed">
+              We couldn't find any <strong>{activeCat?.label}</strong> matching <strong>"{query.trim()}"</strong>. Please double-check your ID.
             </p>
           </div>
         )}

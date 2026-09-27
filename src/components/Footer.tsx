@@ -61,7 +61,7 @@ export function Footer() {
               <li className="flex items-start gap-2">
                 <span className="shrink-0">📍</span>
                 <a href="https://maps.app.goo.gl/6n5ehmVa5D7inBVV6" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200 transition-colors">
-                  Girmajipet, Warangal,<br/>Telangana, India
+                  near post office,<br/>under bridge road warangal
                 </a>
               </li>
               <li className="flex items-start gap-2">

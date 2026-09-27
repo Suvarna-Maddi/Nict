@@ -46,9 +46,8 @@ function AnimatedCounter({ value, suffix, prefixZero }: { value: number | string
 
 const stats = [
   {
-    value: 3856,
+    value: 38560,
     suffix: "+",
-    prefixZero: true,
     label: "Students Trained",
     description: "Successfully trained and guided local students towards their careers."
   },
