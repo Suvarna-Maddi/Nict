@@ -231,7 +231,7 @@ function ServicePreview({ data }: { data: ServiceRecord }) {
       <div className="absolute z-10 top-[590px] left-[215px] text-[18px] font-bold italic text-blue-600 uppercase w-[280px]">{data.total_years}</div>
     </div>
   );
-}}
+}
 
 // ── Category Card ─────────────────────────────────────────────────────────────
 
