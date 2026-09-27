@@ -1,7 +1,5 @@
 import { useState, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import html2canvas from 'html2canvas';
-import { jsPDF } from 'jspdf';
 import certTemplate from '../../assets/certifi.webp';
 
 export function AdminCertForm() {
@@ -49,26 +47,6 @@ export function AdminCertForm() {
     onAfterPrint: () => setGenerating(false),
   });
 
-  const handleDownloadPDF = async () => {
-    if (!printRef.current) return;
-    setGenerating(true);
-    try {
-      const canvas = await html2canvas(printRef.current, { scale: 2 });
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'px',
-        format: [794, 1123]
-      });
-      pdf.addImage(imgData, 'PNG', 0, 0, 794, 1123);
-      pdf.save(`${studentName || 'Student'}_Certificate.pdf`);
-    } catch (error) {
-      console.error('Error generating PDF:', error);
-    } finally {
-      setGenerating(false);
-    }
-  };
-
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
       {/* Form Section */}
@@ -112,22 +90,13 @@ export function AdminCertForm() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 mt-8">
-          <button 
-            onClick={handlePrint} 
-            disabled={generating}
-            className="flex-1 bg-white hover:bg-gray-50 text-blue-700 border-2 border-blue-600 py-4 font-bold rounded-xl shadow-sm transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-          >
-            {generating ? 'Wait...' : 'Print Direct'}
-          </button>
-          <button 
-            onClick={handleDownloadPDF} 
-            disabled={generating}
-            className="flex-[2] bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-4 font-bold rounded-xl shadow-lg shadow-blue-500/30 transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-          >
-            {generating ? 'Generating PDF...' : 'Download as PDF (Best for Mobile)'}
-          </button>
-        </div>
+        <button 
+          onClick={handlePrint} 
+          disabled={generating}
+          className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-4 font-bold rounded-xl mt-8 shadow-lg shadow-blue-500/30 transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+        >
+          {generating ? 'Preparing Document...' : 'Print / Save Certificate PDF'}
+        </button>
       </div>
 
       {/* Preview Section - A4 Portrait (approx 794x1123) scaled down */}
