@@ -138,7 +138,7 @@ async function generateServicePDF(data: ServiceRecord) {
   pdf.setTextColor(220, 38, 38);
   pdf.setFontSize(16);
   pdf.text(data.ref_no, 137, 252);
-  pdf.text(data.date || '', 600, 252);
+  pdf.text(data.date || '', 620, 252);
 
   // Content fields (blue italic)
   pdf.setFont('times', 'italic');
@@ -213,7 +213,7 @@ function ServicePreview({ data }: { data: ServiceRecord }) {
       <img src={serviceTemplate} alt="Service Certificate Template" className="absolute inset-0 w-full h-full object-cover z-0" />
       {/* Ref No and Date row */}
       <div className="absolute z-10 top-[239px] left-[137px] text-[16px] font-bold text-red-600 uppercase">{data.ref_no}</div>
-      <div className="absolute z-10 top-[239px] left-[600px] text-[16px] font-bold text-red-600 uppercase">{data.date}</div>
+      <div className="absolute z-10 top-[239px] left-[620px] text-[16px] font-bold text-red-600 uppercase">{data.date}</div>
 
       {/* Name - after "This is to Certify that Mr./Mrs./Miss." */}
       <div className="absolute z-10 top-[410px] left-[330px] text-[22px] font-bold italic text-blue-600 uppercase w-[430px]">{data.name}</div>
