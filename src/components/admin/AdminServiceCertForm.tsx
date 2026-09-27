@@ -129,27 +129,22 @@ export function AdminServiceCertForm() {
       pdf.setFont('times', 'bold');
       pdf.setTextColor(220, 38, 38); // Red
       pdf.setFontSize(16);
-      
-      const bOff16 = 26; // Increased from 14 to push text down to dotted line
-      pdf.text(refNo, 127, 224 + bOff16 - 3); // shifted up 3px
-      pdf.text(date, 610, 224 + bOff16 - 3); // shifted up 3px
+      pdf.text(refNo, 127, 262);    // Ref No after the dots
+      pdf.text(date, 580, 262);     // Date after the dots
 
       // Content fields (blue italic)
       pdf.setFont('times', 'italic');
       pdf.setTextColor(37, 99, 235); // Blue
       pdf.setFontSize(22);
-      
-      const bOff22 = 33; // Increased from 18 to push text down
-      pdf.text(studentName, 265, 380 + bOff22, { maxWidth: 450 }); // shifted left 15px
-      pdf.text(fatherName, 170, 435 + bOff22 - 5, { maxWidth: 500 }); // shifted left 40px, up 5px
-      pdf.text(role, 465, 435 + bOff22 - 5, { maxWidth: 450 }); // shifted left 5px, up 5px
-      pdf.text(workType, 90, 485 + bOff22 - 5, { maxWidth: 500 }); // shifted left 20px, up 5px
-      
+      pdf.text(studentName, 330, 425, { maxWidth: 430 }); // Name after "Mr./Mrs./Miss."
+      pdf.text(fatherName, 120, 480, { maxWidth: 300 });  // After S/o D/o
+      pdf.text(role, 490, 480, { maxWidth: 260 });         // After "worked as"
+      pdf.text(workType, 60, 538, { maxWidth: 300 });      // Work type (line 3 start)
+
       pdf.setFontSize(18);
-      const bOff18 = 27; // Increased from 15 to push text down
-      pdf.text(fromDate, 385, 490 + bOff18 - 5, { maxWidth: 150 }); // shifted up 5px
-      pdf.text(toDate, 562, 490 + bOff18 - 5, { maxWidth: 150 }); // shifted up 5px
-      pdf.text(serviceYears, 300, 530 + bOff18 - 4, { maxWidth: 300 }); // shifted up 4px
+      pdf.text(fromDate, 382, 543, { maxWidth: 160 });     // After "from :"
+      pdf.text(toDate, 570, 543, { maxWidth: 160 });        // After "to"
+      pdf.text(serviceYears, 215, 605, { maxWidth: 280 }); // After "Total Service Years :"
 
       pdf.save(`${studentName || 'Student'}_Service_Certificate.pdf`);
     } catch (error) {
@@ -237,19 +232,24 @@ export function AdminServiceCertForm() {
             <div ref={printRef} className="relative w-full h-full bg-white text-black font-serif" style={{ width: '794px', height: '1123px' }}>
               <img src={serviceTemplate} alt="Service Certificate Template" className="absolute inset-0 w-full h-full object-cover z-0" />
               
-              {/* Absolute positioning based on portrait certificate layout */}
-              <div className="absolute z-10 top-[224px] left-[127px] text-[16px] font-bold text-red-600 uppercase">{refNo}</div>
-              <div className="absolute z-10 top-[224px] left-[610px] text-[16px] font-bold text-red-600 uppercase">{date}</div>
-              
-              <div className="absolute z-10 top-[380px] left-[280px] text-[22px] font-bold italic text-blue-600 uppercase w-[450px]">{studentName}</div>
-              <div className="absolute z-10 top-[435px] left-[210px] text-[22px] font-bold italic text-blue-600 uppercase w-[500px]">{fatherName}</div>
-              <div className="absolute z-10 top-[435px] left-[470px] text-[22px] font-bold italic text-blue-600 uppercase w-[450px]">{role}</div>
-              <div className="absolute z-10 top-[485px] left-[110px] text-[22px] font-bold italic text-blue-600 uppercase w-[500px]">{workType}</div>
-              
-              <div className="absolute z-10 top-[490px] left-[385px] text-[18px] font-bold italic text-blue-600 uppercase w-[150px]">{fromDate}</div>
-              <div className="absolute z-10 top-[490px] left-[562px] text-[18px] font-bold italic text-blue-600 uppercase w-[150px]">{toDate}</div>
-              
-              <div className="absolute z-10 top-[530px] left-[300px] text-[18px] font-bold italic text-blue-600 uppercase w-[300px]">{serviceYears}</div>
+              {/* Ref No and Date row */}
+              <div className="absolute z-10 top-[249px] left-[127px] text-[16px] font-bold text-red-600 uppercase">{refNo}</div>
+              <div className="absolute z-10 top-[249px] left-[580px] text-[16px] font-bold text-red-600 uppercase">{date}</div>
+
+              {/* Name - after "This is to Certify that Mr./Mrs./Miss." */}
+              <div className="absolute z-10 top-[410px] left-[330px] text-[22px] font-bold italic text-blue-600 uppercase w-[430px]">{studentName}</div>
+
+              {/* Father / Role row */}
+              <div className="absolute z-10 top-[466px] left-[120px] text-[22px] font-bold italic text-blue-600 uppercase w-[300px]">{fatherName}</div>
+              <div className="absolute z-10 top-[466px] left-[490px] text-[22px] font-bold italic text-blue-600 uppercase w-[260px]">{role}</div>
+
+              {/* Work type + from/to dates row */}
+              <div className="absolute z-10 top-[524px] left-[60px] text-[22px] font-bold italic text-blue-600 uppercase w-[300px]">{workType}</div>
+              <div className="absolute z-10 top-[530px] left-[382px] text-[18px] font-bold italic text-blue-600 uppercase w-[160px]">{fromDate}</div>
+              <div className="absolute z-10 top-[530px] left-[570px] text-[18px] font-bold italic text-blue-600 uppercase w-[160px]">{toDate}</div>
+
+              {/* Total Service Years */}
+              <div className="absolute z-10 top-[590px] left-[215px] text-[18px] font-bold italic text-blue-600 uppercase w-[280px]">{serviceYears}</div>
             </div>
           </div>
         </div>

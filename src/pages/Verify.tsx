@@ -132,19 +132,28 @@ async function generateServicePDF(data: ServiceRecord) {
   canvas.width = img.width; canvas.height = img.height;
   const ctx = canvas.getContext('2d')!; ctx.drawImage(img, 0, 0);
   pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 794, 1123);
-  pdf.setFont('times', 'bold'); pdf.setTextColor(220, 38, 38); pdf.setFontSize(16);
-  pdf.text(data.ref_no, 127, 224 + 26 - 3);
-  pdf.text(data.date || '', 610, 224 + 26 - 3);
-  pdf.setFont('times', 'italic'); pdf.setTextColor(37, 99, 235); pdf.setFontSize(22);
-  const bOff22 = 33;
-  pdf.text(data.name, 265, 380 + bOff22, { maxWidth: 450 });
-  pdf.text(data.father_name, 170, 435 + bOff22 - 5, { maxWidth: 500 });
-  pdf.text(data.role, 465, 435 + bOff22 - 5, { maxWidth: 450 });
-  pdf.text(data.work_type, 90, 485 + bOff22 - 5, { maxWidth: 500 });
+
+  // Heading fields (bold red)
+  pdf.setFont('times', 'bold');
+  pdf.setTextColor(220, 38, 38);
+  pdf.setFontSize(16);
+  pdf.text(data.ref_no, 127, 262);
+  pdf.text(data.date || '', 580, 262);
+
+  // Content fields (blue italic)
+  pdf.setFont('times', 'italic');
+  pdf.setTextColor(37, 99, 235);
+  pdf.setFontSize(22);
+  pdf.text(data.name, 330, 425, { maxWidth: 430 });
+  pdf.text(data.father_name, 120, 480, { maxWidth: 300 });
+  pdf.text(data.role, 490, 480, { maxWidth: 260 });
+  pdf.text(data.work_type, 60, 538, { maxWidth: 300 });
+
   pdf.setFontSize(18);
-  pdf.text(data.from_date, 385, 490 + 27 - 5, { maxWidth: 150 });
-  pdf.text(data.to_date, 562, 490 + 27 - 5, { maxWidth: 150 });
-  pdf.text(data.total_years || '', 300, 530 + 27 - 4, { maxWidth: 300 });
+  pdf.text(data.from_date, 382, 543, { maxWidth: 160 });
+  pdf.text(data.to_date, 570, 543, { maxWidth: 160 });
+  pdf.text(data.total_years || '', 215, 605, { maxWidth: 280 });
+
   pdf.save(`${data.name || 'Candidate'}_Service_Certificate.pdf`);
 }
 
@@ -202,21 +211,27 @@ function ServicePreview({ data }: { data: ServiceRecord }) {
   return (
     <div className="relative bg-white text-black font-serif" style={{ width: '794px', height: '1123px' }}>
       <img src={serviceTemplate} alt="Service Certificate Template" className="absolute inset-0 w-full h-full object-cover z-0" />
-      {/* Ref No and Date - red bold */}
-      <div className="absolute z-10 top-[224px] left-[127px] text-[16px] font-bold text-red-600 uppercase">{data.ref_no}</div>
-      <div className="absolute z-10 top-[224px] left-[610px] text-[16px] font-bold text-red-600 uppercase">{data.date}</div>
-      {/* Main fields - blue italic */}
-      <div className="absolute z-10 top-[380px] left-[280px] text-[22px] font-bold italic text-blue-600 uppercase w-[450px]">{data.name}</div>
-      <div className="absolute z-10 top-[435px] left-[210px] text-[22px] font-bold italic text-blue-600 uppercase w-[500px]">{data.father_name}</div>
-      <div className="absolute z-10 top-[435px] left-[470px] text-[22px] font-bold italic text-blue-600 uppercase w-[450px]">{data.role}</div>
-      <div className="absolute z-10 top-[485px] left-[110px] text-[22px] font-bold italic text-blue-600 uppercase w-[500px]">{data.work_type}</div>
-      <div className="absolute z-10 top-[490px] left-[385px] text-[18px] font-bold italic text-blue-600 uppercase w-[150px]">{data.from_date}</div>
-      <div className="absolute z-10 top-[490px] left-[562px] text-[18px] font-bold italic text-blue-600 uppercase w-[150px]">{data.to_date}</div>
-      {/* Total service years */}
-      <div className="absolute z-10 top-[530px] left-[300px] text-[18px] font-bold italic text-blue-600 uppercase w-[300px]">{data.total_years}</div>
+      {/* Ref No and Date row */}
+      <div className="absolute z-10 top-[249px] left-[127px] text-[16px] font-bold text-red-600 uppercase">{data.ref_no}</div>
+      <div className="absolute z-10 top-[249px] left-[580px] text-[16px] font-bold text-red-600 uppercase">{data.date}</div>
+
+      {/* Name - after "This is to Certify that Mr./Mrs./Miss." */}
+      <div className="absolute z-10 top-[410px] left-[330px] text-[22px] font-bold italic text-blue-600 uppercase w-[430px]">{data.name}</div>
+
+      {/* Father / Role row */}
+      <div className="absolute z-10 top-[466px] left-[120px] text-[22px] font-bold italic text-blue-600 uppercase w-[300px]">{data.father_name}</div>
+      <div className="absolute z-10 top-[466px] left-[490px] text-[22px] font-bold italic text-blue-600 uppercase w-[260px]">{data.role}</div>
+
+      {/* Work type + from/to dates row */}
+      <div className="absolute z-10 top-[524px] left-[60px] text-[22px] font-bold italic text-blue-600 uppercase w-[300px]">{data.work_type}</div>
+      <div className="absolute z-10 top-[530px] left-[382px] text-[18px] font-bold italic text-blue-600 uppercase w-[160px]">{data.from_date}</div>
+      <div className="absolute z-10 top-[530px] left-[570px] text-[18px] font-bold italic text-blue-600 uppercase w-[160px]">{data.to_date}</div>
+
+      {/* Total Service Years */}
+      <div className="absolute z-10 top-[590px] left-[215px] text-[18px] font-bold italic text-blue-600 uppercase w-[280px]">{data.total_years}</div>
     </div>
   );
-}
+}}
 
 // ── Category Card ─────────────────────────────────────────────────────────────
 
