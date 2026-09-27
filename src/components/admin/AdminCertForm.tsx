@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import certTemplate from '../../assets/certifi.webp';
 
@@ -50,17 +49,69 @@ export function AdminCertForm() {
   });
 
   const handleDownloadPDF = async () => {
-    if (!printRef.current) return;
     setGenerating(true);
     try {
-      const canvas = await html2canvas(printRef.current, { scale: 2 });
-      const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'px',
         format: [794, 1123]
       });
-      pdf.addImage(imgData, 'PNG', 0, 0, 794, 1123);
+
+      const img = new Image();
+      img.src = certTemplate;
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = reject;
+      });
+
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.drawImage(img, 0, 0);
+        const imgData = canvas.toDataURL('image/webp');
+        pdf.addImage(imgData, 'WEBP', 0, 0, 794, 1123);
+      }
+
+      if (photo) {
+        const photoImg = new Image();
+        photoImg.src = photo;
+        await new Promise((resolve, reject) => {
+          photoImg.onload = resolve;
+          photoImg.onerror = reject;
+        });
+        const photoCanvas = document.createElement('canvas');
+        photoCanvas.width = 116;
+        photoCanvas.height = 147;
+        const photoCtx = photoCanvas.getContext('2d');
+        if (photoCtx) {
+          const scale = Math.max(116 / photoImg.width, 147 / photoImg.height);
+          const x = (116 / 2) - (photoImg.width / 2) * scale;
+          const y = (147 / 2) - (photoImg.height / 2) * scale;
+          photoCtx.drawImage(photoImg, x, y, photoImg.width * scale, photoImg.height * scale);
+          const photoData = photoCanvas.toDataURL('image/jpeg');
+          pdf.addImage(photoData, 'JPEG', 666, 146, 116, 147);
+        }
+      }
+
+      pdf.setFont('times', 'bold');
+      pdf.setTextColor(30, 58, 138);
+      
+      const bOff2xl = 18;
+      const bOffXl = 15;
+
+      pdf.setFontSize(24);
+      pdf.text(studentName, 210, 533 + bOff2xl);
+      
+      pdf.setFontSize(20);
+      pdf.text(fatherName, 180, 583 + bOffXl);
+      pdf.text(place, 110 + 125, 642 + bOffXl, { align: 'center' });
+      pdf.text(month, 50 + 100, 688 + bOffXl, { align: 'center' });
+      pdf.text(year, 360 + 75, 688 + bOffXl, { align: 'center' });
+      pdf.text(course, 290, 735 + bOffXl);
+      pdf.text(grade, 130 + 75, 784 + bOffXl, { align: 'center' });
+
       pdf.save(`${studentName || 'Student'}_Certificate.pdf`);
     } catch (error) {
       console.error('Error generating PDF:', error);

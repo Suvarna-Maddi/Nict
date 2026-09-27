@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import marksTemplate from '../../assets/marks.webp';
 
@@ -87,17 +86,61 @@ export function AdminMarksForm() {
   });
 
   const handleDownloadPDF = async () => {
-    if (!printRef.current) return;
     setGenerating(true);
     try {
-      const canvas = await html2canvas(printRef.current, { scale: 2 });
-      const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'px',
         format: [794, 1123]
       });
-      pdf.addImage(imgData, 'PNG', 0, 0, 794, 1123);
+
+      const img = new Image();
+      img.src = marksTemplate;
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = reject;
+      });
+
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.drawImage(img, 0, 0);
+        const imgData = canvas.toDataURL('image/webp');
+        pdf.addImage(imgData, 'WEBP', 0, 0, 794, 1123);
+      }
+
+      pdf.setFont('times', 'bold');
+      pdf.setTextColor(0, 0, 0);
+      
+      pdf.setFontSize(15);
+      const bOff = 12; // baseline offset
+      pdf.text(course, 150, 215 + bOff);
+      pdf.text(duration, 150, 238 + bOff);
+      pdf.text(adminNo, 260, 295 + bOff);
+      pdf.text(date, 640, 295 + bOff);
+      pdf.text(htNo, 260, 321 + bOff);
+      pdf.text(studentName, 260, 355 + bOff);
+      pdf.text(fatherName, 260, 382 + bOff);
+      pdf.text(monthYear, 260, 422 + bOff);
+      pdf.text(branchPlace, 260, 449 + bOff);
+
+      subjects.forEach((sub, i) => {
+        const y = 530 + i * 40 + bOff;
+        pdf.text((i + 1).toString(), 30 + 15, y, { align: 'center' });
+        pdf.text(sub.name, 150, y);
+        pdf.text(sub.maxMarks, 460 + 30, y, { align: 'center' });
+        pdf.text(sub.marks, 660 + 30, y, { align: 'center' });
+      });
+
+      pdf.setFontSize(16);
+      pdf.text(maxTotal.toString(), 460 + 30, 848 + bOff, { align: 'center' });
+      pdf.text(total.toString(), 660 + 30, 848 + bOff, { align: 'center' });
+
+      pdf.setFontSize(14);
+      pdf.text(totalInWords, 290, 897 + bOff);
+
       pdf.save(`${studentName || 'Student'}_Marks_Card.pdf`);
     } catch (error) {
       console.error('Error generating PDF:', error);
