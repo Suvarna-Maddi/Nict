@@ -39,12 +39,14 @@ interface CertRecord {
 interface ServiceRecord {
   type: 'service';
   ref_no: string;
+  date: string;
   name: string;
   father_name: string;
   role: string;
   work_type: string;
   from_date: string;
   to_date: string;
+  total_years: string;
 }
 
 type FoundRecord = MarksRecord | CertRecord | ServiceRecord;
@@ -132,6 +134,7 @@ async function generateServicePDF(data: ServiceRecord) {
   pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 794, 1123);
   pdf.setFont('times', 'bold'); pdf.setTextColor(220, 38, 38); pdf.setFontSize(16);
   pdf.text(data.ref_no, 127, 224 + 26 - 3);
+  pdf.text(data.date || '', 610, 224 + 26 - 3);
   pdf.setFont('times', 'italic'); pdf.setTextColor(37, 99, 235); pdf.setFontSize(22);
   const bOff22 = 33;
   pdf.text(data.name, 265, 380 + bOff22, { maxWidth: 450 });
@@ -141,6 +144,7 @@ async function generateServicePDF(data: ServiceRecord) {
   pdf.setFontSize(18);
   pdf.text(data.from_date, 385, 490 + 27 - 5, { maxWidth: 150 });
   pdf.text(data.to_date, 562, 490 + 27 - 5, { maxWidth: 150 });
+  pdf.text(data.total_years || '', 300, 530 + 27 - 4, { maxWidth: 300 });
   pdf.save(`${data.name || 'Candidate'}_Service_Certificate.pdf`);
 }
 
@@ -198,13 +202,18 @@ function ServicePreview({ data }: { data: ServiceRecord }) {
   return (
     <div className="relative bg-white text-black font-serif" style={{ width: '794px', height: '1123px' }}>
       <img src={serviceTemplate} alt="Service Certificate Template" className="absolute inset-0 w-full h-full object-cover z-0" />
+      {/* Ref No and Date - red bold */}
       <div className="absolute z-10 top-[224px] left-[127px] text-[16px] font-bold text-red-600 uppercase">{data.ref_no}</div>
+      <div className="absolute z-10 top-[224px] left-[610px] text-[16px] font-bold text-red-600 uppercase">{data.date}</div>
+      {/* Main fields - blue italic */}
       <div className="absolute z-10 top-[380px] left-[280px] text-[22px] font-bold italic text-blue-600 uppercase w-[450px]">{data.name}</div>
       <div className="absolute z-10 top-[435px] left-[210px] text-[22px] font-bold italic text-blue-600 uppercase w-[500px]">{data.father_name}</div>
       <div className="absolute z-10 top-[435px] left-[470px] text-[22px] font-bold italic text-blue-600 uppercase w-[450px]">{data.role}</div>
       <div className="absolute z-10 top-[485px] left-[110px] text-[22px] font-bold italic text-blue-600 uppercase w-[500px]">{data.work_type}</div>
       <div className="absolute z-10 top-[490px] left-[385px] text-[18px] font-bold italic text-blue-600 uppercase w-[150px]">{data.from_date}</div>
       <div className="absolute z-10 top-[490px] left-[562px] text-[18px] font-bold italic text-blue-600 uppercase w-[150px]">{data.to_date}</div>
+      {/* Total service years */}
+      <div className="absolute z-10 top-[530px] left-[300px] text-[18px] font-bold italic text-blue-600 uppercase w-[300px]">{data.total_years}</div>
     </div>
   );
 }

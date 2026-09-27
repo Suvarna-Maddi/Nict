@@ -41,12 +41,14 @@ export function AdminServiceCertForm() {
       .insert([
         {
           ref_no: refNo,
+          date: date,
           name: studentName,
           father_name: fatherName,
           role: role,
           work_type: workType,
           from_date: fromDate,
-          to_date: toDate
+          to_date: toDate,
+          total_years: serviceYears
         }
       ]);
 
