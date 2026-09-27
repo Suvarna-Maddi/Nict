@@ -71,24 +71,23 @@ export function AdminServiceCertForm() {
       pdf.setTextColor(220, 38, 38); // Red
       pdf.setFontSize(20);
       
-      const bOffHead = 15; // Baseline offset for jsPDF text
-      pdf.text(refNo, 160, 275 + bOffHead);
-      pdf.text(date, 794 - 260, 275 + bOffHead, { align: 'right' }); // right: 260px
+      const bOffHead = 15;
+      pdf.text(refNo, 160, 255 + bOffHead);            // left 210-50=160, top 205+50=255
+      pdf.text(date, 794 - 260, 255 + bOffHead, { align: 'right' }); // right 210+50=260
 
       // Content fields (blue italic)
       pdf.setFont('times', 'italic');
-      pdf.setTextColor(37, 99, 235); // Blue
+      pdf.setTextColor(37, 99, 235);
       pdf.setFontSize(15);
       
       const bOff = 12;
-      pdf.text(studentName, 250 + 150, 425 + bOff, { align: 'center', maxWidth: 300 }); // center of width 300
-      pdf.text(fatherName, 250 + 150, 465 + bOff, { align: 'center', maxWidth: 300 });
-      pdf.text(role, 560 + 90, 465 + bOff, { align: 'center', maxWidth: 180 }); // center of width 180
-      pdf.text(workType, 250 + 100, 505 + bOff, { align: 'center', maxWidth: 200 });
-      
-      pdf.text(fromDate, 420 + 70, 505 + bOff, { align: 'center', maxWidth: 140 });
-      pdf.text(toDate, 580 + 70, 505 + bOff, { align: 'center', maxWidth: 140 });
-      pdf.text(serviceYears, 280 + 75, 545 + bOff, { align: 'center', maxWidth: 150 });
+      pdf.text(studentName, 250 + 150, 405 + bOff, { align: 'center', maxWidth: 300 }); // left 300-50=250, top 355+50=405
+      pdf.text(fatherName, 250 + 150, 445 + bOff, { align: 'center', maxWidth: 300 });  // top 395+50=445
+      pdf.text(role, 560 + 90, 445 + bOff, { align: 'center', maxWidth: 180 });         // left 610-50=560, top 395+50=445
+      pdf.text(workType, 250 + 100, 485 + bOff, { align: 'center', maxWidth: 200 });    // left 300-50=250, top 435+50=485
+      pdf.text(fromDate, 420 + 70, 485 + bOff, { align: 'center', maxWidth: 140 });     // left 470-50=420, top 435+50=485
+      pdf.text(toDate, 580 + 70, 485 + bOff, { align: 'center', maxWidth: 140 });       // left 630-50=580, top 435+50=485
+      pdf.text(serviceYears, 280 + 75, 525 + bOff, { align: 'center', maxWidth: 150 }); // left 330-50=280, top 475+50=525
 
       pdf.save(`${studentName || 'Student'}_Service_Certificate.pdf`);
     } catch (error) {
@@ -176,17 +175,17 @@ export function AdminServiceCertForm() {
             <div ref={printRef} className="relative w-full h-full bg-white text-black" style={{ width: '794px', height: '1123px', fontFamily: '"Times New Roman", serif' }}>
               <img src={serviceTemplate} alt="Service Certificate Template" className="absolute inset-0 w-full h-full object-cover z-0" />
               
-              <div className="absolute z-10 text-[20px] font-bold text-red-600 uppercase whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '275px', left: '160px' }}>{refNo}</div>
-              <div className="absolute z-10 text-[20px] font-bold text-red-600 uppercase text-right whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '275px', right: '260px' }}>{date}</div>
+              <div className="absolute z-10 text-[20px] font-bold text-red-600 uppercase whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '255px', left: '160px' }}>{refNo}</div>
+              <div className="absolute z-10 text-[20px] font-bold text-red-600 uppercase text-right whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '255px', right: '260px' }}>{date}</div>
               
-              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '425px', left: '250px', width: '300px' }}>{studentName}</div>
-              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '465px', left: '250px', width: '300px' }}>{fatherName}</div>
-              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '465px', left: '560px', width: '180px' }}>{role}</div>
+              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '405px', left: '250px', width: '300px' }}>{studentName}</div>
+              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '445px', left: '250px', width: '300px' }}>{fatherName}</div>
+              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '445px', left: '560px', width: '180px' }}>{role}</div>
               
-              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '505px', left: '250px', width: '200px' }}>{workType}</div>
-              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '505px', left: '420px', width: '140px' }}>{fromDate}</div>
-              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '505px', left: '580px', width: '140px' }}>{toDate}</div>
-              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '545px', left: '280px', width: '150px' }}>{serviceYears}</div>
+              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '485px', left: '250px', width: '200px' }}>{workType}</div>
+              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '485px', left: '420px', width: '140px' }}>{fromDate}</div>
+              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '485px', left: '580px', width: '140px' }}>{toDate}</div>
+              <div className="absolute z-10 text-[15px] font-normal italic text-blue-600 uppercase text-center whitespace-nowrap overflow-hidden text-ellipsis" style={{ top: '525px', left: '280px', width: '150px' }}>{serviceYears}</div>
             </div>
           </div>
         </div>
