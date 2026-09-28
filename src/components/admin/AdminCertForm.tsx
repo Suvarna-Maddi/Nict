@@ -157,15 +157,15 @@ export function AdminCertForm() {
       }
 
       pdf.setFont('times', 'bold');
-      pdf.setTextColor(30, 58, 138);
+      pdf.setTextColor(0, 0, 0);
       
       const bOff2xl = 18;
       const bOffXl = 15;
 
-      pdf.setFontSize(24);
+      pdf.setFontSize(22);
       pdf.text(studentName, 210, 533 + bOff2xl);
       
-      pdf.setFontSize(20);
+      pdf.setFontSize(22);
       pdf.text(fatherName, 180, 583 + bOffXl);
       pdf.text(place, 110 + 125, 642 + bOffXl, { align: 'center' });
       pdf.text(month, 50 + 100, 688 + bOffXl, { align: 'center' });
@@ -260,17 +260,17 @@ export function AdminCertForm() {
               <img src={certTemplate} alt="Certificate Template" className="absolute inset-0 w-full h-full object-cover z-0" />
               
               {/* Absolute positioning based on portrait certificate layout */}
-              <div className="absolute z-10 top-[533px] left-[210px] text-2xl font-bold w-[500px] uppercase tracking-wide text-[#1e3a8a]">{studentName}</div>
-              <div className="absolute z-10 top-[583px] left-[180px] text-xl font-bold w-[400px] uppercase tracking-wide text-[#1e3a8a]">{fatherName}</div>
+              <div className="absolute z-10 top-[533px] left-[210px] text-[20px] font-bold w-[500px] uppercase tracking-wide text-black">{studentName}</div>
+              <div className="absolute z-10 top-[583px] left-[180px] text-[20px] font-bold w-[400px] uppercase tracking-wide text-black">{fatherName}</div>
               
-              <div className="absolute z-10 top-[642px] left-[110px] text-xl font-bold w-[250px] uppercase text-[#1e3a8a] text-center">{place}</div>
+              <div className="absolute z-10 top-[642px] left-[110px] text-[20px] font-bold w-[250px] uppercase text-black text-center">{place}</div>
               
-              <div className="absolute z-10 top-[688px] left-[50px] text-xl font-bold w-[200px] uppercase text-[#1e3a8a] text-center">{month}</div>
-              <div className="absolute z-10 top-[688px] left-[360px] text-xl font-bold w-[150px] uppercase text-[#1e3a8a] text-center">{year}</div>
+              <div className="absolute z-10 top-[688px] left-[50px] text-[20px] font-bold w-[200px] uppercase text-black text-center">{month}</div>
+              <div className="absolute z-10 top-[688px] left-[360px] text-[20px] font-bold w-[150px] uppercase text-black text-center">{year}</div>
 
-              <div className="absolute z-10 top-[735px] left-[290px] text-xl font-bold w-[400px] uppercase tracking-wide text-[#1e3a8a]">{course}</div>
+              <div className="absolute z-10 top-[735px] left-[290px] text-[20px] font-bold w-[400px] uppercase tracking-wide text-black">{course}</div>
               
-              <div className="absolute z-10 top-[784px] left-[130px] text-xl font-bold w-[150px] uppercase text-[#1e3a8a] text-center">{grade}</div>
+              <div className="absolute z-10 top-[784px] left-[130px] text-[20px] font-bold w-[150px] uppercase text-black text-center">{grade}</div>
 
               {/* Photo Box Area */}
               <div className="absolute z-10 top-[146px] right-[12px] w-[116px] h-[147px] bg-white flex items-center justify-center overflow-hidden">

@@ -65,6 +65,12 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-2">
+                <span className="shrink-0">✉️</span>
+                <a href="mailto:kumar.sweety2590@gmail.com" className="hover:text-gray-200 transition-colors">
+                  kumar.sweety2590@gmail.com
+                </a>
+              </li>
+              <li className="flex items-start gap-2">
                 <span className="shrink-0">🕒</span>
                 <span>Mon-Sat: 8:30 AM - 8:00 PM<br/>Sun: 10:00 AM - 5:30 PM</span>
               </li>

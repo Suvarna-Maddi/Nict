@@ -5,6 +5,7 @@ import { Footer } from './components/Footer'
 import { Home } from './pages/Home'
 import { Chatbot } from './components/Chatbot'
 import { WhatsAppButton } from './components/WhatsAppButton'
+import { MailButton } from './components/MailButton'
 
 // Lazy load non-critical pages for faster initial load
 const About = lazy(() => import('./pages/About').then(m => ({ default: m.About })))
@@ -49,6 +50,7 @@ function App() {
         <Footer />
         <Chatbot />
         <WhatsAppButton />
+        <MailButton />
       </main>
     </BrowserRouter>
   )

@@ -174,7 +174,7 @@ export function AdminMarksForm() {
       pdf.setFont('times', 'bold');
       pdf.setTextColor(0, 0, 0);
       
-      pdf.setFontSize(15);
+      pdf.setFontSize(22);
       const bOff = 12; // baseline offset
       pdf.text(course, 150, 230 + bOff);
       pdf.text(duration, 150, 258 + bOff);
@@ -195,11 +195,11 @@ export function AdminMarksForm() {
         pdf.text(sub.marks, 660 + 30, y, { align: 'center' });
       });
 
-      pdf.setFontSize(16);
+      pdf.setFontSize(24);
       pdf.text(maxTotal.toString(), 460 + 30, 828 + bOff, { align: 'center' });
       pdf.text(total.toString(), 660 + 30, 828 + bOff, { align: 'center' });
 
-      pdf.setFontSize(14);
+      pdf.setFontSize(20);
       pdf.text(totalInWords, 290, 877 + bOff);
 
       pdf.save(`${studentName || 'Student'}_Marks_Card.pdf`);
@@ -214,19 +214,19 @@ export function AdminMarksForm() {
     <div ref={printRef} className="relative w-full h-full bg-white text-black font-serif" style={{ width: '794px', height: '1123px' }}>
       <img src={marksTemplate} alt="Marks Template" className="absolute inset-0 w-full h-full object-cover z-0" />
       
-      <div className="absolute z-10 top-[230px] left-[150px] text-[15px] font-bold tracking-wide w-[400px]">{course}</div>
-      <div className="absolute z-10 top-[258px] left-[150px] text-[15px] font-bold tracking-wide">{duration}</div>
-      <div className="absolute z-10 top-[315px] left-[260px] text-[15px] font-bold tracking-wide">{adminNo}</div>
-      <div className="absolute z-10 top-[315px] left-[640px] text-[15px] font-bold tracking-wide">{date}</div>
-      <div className="absolute z-10 top-[341px] left-[260px] text-[15px] font-bold tracking-wide">{htNo}</div>
-      <div className="absolute z-10 top-[375px] left-[260px] text-[15px] font-bold tracking-wide w-[400px]">{studentName}</div>
-      <div className="absolute z-10 top-[402px] left-[260px] text-[15px] font-bold tracking-wide w-[400px]">{fatherName}</div>
-      <div className="absolute z-10 top-[442px] left-[260px] text-[15px] font-bold tracking-wide w-[250px]">{monthYear}</div>
-      <div className="absolute z-10 top-[469px] left-[260px] text-[15px] font-bold tracking-wide w-[150px]">{branchPlace}</div>
+      <div className="absolute z-10 top-[230px] left-[150px] text-[20px] font-bold tracking-wide w-[400px]">{course}</div>
+      <div className="absolute z-10 top-[258px] left-[150px] text-[20px] font-bold tracking-wide">{duration}</div>
+      <div className="absolute z-10 top-[315px] left-[260px] text-[20px] font-bold tracking-wide">{adminNo}</div>
+      <div className="absolute z-10 top-[315px] left-[640px] text-[20px] font-bold tracking-wide">{date}</div>
+      <div className="absolute z-10 top-[341px] left-[260px] text-[20px] font-bold tracking-wide">{htNo}</div>
+      <div className="absolute z-10 top-[375px] left-[260px] text-[20px] font-bold tracking-wide w-[400px]">{studentName}</div>
+      <div className="absolute z-10 top-[402px] left-[260px] text-[20px] font-bold tracking-wide w-[400px]">{fatherName}</div>
+      <div className="absolute z-10 top-[442px] left-[260px] text-[20px] font-bold tracking-wide w-[250px]">{monthYear}</div>
+      <div className="absolute z-10 top-[469px] left-[260px] text-[20px] font-bold tracking-wide w-[150px]">{branchPlace}</div>
 
       {/* Subjects Table Area */}
       {subjects.map((sub, i) => (
-        <div key={i} className="absolute z-10 w-full text-[15px] font-bold" style={{ top: `${550 + i * 40}px` }}>
+        <div key={i} className="absolute z-10 w-full text-[20px] font-bold" style={{ top: `${550 + i * 40}px` }}>
           <div className="absolute left-[30px] w-[30px] text-center">{i + 1}</div>
           <div className="absolute left-[150px] uppercase w-[300px]">{sub.name}</div>
           <div className="absolute w-[60px] text-center" style={{ left: '460px', top: i === 0 ? '4px' : '0' }}>{sub.maxMarks}</div>
@@ -235,9 +235,9 @@ export function AdminMarksForm() {
       ))}
 
       {/* Total Area */}
-      <div className="absolute z-10 top-[828px] left-[460px] text-[16px] font-bold w-[60px] text-center">{maxTotal}</div>
-      <div className="absolute z-10 top-[828px] left-[660px] text-[16px] font-bold w-[60px] text-center">{total}</div>
-      <div className="absolute z-10 top-[877px] left-[290px] text-[14px] font-bold uppercase">{totalInWords}</div>
+      <div className="absolute z-10 top-[828px] left-[460px] text-[22px] font-bold w-[60px] text-center">{maxTotal}</div>
+      <div className="absolute z-10 top-[828px] left-[660px] text-[22px] font-bold w-[60px] text-center">{total}</div>
+      <div className="absolute z-10 top-[877px] left-[290px] text-[18px] font-bold uppercase">{totalInWords}</div>
     </div>
   );
 
