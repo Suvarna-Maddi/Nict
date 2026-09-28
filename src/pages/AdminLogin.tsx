@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock, User, Eye, EyeOff, ShieldCheck, AlertCircle } from 'lucide-react';
 import logoUrl from '../assets/logo.webp';
+import { SEO } from '../components/SEO';
 
 export function AdminLogin() {
   const [username, setUsername] = useState('');
@@ -31,6 +32,12 @@ export function AdminLogin() {
   };
 
   return (
+    <>
+    <SEO 
+      title="Admin Login"
+      description="Admin Login for NICT Computer Institute."
+      noindex={true}
+    />
     <div className="min-h-screen flex items-stretch bg-slate-50">
 
       {/* Left branding panel (desktop only) */}
@@ -172,5 +179,6 @@ export function AdminLogin() {
         </div>
       </div>
     </div>
+    </>
   );
 }

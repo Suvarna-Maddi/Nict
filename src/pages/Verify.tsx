@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabase';
 import marksTemplate from '../assets/marks.png';
 import certTemplate from '../assets/certifi.png';
 import serviceTemplate from '../assets/service_certificate.png';
+import { SEO } from '../components/SEO';
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -414,6 +415,13 @@ export function Verify() {
   }, [record]);
 
   return (
+    <>
+    <SEO 
+      title="Verify Certificate & Marks"
+      description="Official portal to verify student certificates and marks at NICT. Ensure the authenticity of your educational documents here."
+      keywords="verify certificate, nict verification, verify marks, student portal, check certificate authenticity"
+      url="https://nict.edu.in/verify"
+    />
     <div className="min-h-screen relative overflow-hidden bg-[#f4f7fb] py-16 px-4 selection:bg-blue-200">
       {/* Decorative Background */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
@@ -611,5 +619,6 @@ export function Verify() {
         )}
       </div>
     </div>
+    </>
   );
 }

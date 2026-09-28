@@ -7,6 +7,7 @@ import aboutLab from '../assets/about_lab.jpg';
 import aboutMentor from '../assets/about_mentor.jpg';
 import directorNoBg from '../assets/director_nobg.jpg';
 import director1Img from '../assets/director1.png';
+import { SEO } from '../components/SEO';
 
 
 // Custom Hook for simple fade-in
@@ -77,6 +78,13 @@ export function About() {
   }, []);
 
   return (
+    <>
+    <SEO 
+      title="About Us"
+      description="Learn about NICT Computer & Spoken English Institute, our mission, vision, and the dedicated team of educators behind our success over the past 15+ years."
+      keywords="about NICT, computer training institute, spoken english institute, experienced faculty, IT education, Kumara Swamy, Radhika Kumaraswamy"
+      url="https://nict.edu.in/about"
+    />
     <div className="w-full flex flex-col items-center bg-[#fbfaf9] overflow-hidden selection:bg-[#fca5a5] selection:text-white pb-10 relative">
       
       {/* Smoky Edge Vignette */}
@@ -213,44 +221,8 @@ export function About() {
         </FadeInView>
       </section>
 
-      {/* 3. President's Desk Section */}
+      {/* 3. Director's Desk Section */}
       <section className="w-full bg-[#fbfaf9] py-16 mb-10">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            {/* Text Side */}
-            <FadeInView className="order-2 md:order-1">
-              <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">Meet the President.</h2>
-              <h3 className="text-3xl font-bold text-slate-800 mb-2">Mr. Kumara Swamy</h3>
-              <p className="text-primary-600 font-bold uppercase tracking-widest text-sm mb-10">15+ Years of Industry Experience</p>
-              
-              <div className="relative pl-8 border-l-4 border-primary-500 mb-8">
-                <p className="text-xl md:text-2xl text-slate-600 leading-relaxed italic font-medium">
-                  "Our vision has always been to bridge the gap between academic learning and industry requirements. Over the past 15 years, we have continuously evolved our curriculum to ensure every student who walks through our doors leaves as a confident, capable professional."
-                </p>
-              </div>
-              <p className="text-lg text-slate-500 leading-relaxed font-medium">
-                Under his leadership, NICT has transformed thousands of careers, focusing on hands-on practical training and real-world skills that companies actually demand.
-              </p>
-            </FadeInView>
-
-            {/* Image Side */}
-            <FadeInView delay={150} className="order-1 md:order-2">
-              <div className="relative w-full aspect-square max-w-md mx-auto">
-                <div className="absolute inset-0 bg-primary-100 rounded-[3rem] transform rotate-6 scale-105 z-0"></div>
-                <div className="w-full h-full rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white relative z-10 bg-white">
-                  <img 
-                    src={directorNoBg} 
-                    alt="Mr. Kumara Swamy - President of NICT" 
-                    loading="lazy"
-                    className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700" 
-                  />
-                </div>
-              </div>
-            </FadeInView>
-        </div>
-      </section>
-
-      {/* 3.5. Director's Desk Section */}
-      <section className="w-full bg-[#fbfaf9] py-16 mb-20">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             {/* Image Side */}
             <FadeInView delay={150} className="order-1 md:order-1">
@@ -281,6 +253,41 @@ export function About() {
               <p className="text-lg text-slate-500 leading-relaxed font-medium">
                 With a passion for educational excellence, she guides the institute's mission to deliver top-tier computer education and spoken English training, ensuring students are well-prepared for the global workforce.
               </p>
+            </FadeInView>
+        </div>
+      </section>
+
+      {/* 3.5. Mr. Kumara Swamy Section */}
+      <section className="w-full bg-[#fbfaf9] py-16 mb-20">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            {/* Text Side */}
+            <FadeInView className="order-2 md:order-1">
+              <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">Mr. Kumara Swamy</h2>
+              <p className="text-primary-600 font-bold uppercase tracking-widest text-sm mb-10">15+ Years of Industry Experience</p>
+              
+              <div className="relative pl-8 border-l-4 border-primary-500 mb-8">
+                <p className="text-xl md:text-2xl text-slate-600 leading-relaxed italic font-medium">
+                  "Our vision has always been to bridge the gap between academic learning and industry requirements. Over the past 15 years, we have continuously evolved our curriculum to ensure every student who walks through our doors leaves as a confident, capable professional."
+                </p>
+              </div>
+              <p className="text-lg text-slate-500 leading-relaxed font-medium">
+                Under his leadership, NICT has transformed thousands of careers, focusing on hands-on practical training and real-world skills that companies actually demand.
+              </p>
+            </FadeInView>
+
+            {/* Image Side */}
+            <FadeInView delay={150} className="order-1 md:order-2">
+              <div className="relative w-full aspect-square max-w-md mx-auto">
+                <div className="absolute inset-0 bg-primary-100 rounded-[3rem] transform rotate-6 scale-105 z-0"></div>
+                <div className="w-full h-full rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white relative z-10 bg-white">
+                  <img 
+                    src={directorNoBg} 
+                    alt="Mr. Kumara Swamy" 
+                    loading="lazy"
+                    className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700" 
+                  />
+                </div>
+              </div>
             </FadeInView>
         </div>
       </section>
@@ -440,5 +447,6 @@ export function About() {
       </section>
 
     </div>
+    </>
   );
 }

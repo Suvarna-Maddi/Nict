@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef, type ReactNode } from 'react';
 import { MonitorPlay, Calculator, Code2, Terminal, ArrowRight, FileText, Database, PenTool, Braces, X, CheckCircle, MessageCircle } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 // Custom Hook for simple fade-in
 function useInView(options = { threshold: 0.15 }) {
@@ -263,6 +264,13 @@ export function Courses() {
   }, []);
 
   return (
+    <>
+    <SEO 
+      title="Our Courses"
+      description="Explore our wide range of professional courses including Programming (Python, Java, C++), Tally Prime, Web Development, and Spoken English at NICT."
+      keywords="NICT courses, computer classes, tally prime, python course, java training, spoken english classes, DCA, PGDCA"
+      url="https://nict.edu.in/courses"
+    />
     <div className="w-full flex flex-col items-center bg-[#fbfaf9] overflow-hidden selection:bg-[#fca5a5] selection:text-white pb-32">
       
       {/* 1. Hero Section (Ultra Premium EdTech Light UI) */}
@@ -506,5 +514,6 @@ export function Courses() {
         }
       `}</style>
     </div>
+    </>
   );
 }

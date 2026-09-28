@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AdminServiceCertForm } from '../components/admin/AdminServiceCertForm';
 import { AdminMarksForm } from '../components/admin/AdminMarksForm';
 import { AdminCertForm } from '../components/admin/AdminCertForm';
+import { SEO } from '../components/SEO';
 
 export function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<'service' | 'marks' | 'cert'>('service');
@@ -21,6 +22,12 @@ export function AdminDashboard() {
   };
 
   return (
+    <>
+    <SEO 
+      title="Admin Dashboard"
+      description="Admin Dashboard for NICT Computer & Spoken English Institute."
+      noindex={true}
+    />
     <div className="min-h-screen bg-gray-50 pt-24 pb-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
@@ -63,5 +70,6 @@ export function AdminDashboard() {
         </div>
       </div>
     </div>
+    </>
   );
 }
