@@ -6,6 +6,7 @@ import infraImg from '../assets/infrastructure.jpg';
 import aboutLab from '../assets/about_lab.jpg';
 import aboutMentor from '../assets/about_mentor.jpg';
 import directorNoBg from '../assets/director_nobg.jpg';
+import director1Img from '../assets/director1.png';
 
 
 // Custom Hook for simple fade-in
@@ -212,12 +213,12 @@ export function About() {
         </FadeInView>
       </section>
 
-      {/* 3. Director's Desk Section */}
-      <section className="w-full bg-[#fbfaf9] py-16 mb-20">
+      {/* 3. President's Desk Section */}
+      <section className="w-full bg-[#fbfaf9] py-16 mb-10">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             {/* Text Side */}
             <FadeInView className="order-2 md:order-1">
-              <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">Meet the Director.</h2>
+              <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">Meet the President.</h2>
               <h3 className="text-3xl font-bold text-slate-800 mb-2">Mr. Kumara Swamy</h3>
               <p className="text-primary-600 font-bold uppercase tracking-widest text-sm mb-10">15+ Years of Industry Experience</p>
               
@@ -238,12 +239,48 @@ export function About() {
                 <div className="w-full h-full rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white relative z-10 bg-white">
                   <img 
                     src={directorNoBg} 
-                    alt="Mr. Kumara Swamy - Director of NICT" 
+                    alt="Mr. Kumara Swamy - President of NICT" 
                     loading="lazy"
                     className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700" 
                   />
                 </div>
               </div>
+            </FadeInView>
+        </div>
+      </section>
+
+      {/* 3.5. Director's Desk Section */}
+      <section className="w-full bg-[#fbfaf9] py-16 mb-20">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            {/* Image Side */}
+            <FadeInView delay={150} className="order-1 md:order-1">
+              <div className="relative w-full aspect-square max-w-md mx-auto">
+                <div className="absolute inset-0 bg-[#fca5a5]/40 rounded-[3rem] transform -rotate-6 scale-105 z-0"></div>
+                <div className="w-full h-full rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white relative z-10 bg-white">
+                  <img 
+                    src={director1Img} 
+                    alt="Mrs. Radhika Kumaraswamy - Director of NICT" 
+                    loading="lazy"
+                    className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700" 
+                  />
+                </div>
+              </div>
+            </FadeInView>
+
+            {/* Text Side */}
+            <FadeInView className="order-2 md:order-2">
+              <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">Meet the Director.</h2>
+              <h3 className="text-3xl font-bold text-slate-800 mb-2">Mrs. Radhika Kumaraswamy</h3>
+              <p className="text-primary-600 font-bold uppercase tracking-widest text-sm mb-10">Director, NICT COMPUTER &amp; Spoken English Institute</p>
+              
+              <div className="relative pl-8 border-l-4 border-primary-500 mb-8">
+                <p className="text-xl md:text-2xl text-slate-600 leading-relaxed italic font-medium">
+                  "Empowering students through comprehensive education and communication skills is the key to unlocking their full potential. We are dedicated to providing an environment where learning meets innovation."
+                </p>
+              </div>
+              <p className="text-lg text-slate-500 leading-relaxed font-medium">
+                With a passion for educational excellence, she guides the institute's mission to deliver top-tier computer education and spoken English training, ensuring students are well-prepared for the global workforce.
+              </p>
             </FadeInView>
         </div>
       </section>
