@@ -146,6 +146,12 @@ export function AdminServiceCertForm() {
       pdf.text(toDate, 600, 559, { maxWidth: 160 });        // After "to"
       pdf.text(serviceYears, 245, 621, { maxWidth: 280 }); // After "Total Service Years :"
 
+      // Bottom-left contact info
+      pdf.setFont('times', 'bold');
+      pdf.setTextColor(30, 58, 138);
+      pdf.setFontSize(13);
+      pdf.text('www.nictcomputerstraining.com  |  +91 82474 19292', 14, 1105);
+
       pdf.save(`${studentName || 'Student'}_Service_Certificate.pdf`);
     } catch (error) {
       console.error('Error generating PDF:', error);
@@ -250,6 +256,11 @@ export function AdminServiceCertForm() {
 
               {/* Total Service Years */}
               <div className="absolute z-10 top-[606px] left-[245px] text-[20px] font-bold text-black uppercase w-[280px]">{serviceYears}</div>
+
+              {/* Bottom-left contact info */}
+              <div className="absolute z-10 bottom-[12px] left-[14px] text-[13px] font-bold text-blue-800 whitespace-nowrap">
+                www.nictcomputerstraining.com&nbsp;&nbsp;|&nbsp;&nbsp;+91 82474 19292
+              </div>
             </div>
           </div>
         </div>

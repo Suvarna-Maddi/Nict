@@ -93,6 +93,13 @@ async function generateMarksPDF(data: MarksRecord) {
   pdf.text(maxTotal(data.subjects).toString(), 490, 848 + bOff, { align: 'center' });
   pdf.text(data.total.toString(), 690, 848 + bOff, { align: 'center' });
   pdf.setFontSize(14); pdf.text(marksInWords(data.total), 290, 897 + bOff);
+
+  // Bottom-left contact info
+  pdf.setFont('times', 'bold');
+  pdf.setTextColor(30, 58, 138);
+  pdf.setFontSize(13);
+  pdf.text('www.nictcomputerstraining.com  |  +91 82474 19292', 14, 1105);
+
   pdf.save(`${data.name || 'Student'}_Marks_Card.pdf`);
 }
 
@@ -122,6 +129,13 @@ async function generateCertPDF(data: CertRecord) {
   pdf.text(data.father_name, 180, 583 + 15); pdf.text(data.place, 235, 642 + 15, { align: 'center' });
   pdf.text(data.month, 150, 688 + 15, { align: 'center' }); pdf.text(data.year, 435, 688 + 15, { align: 'center' });
   pdf.text(data.course, 290, 735 + 15); pdf.text(data.grade, 205, 784 + 15, { align: 'center' });
+
+  // Bottom-left contact info
+  pdf.setFont('times', 'bold');
+  pdf.setTextColor(30, 58, 138);
+  pdf.setFontSize(13);
+  pdf.text('www.nictcomputerstraining.com  |  +91 82474 19292', 14, 1105);
+
   pdf.save(`${data.name || 'Student'}_Certificate.pdf`);
 }
 
@@ -155,6 +169,12 @@ async function generateServicePDF(data: ServiceRecord) {
   pdf.text(data.to_date, 600, 559, { maxWidth: 160 });
   pdf.text(data.total_years || '', 245, 621, { maxWidth: 280 });
 
+  // Bottom-left contact info
+  pdf.setFont('times', 'bold');
+  pdf.setTextColor(30, 58, 138);
+  pdf.setFontSize(13);
+  pdf.text('www.nictcomputerstraining.com  |  +91 82474 19292', 14, 1105);
+
   pdf.save(`${data.name || 'Candidate'}_Service_Certificate.pdf`);
 }
 
@@ -184,6 +204,11 @@ function MarksPreview({ data }: { data: MarksRecord }) {
       <div className="absolute z-10 top-[848px] left-[460px] text-[16px] font-bold w-[60px] text-center">{mt}</div>
       <div className="absolute z-10 top-[848px] left-[660px] text-[16px] font-bold w-[60px] text-center">{data.total}</div>
       <div className="absolute z-10 top-[897px] left-[290px] text-[14px] font-bold uppercase">{marksInWords(data.total)}</div>
+
+      {/* Bottom-left contact info */}
+      <div className="absolute z-10 bottom-[12px] left-[14px] text-[13px] font-bold text-blue-800 whitespace-nowrap">
+        www.nictcomputerstraining.com&nbsp;&nbsp;|&nbsp;&nbsp;+91 82474 19292
+      </div>
     </div>
   );
 }
@@ -203,6 +228,11 @@ function CertPreview({ data }: { data: CertRecord }) {
         {data.photo_url && data.photo_url.length > 10
           ? <img src={data.photo_url} alt="Student" className="w-full h-full object-cover" />
           : <span className="text-gray-400 text-xs text-center">No Photo</span>}
+      </div>
+
+      {/* Bottom-left contact info */}
+      <div className="absolute z-10 bottom-[12px] left-[14px] text-[13px] font-bold text-blue-800 whitespace-nowrap">
+        www.nictcomputerstraining.com&nbsp;&nbsp;|&nbsp;&nbsp;+91 82474 19292
       </div>
     </div>
   );
@@ -230,6 +260,11 @@ function ServicePreview({ data }: { data: ServiceRecord }) {
 
       {/* Total Service Years */}
       <div className="absolute z-10 top-[606px] left-[245px] text-[18px] font-bold italic text-blue-600 uppercase w-[280px]">{data.total_years}</div>
+
+      {/* Bottom-left contact info */}
+      <div className="absolute z-10 bottom-[12px] left-[14px] text-[13px] font-bold text-blue-800 whitespace-nowrap">
+        www.nictcomputerstraining.com&nbsp;&nbsp;|&nbsp;&nbsp;+91 82474 19292
+      </div>
     </div>
   );
 }

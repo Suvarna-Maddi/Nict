@@ -202,6 +202,12 @@ export function AdminMarksForm() {
       pdf.setFontSize(20);
       pdf.text(totalInWords, 290, 877 + bOff);
 
+      // Bottom-left contact info
+      pdf.setFont('times', 'bold');
+      pdf.setTextColor(30, 58, 138);
+      pdf.setFontSize(13);
+      pdf.text('www.nictcomputerstraining.com  |  +91 82474 19292', 14, 1105);
+
       pdf.save(`${studentName || 'Student'}_Marks_Card.pdf`);
     } catch (error) {
       console.error('Error generating PDF:', error);
@@ -238,6 +244,11 @@ export function AdminMarksForm() {
       <div className="absolute z-10 top-[828px] left-[460px] text-[22px] font-bold w-[60px] text-center">{maxTotal}</div>
       <div className="absolute z-10 top-[828px] left-[660px] text-[22px] font-bold w-[60px] text-center">{total}</div>
       <div className="absolute z-10 top-[877px] left-[290px] text-[18px] font-bold uppercase">{totalInWords}</div>
+
+      {/* Bottom-left contact info */}
+      <div className="absolute z-10 bottom-[12px] left-[14px] text-[13px] font-bold text-blue-800 whitespace-nowrap">
+        www.nictcomputerstraining.com&nbsp;&nbsp;|&nbsp;&nbsp;+91 82474 19292
+      </div>
     </div>
   );
 

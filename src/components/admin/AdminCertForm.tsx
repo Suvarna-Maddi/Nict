@@ -173,6 +173,12 @@ export function AdminCertForm() {
       pdf.text(course, 290, 735 + bOffXl);
       pdf.text(grade, 130 + 75, 784 + bOffXl, { align: 'center' });
 
+      // Bottom-left contact info
+      pdf.setFont('times', 'bold');
+      pdf.setTextColor(30, 58, 138);
+      pdf.setFontSize(13);
+      pdf.text('www.nictcomputerstraining.com  |  +91 82474 19292', 14, 1105);
+
       pdf.save(`${studentName || 'Student'}_Certificate.pdf`);
     } catch (error) {
       console.error('Error generating PDF:', error);
@@ -279,6 +285,11 @@ export function AdminCertForm() {
                 ) : (
                   <span className="text-[#9ca3af] text-sm">Photo Box</span>
                 )}
+              </div>
+
+              {/* Bottom-left contact info */}
+              <div className="absolute z-10 bottom-[12px] left-[14px] text-[13px] font-bold text-blue-800 whitespace-nowrap">
+                www.nictcomputerstraining.com&nbsp;&nbsp;|&nbsp;&nbsp;+91 82474 19292
               </div>
             </div>
           </div>
