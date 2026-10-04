@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { AdminServiceCertForm } from '../components/admin/AdminServiceCertForm';
 import { AdminMarksForm } from '../components/admin/AdminMarksForm';
 import { AdminCertForm } from '../components/admin/AdminCertForm';
+import { AdminIdCardForm } from '../components/admin/AdminIdCardForm';
 import { SEO } from '../components/SEO';
 
 export function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<'service' | 'marks' | 'cert'>('service');
+  const [activeTab, setActiveTab] = useState<'service' | 'marks' | 'cert' | 'idcard'>('service');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,12 +61,19 @@ export function AdminDashboard() {
             >
               Certificate
             </button>
+            <button
+              className={`flex-1 py-4 px-2 text-center font-medium text-sm md:text-base ${activeTab === 'idcard' ? 'bg-blue-50 text-blue-700 border-b-2 border-blue-700' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'}`}
+              onClick={() => setActiveTab('idcard')}
+            >
+              ID Card
+            </button>
           </div>
 
           <div className="p-6">
             {activeTab === 'service' && <AdminServiceCertForm />}
-            {activeTab === 'marks' && <AdminMarksForm />}
-            {activeTab === 'cert' && <AdminCertForm />}
+            {activeTab === 'marks'   && <AdminMarksForm />}
+            {activeTab === 'cert'    && <AdminCertForm />}
+            {activeTab === 'idcard'  && <AdminIdCardForm />}
           </div>
         </div>
       </div>
