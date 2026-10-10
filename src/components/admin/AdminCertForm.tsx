@@ -162,8 +162,15 @@ export function AdminCertForm() {
       const bOff2xl = 18;
       const bOffXl = 15;
 
+      pdf.setFont('times', 'bolditalic');
+      pdf.setTextColor(37, 99, 235);
       pdf.setFontSize(22);
-      pdf.text(studentName, 210, 533 + bOff2xl);
+      pdf.text('He/She', 160, 533 + bOff2xl);
+
+      pdf.setFont('times', 'bold');
+      pdf.setTextColor(30, 58, 138);
+      pdf.setFontSize(22);
+      pdf.text(studentName, 360, 533 + bOff2xl);
       
       pdf.setFontSize(22);
       pdf.text(fatherName, 180, 583 + bOffXl);
@@ -265,9 +272,12 @@ export function AdminCertForm() {
             <div ref={printRef} className="relative w-full h-full bg-white text-black font-serif" style={{ width: '794px', height: '1123px' }}>
               <img src={certTemplate} alt="Certificate Template" className="absolute inset-0 w-full h-full object-cover z-0" />
               
-              {/* Absolute positioning based on portrait certificate layout */}
-              <div className="absolute z-10 top-[533px] left-[210px] text-[20px] font-bold w-[500px] uppercase tracking-wide text-black">{studentName}</div>
-              <div className="absolute z-10 top-[583px] left-[180px] text-[20px] font-bold w-[400px] uppercase tracking-wide text-black">{fatherName}</div>
+              {/* He/She static text - right beside "Certify That" on the same row */}
+              <div className="absolute z-10 top-[533px] left-[160px] text-[20px] font-bold italic text-[#2563eb]">He/She</div>
+              {/* Student name - fills the dotted line after He/She */}
+              <div className="absolute z-10 top-[533px] left-[360px] text-[20px] font-bold w-[380px] uppercase tracking-wide text-[#1e3a8a]">{studentName}</div>
+              {/* Father name - on S/o. D/o. row */}
+              <div className="absolute z-10 top-[583px] left-[180px] text-[20px] font-bold w-[400px] uppercase tracking-wide text-[#1e3a8a]">{fatherName}</div>
               
               <div className="absolute z-10 top-[642px] left-[110px] text-[20px] font-bold w-[250px] uppercase text-black text-center">{place}</div>
               
